@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>Foro Pensando en Colombia 2023</h1>
+        <Image alt='Foro Pensando en Colombia 2023' src='/src/img/logo.png' width={100} height={200}/>
         {/* MAIN PAGE, INSERT PHOTOS AND  TEXT ABOUT EH FORO*/}
       </main>
     </>

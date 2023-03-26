@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { MenuBar } from './menuBar'
+import { MenuBar } from './menuBar.js'
 
 export default function Document() {
   return (
@@ -9,7 +9,6 @@ export default function Document() {
         <Main />
         <NextScript />
       </body>
-      <MenuBar />
     </Html>
   )
 }

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../GrindHub/backend"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.tabCompletion": "on",
+		"diffEditor.codeLens": true
+	}
+}
