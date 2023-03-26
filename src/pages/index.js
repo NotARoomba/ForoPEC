@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import MenuBar from './menuBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +16,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Image alt='Foro Pensando en Colombia 2023' src='/src/img/logo.png' width={100} height={200}/>
+        <Image alt='Foro Pensando en Colombia 2023' src='/logo.png' width="0"
+    height="0"
+    sizes="100vw"
+    style={{ width: '100%', height: 'auto' }}/>
         {/* MAIN PAGE, INSERT PHOTOS AND  TEXT ABOUT EH FORO*/}
       </main>
     </>
