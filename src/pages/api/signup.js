@@ -8,12 +8,16 @@ export default async function handler(req, res) {
         keepAlive: true,
       })
     const users = mongo.db("userData").collection("users");
-    if (req.body.json())
-    try {
-      await users.insertOne(req.body);
-      res.sendStatus(200);
-    } catch (e) {
-      console.log(e);
-      res.sendStatus(200);
+    console.log(req.body)
+    if (users.findOne({email: req.body.email}) != null) {
+        try {
+          await users.insertOne(req.body);
+          res.sendStatus(200);
+        } catch (e) {
+          console.log(e);
+          res.sendStatus(200);
+        }
+    } else {
+        res.sendStatus(400);
     }
 }

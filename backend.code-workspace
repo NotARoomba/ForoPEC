@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "../GrindHub/backend"
+			"path": "."
 		},
 		{
-			"path": "."
+			"path": "../GrindHub"
 		}
 	],
 	"settings": {

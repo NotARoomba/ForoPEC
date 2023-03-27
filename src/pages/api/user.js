@@ -1,8 +1,8 @@
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
-export default function handler(req, res) {
-  const mongo = MongoClient.connect(process.env.MONGO, {
+export default async function handler(req, res) {
+  const mongo = await MongoClient.connect(process.env.MONGO, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     keepAlive: true,
