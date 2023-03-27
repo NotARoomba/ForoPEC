@@ -19,7 +19,7 @@ export default function Home() {
         <Image alt='Foro Pensando en Colombia 2023' src='/logo.png' width="0"
     height="0"
     sizes="100vw"
-    style={{ width: '100%', height: 'auto' }}/>
+    style={{ width: '100%', height: 'auto', paddingTop: '5px'}}/>
         {/* MAIN PAGE, INSERT PHOTOS AND  TEXT ABOUT EH FORO*/}
       </main>
     </>

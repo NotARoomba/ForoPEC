@@ -16,8 +16,8 @@
   z-index: 2;
   left: 0;
   padding-left: 0;
-  background-color: white;
   border-radius: 15vh;
+  background-color: #F4F5CB;
 }
 
 .links > li {
@@ -30,8 +30,13 @@
   width: auto;
 }
 
-.links > li > Link {
-  font-size: 1.1rem;
+.links > li > a > img { 
+ filter: invert(33%) sepia(35%) saturate(1015%) hue-rotate(97deg) brightness(92%) contrast(101%);
+
+}
+.links > li > Link { 
+  color: green;
+  background-color: green;
 }
 .links > li[data-active="true"] > Link  {
   background-color: red;
