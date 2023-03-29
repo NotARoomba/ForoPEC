@@ -1,4 +1,5 @@
-require("dotenv").config();
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config()
 const { MongoClient } = require("mongodb");
 
 export default async function handler(req, res) {
