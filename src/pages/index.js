@@ -12,14 +12,14 @@ export default function Home() {
       <Head>
         <title>Foro Pensando en Colombia 2023</title>
         <meta name="description" content="Foro Pensando en Colombia 2023" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/> 
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Image alt='Foro Pensando en Colombia 2023' src='/logo.png' width="0"
+        <Image alt='Foro Pensando en Colombia 2023' src={'./logo.png'} width="0"
     height="0"
     sizes="100vw"
-    style={{ width: '100%', height: 'auto', paddingTop: '5px'}}/>
+    style={{ width: '100%', height: 'auto'}}/>
         {/* MAIN PAGE, INSERT PHOTOS AND  TEXT ABOUT EH FORO*/}
         <div className={styles.scrolling}>
   <h1>Presentantes</h1>
