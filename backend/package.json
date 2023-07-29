@@ -1,0 +1,28 @@
+{
+  "name": "focusly-backend",
+  "version": "1.0.0",
+  "description": "Focusly Backend",
+  "main": "server.js",
+  "scripts": {
+    "build": "npm i",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "chat-gpt-authenticator": "^0.5.0",
+    "chatgpt": "^5.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "google-images": "^2.1.0",
+    "mongodb": "^5.2.0",
+    "text-vide": "^1.7.0",
+    "winston": "^3.8.2",
+    "winston-syslog": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
