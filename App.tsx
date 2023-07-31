@@ -19,21 +19,33 @@ function getIcons(route: any, focused: any, color: any, size: any) {
   }
   return <Ionicons name={iconName} size={size} color={color} />;
 }
-function MyTabBar(navigation: any) {
-  return (
-    <View>
-      <ImageButton />
-      <ImageButton />
-      <ImageButton />
-    </View>
-  );
-}
+// function MyTabBar(navigation: any) {
+//   return (
+//     <View>
+//       <ImageButton />
+//       <ImageButton />
+//       <ImageButton />
+//     </View>
+//   );
+// }
 export default function App() {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({route}) => ({
+          tabBarStyle: {
+            backgroundColor: '#000000',
+            outline: 0,
+            position: 'absolute',
+            bottom: 15,
+            padding: 5,
+            margin: 10,
+            borderRadius: 10,
+            maxWidth: 350,
+            left: 20,
+            right: 20,
+          },
           headerShown: false,
           tabBarIcon: ({focused, color, size}) =>
             getIcons(route, focused, color, size),
@@ -46,8 +58,7 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
         initialRouteName="Home"
-        sceneContainerStyle={{backgroundColor: '#171717'}}
-        tabBar={props => MyTabBar(props)}>
+        sceneContainerStyle={{backgroundColor: '#171717'}}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Schedule" component={Schedule} />
         <Tab.Screen name="Profile" component={Profile} />
