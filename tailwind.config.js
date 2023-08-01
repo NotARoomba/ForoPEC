@@ -8,7 +8,13 @@ module.exports = {
         'fl-b': '#073E87',
         'fl-r': '#D8011B',
         'fl-g': '#16BA65',
+        'fl-yy': '#d5ecfa',
+        'fl-ys': '#BCCFDC',
+        'fl-dg': '#026D36',
       },
+    },
+    fontFamily: {
+      sans: ['"Inter"'],
     },
   },
   plugins: [],

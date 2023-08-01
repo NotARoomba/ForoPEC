@@ -4,9 +4,9 @@ import {
   SafeAreaView,
   Image,
   StatusBar,
-  useColorScheme,
   Text,
   ScrollView,
+  Appearance,
 } from 'react-native';
 import {Presenter, Salon} from './DataTypes';
 import PillButton from './PillButton';
@@ -15,10 +15,9 @@ import SplashScreen from 'react-native-splash-screen';
 
 export default function Home() {
   const [cs, setCS] = useState('Salon 1A');
-  const isDarkMode = useColorScheme() === 'dark';
   const presenters: Presenter[] = [
     {
-      name: 'Stephen',
+      name: 'Stephen Hawking',
       projectName: 'A Brief History of Time',
       image: require('../public/person1.jpg'),
     },
@@ -29,7 +28,7 @@ export default function Home() {
     },
     {
       name: 'Albert Einstein',
-      projectName: 'Special Relativity',
+      projectName: 'Como los humanos nessecitan ayuda',
       image: require('../public/person2.jpg'),
     },
   ];
@@ -53,28 +52,45 @@ export default function Home() {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+  const [colorScheme, setColorScheme] = React.useState(
+    Appearance.getColorScheme(),
+  );
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    Appearance.addChangeListener(({colorScheme}) =>
+      setColorScheme(colorScheme),
+    );
+  }, []);
+
+  const isDarkMode = colorScheme === 'dark';
   return (
-    <SafeAreaView className="bg-neutral-900">
-      <StatusBar barStyle={isDarkMode ? 'dark-content' : 'light-content'} />
+    <SafeAreaView className="bg-fl-yy dark:bg-neutral-900">
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <View className="flex justify-center align-middle">
         <Image
-          source={require('../public/logo.png')}
-          className="flex h-36 w-11/12 align-middle justify-center m-auto bg-neutral-900"
+          source={
+            isDarkMode
+              ? require('../public/logo.png')
+              : require('../public/logoDark.png')
+          }
+          className="flex h-36 w-11/12 align-middle justify-center m-auto bg-inherit"
           resizeMode={'contain'}
         />
       </View>
       <View>
-        <Text className="justify-center text-neutral-50 font-bold m-auto mt-0 text-2xl">
+        <Text className="justify-center font-bold m-auto mt-0 text-2xl text-neutral-900 dark:text-neutral-50">
           Salones
         </Text>
         <ScrollView
           horizontal
-          className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl text-neutral-50 bg-neutral-800 outline outline-8 outline-neutral-200">
+          className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl  dark:bg-neutral-800">
           {salones.map((salon, i) => (
             <PillButton
               key={i}
               onPress={() => setCS(salon.name)}
-              color="bg-fl-g"
+              color={isDarkMode ? 'bg-fl-g' : 'bg-fl-dg'}
+              current={cs}
               text={salon.name}
             />
           ))}
@@ -83,12 +99,12 @@ export default function Home() {
           .filter(v => v.name === cs)
           .map((s, i) => (
             <View key={i}>
-              <Text className="justify-center text-neutral-300 font-bold m-auto mt-5 text-xl">
+              <Text className="justify-center  font-bold m-auto mt-5 text-xl text-neutral-800 dark:text-neutral-300">
                 {s.name}
               </Text>
               <ScrollView
                 horizontal
-                className="flex flex-row w-[335] m-auto h-72 rounded-xl text-neutral-50 bg-neutral-900 outline outline-8 outline-neutral-200">
+                className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-fl-ys dark:bg-neutral-900">
                 {s.presenters.map((p, i2) => (
                   <PresenterCard key={i2} {...p} />
                 ))}
