@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -7,21 +7,11 @@ import {
   useColorScheme,
   Text,
   ScrollView,
-  ImageSourcePropType,
 } from 'react-native';
+import {Presenter, Salon} from './DataTypes';
 import PillButton from './PillButton';
-
-interface Presenter {
-  name: string;
-  projectName: string;
-  image: ImageSourcePropType;
-}
-
-interface Salon {
-  name: string;
-  color: string;
-  presenters: Presenter[];
-}
+import PresenterCard from './PresenterCard';
+import SplashScreen from 'react-native-splash-screen';
 
 export default function Home() {
   const [cs, setCS] = useState('Salon 1A');
@@ -60,7 +50,9 @@ export default function Home() {
     {name: 'Salon 2A', color: 'bg-red', presenters: presenters2},
     {name: 'Salon 3A', color: 'bg-red', presenters},
   ];
-  const salonesRef: React.Ref<View>[] = [];
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <SafeAreaView className="bg-neutral-900">
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'light-content'} />
@@ -89,31 +81,16 @@ export default function Home() {
         </ScrollView>
         {salones
           .filter(v => v.name === cs)
-          .map(s => (
-            <View id="salon-view">
+          .map((s, i) => (
+            <View key={i}>
               <Text className="justify-center text-neutral-300 font-bold m-auto mt-5 text-xl">
                 {s.name}
               </Text>
               <ScrollView
                 horizontal
                 className="flex flex-row w-[335] m-auto h-72 rounded-xl text-neutral-50 bg-neutral-900 outline outline-8 outline-neutral-200">
-                {s.presenters.map((p, i) => (
-                  <View
-                    key={i}
-                    className="flex flex-column m-5 mb-0 w-32 h-64 rounded-xl bg-neutral-800">
-                    <Image
-                      source={p.image}
-                      className="flex h-28 w-28 align-middle justify-center m-2 rounded-xl"
-                      resizeMode={'contain'}
-                    />
-                    <Text className="flex text-neutral-300 text-center font-bold m-auto mt-0 text-base">
-                      {`${p.name}`}
-                    </Text>
-                    <View className="border-white border-b-2 w-5/6 justify-center m-auto" />
-                    <Text className="flex text-neutral-300 text-center font-bold m-auto text-base">
-                      {p.projectName}
-                    </Text>
-                  </View>
+                {s.presenters.map((p, i2) => (
+                  <PresenterCard key={i2} {...p} />
                 ))}
               </ScrollView>
             </View>
