@@ -18,7 +18,7 @@ verifyRouter.post('/', async (req: Request, res: Response) => {
   const number = req?.body?.number;
   const code = req?.body?.code;
   let verification;
-  console.log(code, number);
+  console.log(code, number, req);
   try {
     verification = await twilio.verify.v2
       .services(env.TW_VSID)
