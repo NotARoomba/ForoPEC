@@ -21,6 +21,7 @@
     "mongodb": "^5.2.0",
     "text-vide": "^1.7.0",
     "ts-dotenv": "^0.9.1",
+    "twilio": "^4.14.1",
     "un": "^0.0.0",
     "winston": "^3.8.2",
     "winston-papertrail": "^1.0.5",

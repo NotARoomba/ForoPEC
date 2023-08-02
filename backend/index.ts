@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express';
 import {connectToDatabase} from './services/database.service';
 import {usersRouter} from './routers/users.router';
+import {verifyRouter} from './routers/verify.router';
 
 const app = express();
 const port = 3001;
@@ -8,6 +9,7 @@ const port = 3001;
 connectToDatabase()
   .then(() => {
     app.use('/users', usersRouter);
+    app.use('/verify', verifyRouter);
 
     app.use('/', async (_req: Request, res: Response) => {
       res.status(200).send('You arent supposed to be here');

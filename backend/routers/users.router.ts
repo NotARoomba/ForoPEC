@@ -22,12 +22,11 @@ usersRouter.get('/:number', async (req: Request, res: Response) => {
   const id = req?.params?.number;
 
   try {
-    const query = {number: id};
+    const query = {number: parseInt(id, 10)};
     let user = null;
     if (collections.users) {
       user = (await collections.users.findOne(query)) as unknown as User;
     }
-
     if (user) {
       res.status(200).send(user);
     } else {
