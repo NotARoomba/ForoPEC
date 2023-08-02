@@ -15,10 +15,10 @@ export const verifyRouter = express.Router();
 verifyRouter.use(express.json());
 
 verifyRouter.post('/', async (req: Request, res: Response) => {
-  const number: string = req?.headers?.number as string;
-  const code: string = req?.headers?.code as string;
+  const number: string = req?.body?.number as string;
+  const code: string = req?.body?.code as string;
   let verification;
-  console.log(code, number, req.headers);
+  console.log(code, number, req.body);
   try {
     verification = await twilio.verify.v2
       .services(env.TW_VSID)
