@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import Home from './src/Home';
 import Profile from './src/Profile';
 import Schedule from './src/Schedule';
-import {Appearance} from 'react-native';
+import {Animated, Appearance} from 'react-native';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -33,11 +33,65 @@ export default function App() {
   );
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     Appearance.addChangeListener(({colorScheme}) =>
       setColorScheme(colorScheme),
     );
   }, []);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(0.98)).current;
 
+  const fadeIn = useCallback(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scale, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [fadeAnim, scale]);
+
+  const fadeOut = useCallback(
+    (navigate: () => void) => {
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 100,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scale, {
+          toValue: 0.98,
+          duration: 100,
+          useNativeDriver: true,
+        }),
+      ]).start(({finished}) => {
+        if (finished) {
+          navigate();
+        }
+      });
+    },
+    [fadeAnim, scale],
+  );
+
+  const listeners = ({navigation, route}: {navigation: any; route: any}) => ({
+    tabPress: (e: {preventDefault: () => void}) => {
+      e.preventDefault();
+      if (
+        navigation.getState().history[navigation.getState().history.length - 1]
+          .key !== route.key
+      ) {
+        fadeOut(() => navigation.navigate(route.name));
+      }
+    },
+    focus: (_e: any) => {
+      fadeIn();
+    },
+  });
   const isDarkMode = colorScheme === 'dark';
   return (
     <NavigationContainer>
@@ -77,7 +131,7 @@ export default function App() {
         }}>
         <Tab.Screen
           name="Home"
-          component={Home}
+          listeners={listeners}
           options={{
             tabBarLabelStyle: {
               fontFamily: 'Inter',
@@ -85,11 +139,14 @@ export default function App() {
               fontWeight: 'bold',
               paddingBottom: 5,
             },
-          }}
-        />
+          }}>
+          {props => (
+            <Home {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
+          )}
+        </Tab.Screen>
         <Tab.Screen
           name="Schedule"
-          component={Schedule}
+          listeners={listeners}
           options={{
             tabBarLabelStyle: {
               fontFamily: 'Inter',
@@ -97,11 +154,14 @@ export default function App() {
               fontWeight: 'bold',
               paddingBottom: 5,
             },
-          }}
-        />
+          }}>
+          {props => (
+            <Schedule {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
+          )}
+        </Tab.Screen>
         <Tab.Screen
           name="Profile"
-          component={Profile}
+          listeners={listeners}
           options={{
             tabBarLabelStyle: {
               fontFamily: 'Inter',
@@ -109,8 +169,11 @@ export default function App() {
               fontWeight: 'bold',
               paddingBottom: 5,
             },
-          }}
-        />
+          }}>
+          {props => (
+            <Profile {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
+          )}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );
