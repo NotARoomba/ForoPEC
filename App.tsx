@@ -1,12 +1,14 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Home from './src/Home';
 import Profile from './src/Profile';
 import Schedule from './src/Schedule';
 import {Animated, Appearance} from 'react-native';
+import Login from './src/Login';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -92,6 +94,28 @@ export default function App() {
       fadeIn();
     },
   });
+  const getData = async (key: string) => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      return value !== null ? value : null;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const storeData = async (key: string, value: object) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, jsonValue);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const [logged, setlLogged] = useState(false);
+  useEffect(() => {
+    getData('number').then(res => {
+      setlLogged(res !== null);
+    });
+  }, []);
   const isDarkMode = colorScheme === 'dark';
   return (
     <NavigationContainer>
@@ -129,51 +153,81 @@ export default function App() {
         sceneContainerStyle={{
           backgroundColor: isDarkMode ? '#171717' : '#f5f5f5',
         }}>
-        <Tab.Screen
-          name="Home"
-          listeners={listeners}
-          options={{
-            tabBarLabelStyle: {
-              fontFamily: 'Inter',
-              fontSize: 14,
-              fontWeight: 'bold',
-              paddingBottom: 5,
-            },
-          }}>
-          {props => (
-            <Home {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
-          )}
-        </Tab.Screen>
-        <Tab.Screen
-          name="Schedule"
-          listeners={listeners}
-          options={{
-            tabBarLabelStyle: {
-              fontFamily: 'Inter',
-              fontSize: 14,
-              fontWeight: 'bold',
-              paddingBottom: 5,
-            },
-          }}>
-          {props => (
-            <Schedule {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
-          )}
-        </Tab.Screen>
-        <Tab.Screen
-          name="Profile"
-          listeners={listeners}
-          options={{
-            tabBarLabelStyle: {
-              fontFamily: 'Inter',
-              fontSize: 14,
-              fontWeight: 'bold',
-              paddingBottom: 5,
-            },
-          }}>
-          {props => (
-            <Profile {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
-          )}
-        </Tab.Screen>
+        {logged ? (
+          <Tab.Group>
+            <Tab.Screen
+              name="Home"
+              listeners={listeners}
+              options={{
+                tabBarLabelStyle: {
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  paddingBottom: 5,
+                },
+              }}>
+              {props => (
+                <Home {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
+              )}
+            </Tab.Screen>
+            <Tab.Screen
+              name="Schedule"
+              listeners={listeners}
+              options={{
+                tabBarLabelStyle: {
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  paddingBottom: 5,
+                },
+              }}>
+              {props => (
+                <Schedule
+                  {...props}
+                  fadeAnim={fadeAnim}
+                  scale={scale}
+                  isDarkMode
+                />
+              )}
+            </Tab.Screen>
+            <Tab.Screen
+              name="Profile"
+              listeners={listeners}
+              options={{
+                tabBarLabelStyle: {
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  paddingBottom: 5,
+                },
+              }}>
+              {props => (
+                <Profile
+                  {...props}
+                  fadeAnim={fadeAnim}
+                  scale={scale}
+                  isDarkMode
+                />
+              )}
+            </Tab.Screen>
+          </Tab.Group>
+        ) : (
+          <Tab.Screen
+            name="Login"
+            listeners={listeners}
+            options={{
+              tabBarLabelStyle: {
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: 'bold',
+                paddingBottom: 5,
+              },
+            }}>
+            {props => (
+              <Login {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
+            )}
+          </Tab.Screen>
+        )}
       </Tab.Navigator>
     </NavigationContainer>
   );
