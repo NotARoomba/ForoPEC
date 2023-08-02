@@ -7,11 +7,11 @@ const port = 3001;
 
 connectToDatabase()
   .then(() => {
+    app.use('/users', usersRouter);
+
     app.use('/', async (_req: Request, res: Response) => {
       res.status(200).send('You arent supposed to be here');
     });
-    app.use('/users', usersRouter);
-
     app.listen(port, () => {
       console.log(`Server started at http://localhost:${port}`);
     });

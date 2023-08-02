@@ -19,7 +19,7 @@ usersRouter.get('/', async (req: Request, res: Response) => {
 });
 
 usersRouter.get('/:number', async (req: Request, res: Response) => {
-  const id = req?.params?.id;
+  const id = req?.params?.number;
 
   try {
     const query = {number: id};
