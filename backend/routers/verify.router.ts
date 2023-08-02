@@ -1,4 +1,5 @@
 import express, {Request, Response} from 'express';
+import {Twilio} from 'twilio';
 import {load} from 'ts-dotenv';
 
 const env = load({
@@ -7,7 +8,7 @@ const env = load({
   TW_TOKEN: String,
 });
 
-const twilio = require('twilio')(env.TW_SID, env.TW_TOKEN);
+const twilio: Twilio = new Twilio(env.TW_SID, env.TW_TOKEN);
 
 export const verifyRouter = express.Router();
 
@@ -17,11 +18,12 @@ verifyRouter.get('/', async (req: Request, res: Response) => {
   const number = req?.body?.number;
   const code = req?.body?.code;
   let verification;
-
+  console.log(code, number);
   try {
-    verification = await twilio.verify
+    verification = await twilio.verify.v2
       .services(env.TW_VSID)
       .verificationChecks.create({code, to: number});
+    console.log(verification);
     if (verification.status === 'approved') {
       res.status(200);
     } else {
