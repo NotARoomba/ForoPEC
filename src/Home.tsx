@@ -65,7 +65,7 @@ export default function Home() {
 
   const isDarkMode = colorScheme === 'dark';
   return (
-    <SafeAreaView className="bg-fl-yy dark:bg-neutral-900">
+    <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <View className="flex justify-center align-middle">
         <Image
@@ -84,7 +84,7 @@ export default function Home() {
         </Text>
         <ScrollView
           horizontal
-          className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl  dark:bg-neutral-800">
+          className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl bg-neutral-300 dark:bg-neutral-800">
           {salones.map((salon, i) => (
             <PillButton
               key={i}
@@ -104,7 +104,7 @@ export default function Home() {
               </Text>
               <ScrollView
                 horizontal
-                className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-fl-ys dark:bg-neutral-900">
+                className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-neutral-100 dark:bg-neutral-900">
                 {s.presenters.map((p, i2) => (
                   <PresenterCard key={i2} {...p} />
                 ))}

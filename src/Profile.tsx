@@ -24,7 +24,7 @@ export default function Profile() {
 
   const isDarkMode = colorScheme === 'dark';
   return (
-    <SafeAreaView className="bg-fl-yy dark:bg-neutral-900">
+    <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <View className="flex justify-center align-left mt-5">
         <TouchableOpacity

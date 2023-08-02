@@ -4,7 +4,7 @@ import {Presenter} from './DataTypes';
 
 export default function PresenterCard({image, name, projectName}: Presenter) {
   return (
-    <View className="flex flex-column m-2 mx-3 w-48 min-h-64 rounded-xl bg-fl-yy dark:bg-neutral-800 p-2 shadow-sm shadow-black dark:shadow-white">
+    <View className="flex flex-column m-2 mx-3 w-48 min-h-64 rounded-xl bg-neutral-200 dark:bg-neutral-800 p-2 shadow dark:shadow-sm shadow-neutral-500">
       <Image
         source={image}
         className="flex h-28 w-11/12 align-middle justify-center m-auto rounded-xl"

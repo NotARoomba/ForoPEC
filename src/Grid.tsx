@@ -7,7 +7,7 @@ interface RowProps {
 
 function Row({data}: RowProps) {
   return (
-    <View className="flex flex-row min-h-max marker:mt-5 rounded-xl p-2 border-l-2 border-r-2 divide-x-2 divide-fl-dg border-fl-dg bg-fl-ys/70 dark:divide-fl-g dark:border-fl-g  dark:bg-neutral-800 ">
+    <View className="flex flex-row min-h-max marker:mt-5 rounded-xl p-2 border-l-2 border-r-2 divide-x-2 divide-fl-dg border-fl-dg bg-neutral-200 shadow dark:shadow-none shadow-neutral-500 dark:divide-fl-dg dark:border-fl-g  dark:bg-neutral-800 ">
       {data.map((v, i) => (
         <View key={i} className="p-2 w-1/3 flex flex-column">
           <Text className="flex flex-column text-center font-bold m-auto text-base dark:text-neutral-300">
@@ -31,8 +31,8 @@ export default function Grid() {
     ['4:30', 'Stephen Hawking', 'A brief history of time'],
   ];
   return (
-    <View className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-fl-yy dark:bg-neutral-900">
-      <ScrollView className="min-h-[72vh] rounded-xl bg-fl-yy dark:bg-neutral-900">
+    <View className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-neutral-100 dark:bg-neutral-900">
+      <ScrollView className="min-h-[72vh] rounded-xl">
         {times.map((v, i) => (
           <Row key={i} data={v} />
         ))}

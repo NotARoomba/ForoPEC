@@ -44,8 +44,7 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarStyle: {
-            backgroundColor: isDarkMode ? '#000000' : '#BCCFDC',
-            outline: 0,
+            backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
             position: 'absolute',
             bottom: 5,
             margin: 10,
@@ -56,6 +55,13 @@ export default function App() {
             height: 60,
             paddingBottom: 0,
             alignItems: 'center',
+            shadowColor: '#000000',
+            shadowOffset: {
+              width: 0,
+              height: 10,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 10,
             borderTopWidth: 0,
           },
           headerShown: false,
@@ -67,7 +73,7 @@ export default function App() {
         initialRouteName="Home"
         // eslint-disable-next-line react-native/no-inline-styles
         sceneContainerStyle={{
-          backgroundColor: isDarkMode ? '#171717' : '#d5ecfa',
+          backgroundColor: isDarkMode ? '#171717' : '#f5f5f5',
         }}>
         <Tab.Screen
           name="Home"
