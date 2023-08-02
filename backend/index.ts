@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import {connectToDatabase} from './services/database.service';
 import {usersRouter} from './routers/users.router';
 
@@ -7,6 +7,9 @@ const port = 3001;
 
 connectToDatabase()
   .then(() => {
+    app.use('/', async (_req: Request, res: Response) => {
+      res.status(200).send('You arent supposed to be here');
+    });
     app.use('/users', usersRouter);
 
     app.listen(port, () => {
