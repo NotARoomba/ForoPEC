@@ -14,7 +14,7 @@ export const verifyRouter = express.Router();
 
 verifyRouter.use(express.json());
 
-verifyRouter.get('/', async (req: Request, res: Response) => {
+verifyRouter.post('/', async (req: Request, res: Response) => {
   const number = req?.body?.number;
   const code = req?.body?.code;
   let verification;
