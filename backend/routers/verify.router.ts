@@ -15,10 +15,10 @@ export const verifyRouter = express.Router();
 verifyRouter.use(express.json());
 
 verifyRouter.post('/', async (req: Request, res: Response) => {
-  const number: string = req?.query?.number as string;
-  const code: string = req?.query?.code as string;
+  const number: string = req?.headers?.number as string;
+  const code: string = req?.headers?.code as string;
   let verification;
-  console.log(code, number, req.body);
+  console.log(code, number, req.headers);
   try {
     verification = await twilio.verify.v2
       .services(env.TW_VSID)
@@ -30,6 +30,7 @@ verifyRouter.post('/', async (req: Request, res: Response) => {
       res.status(404);
     }
   } catch (error) {
+    console.log(error);
     res.status(404).send('Unable to send Twilio code');
   }
 });
