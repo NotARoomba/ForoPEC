@@ -25,7 +25,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
         channel: 'sms',
       });
     if (verification.status === 'pending') {
-      res.status(200);
+      res.status(200).send('The code has been sent!');
     } else {
       res.status(404).send('There was an error sending the code!');
     }
@@ -49,7 +49,7 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
         code,
       });
     if (verification.status === 'approved') {
-      res.status(200);
+      res.status(200).send('The code has been approved!');
     } else {
       res.status(404).send('The code is incorrect!');
     }
