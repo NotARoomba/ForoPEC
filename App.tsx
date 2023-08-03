@@ -7,8 +7,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from './src/Home';
 import Profile from './src/Profile';
 import Schedule from './src/Schedule';
-import {Animated, Appearance} from 'react-native';
+import {Animated} from 'react-native';
 import Login from './src/Login';
+import {Appearance} from 'react-native';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -94,21 +95,20 @@ export default function App() {
     }
   };
   const [logged, setlLogged] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(
+    Appearance.getColorScheme() === 'dark',
+  );
   const updateLogged = (v: boolean) => setlLogged(v);
+  const updateDarkMode = (v: boolean) =>
+    Appearance.setColorScheme(v ? 'light' : 'dark');
   useEffect(() => {
-    async () =>
-      await getData('number').then(res => {
-        console.log(res);
-        setlLogged(res !== null);
-      });
+    getData('number').then(res => {
+      setlLogged(res !== null);
+    });
+    Appearance.addChangeListener(appearance => {
+      setDarkMode(appearance.colorScheme === 'dark');
+    });
   }, []);
-  const [cs, setColorScheme] = React.useState(Appearance.getColorScheme());
-  useEffect(() => {
-    Appearance.addChangeListener(({colorScheme}) =>
-      setColorScheme(colorScheme),
-    );
-  }, []);
-  const isDarkMode = cs === 'dark';
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -199,6 +199,7 @@ export default function App() {
                   fadeAnim={fadeAnim}
                   scale={scale}
                   isDarkMode
+                  updateFunction={[updateDarkMode, updateLogged]}
                 />
               )}
             </Tab.Screen>
@@ -221,7 +222,7 @@ export default function App() {
                 fadeAnim={fadeAnim}
                 scale={scale}
                 isDarkMode
-                updateLogged={updateLogged}
+                updateFunction={[updateLogged]}
               />
             )}
           </Tab.Screen>

@@ -1,5 +1,11 @@
 {
   "name": "ForoPEC2023",
   "displayName": "ForoPEC2023",
-  "userInterfaceStyle": "automatic"
+  "userInterfaceStyle": "automatic",
+  "ios": {
+    "userInterfaceStyle": "automatic"
+  },
+  "android": {
+    "userInterfaceStyle": "automatic"
+  }
 }

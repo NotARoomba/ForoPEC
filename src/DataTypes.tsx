@@ -18,9 +18,38 @@ export interface ScreenProp {
   scale: Animated.Value;
   isDarkMode: boolean;
 }
-export interface LoginScreenProp {
+export interface FunctionScreenProp {
   fadeAnim: Animated.Value;
   scale: Animated.Value;
   isDarkMode: boolean;
-  updateLogged: Function;
+  updateFunction: Function[];
+}
+
+const API = 'https://foropec2023-api.notaroomba.xyz';
+
+export async function callAPI(
+  endpoint: string,
+  method: string,
+  body: Object = {},
+) {
+  return method === 'POST'
+    ? await (
+        await fetch(API + endpoint, {
+          method: method,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+      ).json()
+    : await (
+        await fetch(API + endpoint, {
+          method: method,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+      ).json();
 }

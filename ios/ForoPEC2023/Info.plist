@@ -80,7 +80,5 @@
 		<string>Inter-SemiBold.ttf</string>
 		<string>Inter-Thin.ttf</string>
 	</array>
-    <key>UIUserInterfaceStyle</key>
-    <string>unspecified</string>
 </dict>
 </plist>

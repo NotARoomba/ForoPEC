@@ -7,26 +7,47 @@ import {
   Text,
   TouchableOpacity,
   Animated,
+  Alert,
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {ScreenProp} from './DataTypes';
+import {FunctionScreenProp} from './DataTypes';
 
-export default function Profile({fadeAnim, scale, isDarkMode}: ScreenProp) {
+export default function Profile({
+  fadeAnim,
+  scale,
+  isDarkMode,
+  updateFunction,
+}: FunctionScreenProp) {
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <View className="flex justify-center align-left mt-5">
           <TouchableOpacity
-            onPress={() => {
-              Appearance.setColorScheme(
-                Appearance.getColorScheme() === 'dark' ? 'light' : 'dark',
-              );
+            onPress={() =>
+              updateFunction[0](Appearance.getColorScheme() === 'dark')
+            }
+            className="w-12 absolute left-0 top-0 ml-3">
+            <Feather
+              name={Appearance.getColorScheme() === 'dark' ? 'sun' : 'moon'}
+              size={32}
+              color={
+                Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
+              }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={e => {
+              e.preventDefault();
+              Alert.alert('Logout', 'Are you sure you want to logout?', [
+                {text: 'No'},
+                {text: 'Yes', onPress: () => updateFunction[1](false)},
+              ]);
             }}
             className="w-12 absolute right-0 top-0">
             <Feather
-              name={Appearance.getColorScheme() === 'dark' ? 'sun' : 'moon'}
+              name={'log-out'}
               size={32}
               color={
                 Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
