@@ -12,8 +12,26 @@ import {
 } from 'react-native';
 import {ScreenProp} from './DataTypes';
 
+const API = 'https://foropec2023-api.notaroomba.xyz';
+
 async function parseLogin(number: string) {
-  return number;
+  let res = await (
+    await fetch(API + '/verify/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        number,
+      }),
+    })
+  ).json();
+  if (res.status === 200) {
+    console.log('AY', res.body);
+  } else {
+    console.log('sads', res.body);
+  }
 }
 
 export default function Login({fadeAnim, scale, isDarkMode}: ScreenProp) {
@@ -37,7 +55,7 @@ export default function Login({fadeAnim, scale, isDarkMode}: ScreenProp) {
             value={number}
             placeholder="Phone Number"
             keyboardType="number-pad"
-            className="flex justify-center align-middle m-auto h-auto p-1 pl-5 pb-3 text-2xl border mt-5 w-72 text-left text- rounded-xl dark:text-neutral-50"
+            className="flex justify-center align-middle m-auto h-auto p-1 pl-5 pb-1 text-2xl border mt-5 w-72 text-left text- rounded-xl dark:text-neutral-50"
           />
           <TouchableOpacity
             onPress={() => parseLogin(number)}

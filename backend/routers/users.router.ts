@@ -12,9 +12,9 @@ usersRouter.get('/', async (req: Request, res: Response) => {
     if (collections.users) {
       users = (await collections.users.find({}).toArray()) as unknown as User[];
     }
-    res.status(200).send(users);
+    res.status(200).send({users, error: false, msg: 'Users Exist!'});
   } catch (error) {
-    res.status(500).send('Error getting users from Mongo!');
+    res.status(500).send({error: true, msg: error});
   }
 });
 
@@ -28,13 +28,11 @@ usersRouter.get('/:number', async (req: Request, res: Response) => {
       user = (await collections.users.findOne(query)) as unknown as User;
     }
     if (user) {
-      res.status(200).send(user);
+      res.status(200).send({user, error: false, msg: 'The user exists!'});
     } else {
-      res.status(404).send('User not found');
+      res.status(404).send({error: true, msg: 'User not found!'});
     }
   } catch (error) {
-    res
-      .status(404)
-      .send(`Unable to find matching document with id: ${req.params.id}`);
+    res.status(404).send({error: true, msg: error});
   }
 });
