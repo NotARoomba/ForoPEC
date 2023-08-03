@@ -4,6 +4,8 @@ export interface Presenter {
   name: string;
   projectName: string;
   image: string;
+  salon: string;
+  time: string;
 }
 
 export interface Salon {

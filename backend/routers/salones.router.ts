@@ -14,7 +14,21 @@ salonesRouter.get('/', async (req: Request, res: Response) => {
         .find({})
         .toArray()) as unknown as Presentation[];
     }
-    res.status(200).send({presentations, error: false, msg: 'Users Exist!'});
+    res
+      .status(200)
+      .send({presentations, error: false, msg: 'Presenters Exist!'});
+  } catch (error) {
+    res.status(500).send({error: true, msg: error});
+  }
+});
+
+salonesRouter.get('/list', async (req: Request, res: Response) => {
+  try {
+    let salones = null;
+    if (collections.salones) {
+      salones = await collections.salones.distinct('salon');
+    }
+    res.status(200).send({salones, error: false, msg: 'Salones Exist!'});
   } catch (error) {
     res.status(500).send({error: true, msg: error});
   }

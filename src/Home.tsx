@@ -9,42 +9,13 @@ import {
   Animated,
   Appearance,
 } from 'react-native';
-import {ScreenProp, Presenter, Salon} from './DataTypes';
+import {ScreenProp, Presenter, Salon, callAPI} from './DataTypes';
 import PillButton from './PillButton';
 import PresenterCard from './PresenterCard';
 
-export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
+export default async function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
+  const presentersList: Presenter[] = await callAPI('/salones', 'GET');
   const [cs, setCS] = useState('Salon 1A');
-  const presenters: Presenter[] = [
-    {
-      name: 'Stephen Hawking',
-      projectName: 'A Brief History of Time',
-      image: '../public/person1.jpg',
-    },
-    {
-      name: 'Albert Einstein',
-      projectName: 'Special Relativity',
-      image:
-        'https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg',
-    },
-    {
-      name: 'Albert Einstein',
-      projectName: 'Como los humanos nessecitan ayuda',
-      image: '../public/person2.jpg',
-    },
-  ];
-  const presenters2: Presenter[] = [
-    {
-      name: 'Stephen',
-      projectName: 'A Brief History of Time',
-      image: '../public/person1.jpg',
-    },
-    {
-      name: 'Stephen',
-      projectName: 'A Brief History of Time',
-      image: '../public/person1.jpg',
-    },
-  ];
   const salones: Salon[] = [
     {name: 'Salon 1A', color: 'bg-red', presenters},
     {name: 'Salon 2A', color: 'bg-red', presenters: presenters2},
