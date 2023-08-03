@@ -62,7 +62,7 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
     verification = await twilio.verify.v2
       .services(env.TW_VSID)
       .verificationChecks.create({
-        code: code,
+        code,
         to: number,
       });
     console.log(verification);
