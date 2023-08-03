@@ -6,12 +6,12 @@ export const salonesRouter = express.Router();
 
 salonesRouter.use(express.json());
 
-salonesRouter.get('/', async (req: Request, res: Response) => {
+salonesRouter.post('/', async (req: Request, res: Response) => {
   try {
     let presentations = null;
     if (collections.salones) {
       presentations = (await collections.salones
-        .find({})
+        .find(req?.body?.filter)
         .toArray()) as unknown as Presentation[];
     }
     res

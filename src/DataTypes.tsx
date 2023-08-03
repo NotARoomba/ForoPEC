@@ -1,10 +1,14 @@
 import {Animated} from 'react-native';
 
+export interface SalonAPI {
+  name: string;
+  color: string;
+}
 export interface Presenter {
   name: string;
   projectName: string;
   image: string;
-  salon: string;
+  salon: SalonAPI;
   time: string;
 }
 
