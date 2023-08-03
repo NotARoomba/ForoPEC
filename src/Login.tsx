@@ -9,40 +9,84 @@ import {
   TouchableOpacity,
   Appearance,
   Image,
+  Alert,
 } from 'react-native';
 import {ScreenProp} from './DataTypes';
+import prompt from '@powerdesigninc/react-native-prompt';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API = 'https://foropec2023-api.notaroomba.xyz';
 
-async function callAPI(endpoint: string, method: string, body: Object) {
-  return await (
-    await fetch(API + endpoint, {
-      method: method,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
-  ).json();
+async function callAPI(endpoint: string, method: string, body: Object = {}) {
+  return method === 'POST'
+    ? await (
+        await fetch(API + endpoint, {
+          method: method,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+      ).json()
+    : await (
+        await fetch(API + endpoint, {
+          method: method,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+      ).json();
+}
+
+const storeData = async (key: string, value: string) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+async function checkLogin(number: string, code: string) {
+  const check = await callAPI('/verify/check', 'POST', {number, code});
+  if (!check.error) {
+    storeData(
+      'number',
+      number[0] === '+' ? number.slice(3, number.length) : number,
+    );
+    Alert.alert('Success!');
+  } else {
+    return Alert.alert('Error', check.msg);
+  }
 }
 
 async function parseLogin(number: string) {
+  console.log(
+    '/users/' + (number[0] === '+' ? number.slice(3, number.length) : number),
+  );
   let exists = await callAPI(
-    '/user/' + number[0] === '+' ? number.slice(3, number.length) : number,
-    'POST',
-    {number},
+    '/users/' + (number[0] === '+' ? number.slice(3, number.length) : number),
+    'GET',
   );
   if (!exists.user && exists.error) {
-    return console.log('The user doesnt exist');
+    return Alert.alert(
+      'Error',
+      'The number is invalid! (Try entering an area code before ex. +57)',
+    );
   }
-  let res = await callAPI('/verify/send', 'POST', {number});
+  const res = await callAPI('/verify/send', 'POST', {number});
   if (!res.error) {
-    //add error modal
-    console.log('AY', res.body);
+    prompt(
+      'Enter Code',
+      'Enter the verification code that was sent to ' + number,
+      async input => await checkLogin(number, input),
+      'plain-text',
+      '000000',
+      'number-pad',
+    );
   } else {
-    //add input code modal
-    console.log('sads', res);
+    return Alert.alert('Error', res.msg);
   }
 }
 

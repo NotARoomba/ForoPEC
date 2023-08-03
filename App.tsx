@@ -102,14 +102,6 @@ export default function App() {
       console.error(e);
     }
   };
-  const storeData = async (key: string, value: object) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem(key, jsonValue);
-    } catch (e) {
-      console.error(e);
-    }
-  };
   const [logged, setlLogged] = useState(false);
   useEffect(() => {
     getData('number').then(res => {

@@ -11,6 +11,7 @@
     "splashcon": "react-native set-icon --path ./public/icon.png && react-native set-splash --path ./public/splash.png --background \"#171717\""
   },
   "dependencies": {
+    "@powerdesigninc/react-native-prompt": "^0.1.2",
     "@react-native-async-storage/async-storage": "^1.19.1",
     "@react-native-community/blur": "^4.3.2",
     "@react-navigation/bottom-tabs": "^6.5.8",
