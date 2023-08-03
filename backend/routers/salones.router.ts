@@ -8,16 +8,14 @@ salonesRouter.use(express.json());
 
 salonesRouter.post('/', async (req: Request, res: Response) => {
   try {
-    let presentations = null;
+    let presenters = null;
     if (collections.salones) {
-      presentations = (await collections.salones
+      presenters = (await collections.salones
         .find(req?.body?.filter)
         .toArray()) as unknown as Presentation[];
     }
-    console.log(presentations, req?.body);
-    res
-      .status(200)
-      .send({presentations, error: false, msg: 'Presenters Exist!'});
+    console.log(presenters, req?.body);
+    res.status(200).send({presenters, error: false, msg: 'Presenters Exist!'});
   } catch (error) {
     res.status(500).send({error: true, msg: error});
   }

@@ -17,19 +17,25 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [s, setSalones] = useState<Salon[]>([]);
   const [cs, setCS] = useState('');
   useEffect(() => {
+    let salonesList: Salon[] = [];
     async function updateSalones() {
-      const {salones} = await callAPI('/salones/list', 'GET');
-      console.log(salones);
-      for (let salon of salones) {
-        const presenters = await callAPI('/salones', 'POST', {
-          filter: {salon: {name: salon.name, color: salon.color}},
-        });
-        console.log(presenters);
-        setSalones([...salones, {...salon, presenters}]);
+      if (salonesList.length !== 0) {
+        //return;
       }
+      const {salones} = await callAPI('/salones/list', 'GET');
+      for (let salon of salones) {
+        console.log(salon);
+        const presenters = await callAPI('/salones', 'POST', {
+          filter: {salon},
+        });
+        salonesList.push({...salon, presenters});
+      }
+      console.log(salonesList);
+      setSalones([...salonesList]);
+      setCS(salonesList[0].name);
     }
-    //updateSalones();
-  }, [s]);
+    updateSalones();
+  }, []);
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
