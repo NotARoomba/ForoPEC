@@ -19,6 +19,9 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
     req?.body?.number[0] === '+'
       ? req?.body?.number
       : (('+57' + req?.body?.number) as string);
+  if (req?.body?.number === '') {
+    return res.status(404).send({error: true, msg: 'Please add a number!'});
+  }
   let verification;
   try {
     verification = await twilio.verify.v2

@@ -30,16 +30,6 @@ function getIcons(route: any, focused: any, color: any, size: any) {
 }
 export default function App() {
   const Tab = createBottomTabNavigator();
-  const [colorScheme, setColorScheme] = React.useState(
-    Appearance.getColorScheme(),
-  );
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    Appearance.addChangeListener(({colorScheme}) =>
-      setColorScheme(colorScheme),
-    );
-  }, []);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.98)).current;
 
@@ -100,15 +90,25 @@ export default function App() {
       return value !== null ? value : null;
     } catch (e) {
       console.error(e);
+      return null;
     }
   };
   const [logged, setlLogged] = useState(false);
+  const updateLogged = (v: boolean) => setlLogged(v);
   useEffect(() => {
-    getData('number').then(res => {
-      setlLogged(res !== null);
-    });
+    async () =>
+      await getData('number').then(res => {
+        console.log(res);
+        setlLogged(res !== null);
+      });
   }, []);
-  const isDarkMode = colorScheme === 'dark';
+  const [cs, setColorScheme] = React.useState(Appearance.getColorScheme());
+  useEffect(() => {
+    Appearance.addChangeListener(({colorScheme}) =>
+      setColorScheme(colorScheme),
+    );
+  }, []);
+  const isDarkMode = cs === 'dark';
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -216,7 +216,13 @@ export default function App() {
               },
             }}>
             {props => (
-              <Login {...props} fadeAnim={fadeAnim} scale={scale} isDarkMode />
+              <Login
+                {...props}
+                fadeAnim={fadeAnim}
+                scale={scale}
+                isDarkMode
+                updateLogged={updateLogged}
+              />
             )}
           </Tab.Screen>
         )}

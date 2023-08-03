@@ -11,7 +11,7 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import {ScreenProp} from './DataTypes';
+import {LoginScreenProp} from './DataTypes';
 import prompt from '@powerdesigninc/react-native-prompt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -48,21 +48,26 @@ const storeData = async (key: string, value: string) => {
   }
 };
 
-async function checkLogin(number: string, code: string) {
+async function checkLogin(
+  number: string,
+  code: string,
+  updateLogged: Function,
+) {
   const check = await callAPI('/verify/check', 'POST', {number, code});
   console.log(check);
   if (!check.error) {
-    storeData(
+    await storeData(
       'number',
       number[0] === '+' ? number.slice(3, number.length) : number,
     );
+    updateLogged(true);
     Alert.alert('Success!');
   } else {
     return Alert.alert('Error', check.msg);
   }
 }
 
-async function parseLogin(number: string) {
+async function parseLogin(number: string, updateLogged: Function) {
   console.log(
     '/users/' + (number[0] === '+' ? number.slice(3, number.length) : number),
   );
@@ -81,7 +86,7 @@ async function parseLogin(number: string) {
     return prompt(
       'Enter Code',
       'Enter the verification code that was sent to ' + number,
-      async input => await checkLogin(number, input),
+      async input => await checkLogin(number, input, updateLogged),
       'plain-text',
       '000000',
       'number-pad',
@@ -91,7 +96,12 @@ async function parseLogin(number: string) {
   }
 }
 
-export default function Login({fadeAnim, scale, isDarkMode}: ScreenProp) {
+export default function Login({
+  fadeAnim,
+  scale,
+  isDarkMode,
+  updateLogged,
+}: LoginScreenProp) {
   const [number, onChangeNumber] = React.useState('');
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
@@ -112,10 +122,11 @@ export default function Login({fadeAnim, scale, isDarkMode}: ScreenProp) {
             value={number}
             placeholder="Phone Number"
             keyboardType="number-pad"
-            className="flex justify-center align-middle m-auto h-auto p-1 pl-5 pb-1 text-2xl border mt-5 w-72 text-left text- rounded-xl dark:text-neutral-50"
+            placeholderTextColor={'#737373'}
+            className="flex justify-center align-middle m-auto h-auto p-1 pl-5 pb-1 text-2xl border dark:border-neutral-200 mt-5 w-72 text-left rounded-xl"
           />
           <TouchableOpacity
-            onPress={() => parseLogin(number)}
+            onPress={() => parseLogin(number, updateLogged)}
             className="flex justify-center align-middle p-2 bg-neutral-900 dark:bg-neutral-100 w-24 rounded-xl m-auto mt-4">
             <Text className="flex align-middle font-bold m-auto text-xl text-neutral-50 dark:text-neutral-900">
               Login

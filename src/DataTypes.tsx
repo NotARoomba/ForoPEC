@@ -18,3 +18,9 @@ export interface ScreenProp {
   scale: Animated.Value;
   isDarkMode: boolean;
 }
+export interface LoginScreenProp {
+  fadeAnim: Animated.Value;
+  scale: Animated.Value;
+  isDarkMode: boolean;
+  updateLogged: Function;
+}
