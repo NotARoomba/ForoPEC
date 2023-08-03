@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -9,23 +9,27 @@ import {
   Animated,
   Appearance,
 } from 'react-native';
-import {ScreenProp, Salon, callAPI, SalonAPI, Presenter} from './DataTypes';
+import {ScreenProp, Salon, callAPI} from './DataTypes';
 import PillButton from './PillButton';
 import PresenterCard from './PresenterCard';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
-  const [salones, setSalones] = useState<Salon[]>([]);
-  callAPI('/salones/list', 'GET').then((salonesList: SalonAPI[]) => {
-    for (let salon of salonesList) {
-      callAPI('/salones', 'POST', {
-        filter: {salon: {name: salon.name, color: salon.color}},
-      }).then((presenters: Presenter[]) => {
+  const [s, setSalones] = useState<Salon[]>([]);
+  const [cs, setCS] = useState('');
+  useEffect(() => {
+    async function updateSalones() {
+      const {salones} = await callAPI('/salones/list', 'GET');
+      console.log(salones);
+      for (let salon of salones) {
+        const presenters = await callAPI('/salones', 'POST', {
+          filter: {salon: {name: salon.name, color: salon.color}},
+        });
+        console.log(presenters);
         setSalones([...salones, {...salon, presenters}]);
-      });
+      }
     }
-  });
-  console.log(salones);
-  const [cs, setCS] = useState(salones[0].name);
+    //updateSalones();
+  }, [s]);
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
@@ -48,7 +52,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
           <ScrollView
             horizontal
             className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl bg-neutral-300 dark:bg-neutral-800">
-            {salones.map((salon, i) => (
+            {s.map((salon, i) => (
               <PillButton
                 key={i}
                 onPress={() => setCS(salon.name)}
@@ -58,7 +62,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
               />
             ))}
           </ScrollView>
-          {salones
+          {s
             .filter(v => v.name === cs)
             .map((s, i) => (
               <View key={i}>

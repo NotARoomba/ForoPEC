@@ -19,6 +19,18 @@ export default function Profile({
   isDarkMode,
   updateFunction,
 }: FunctionScreenProp) {
+  // const [user, set user] = useState<>([]);
+  // useEffect(() => {
+  //   callAPI('/salones/list', 'GET').then((salonesList: SalonAPI[]) => {
+  //     for (let salon of salonesList) {
+  //       callAPI('/salones', 'POST', {
+  //         filter: {salon: {name: salon.name, color: salon.color}},
+  //       }).then((presenters: Presenter[]) => {
+  //         setSalones([...salones, {...salon, presenters}]);
+  //       });
+  //     }
+  //   });
+  // });
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
