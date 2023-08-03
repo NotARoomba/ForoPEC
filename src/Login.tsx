@@ -58,7 +58,7 @@ async function checkLogin(number: string, code: string) {
     );
     Alert.alert('Success!');
   } else {
-    return Alert.alert('Error2', check.msg);
+    return Alert.alert('Error', check.msg);
   }
 }
 

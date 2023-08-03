@@ -71,8 +71,14 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
     } else {
       res.status(404).send({error: true, msg: 'Incorrect code!'});
     }
-  } catch (error) {
-    console.log(error);
-    res.status(404).send({error: true, msg: 'Unable to send the code!'});
+  } catch (error: any) {
+    if (error.status === 400 && error.code === 60200) {
+      return res.status(404).send({error: true, msg: 'The code is too short!'});
+    } else if (error.status === 404 && error.code === 20404) {
+      return res
+        .status(404)
+        .send({error: true, msg: 'The code has expired, please try again!'});
+    }
+    res.status(404).send({error: true, msg: 'Unable to check the code!'});
   }
 });
