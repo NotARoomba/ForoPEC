@@ -38,8 +38,14 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
         .status(404)
         .send({error: true, msg: 'There was an error sending the code!'});
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    if (error.status === 429) {
+      return res.status(404).send({
+        error: true,
+        msg: 'Too many attempts, try again in 10 minutes!',
+      });
+    }
     res.status(404).send({error: true, msg: 'Unable to send the Twilio code!'});
   }
 });

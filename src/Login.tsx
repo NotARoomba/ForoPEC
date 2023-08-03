@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Animated,
   SafeAreaView,
@@ -57,7 +57,7 @@ async function checkLogin(number: string, code: string) {
     );
     Alert.alert('Success!');
   } else {
-    return Alert.alert('Error', check.msg);
+    return Alert.alert('Error2', check.msg);
   }
 }
 
@@ -77,14 +77,15 @@ async function parseLogin(number: string) {
   }
   const res = await callAPI('/verify/send', 'POST', {number});
   if (!res.error) {
-    prompt(
-      'Enter Code',
-      'Enter the verification code that was sent to ' + number,
-      async input => await checkLogin(number, input),
-      'plain-text',
-      '000000',
-      'number-pad',
-    );
+    return async () =>
+      prompt(
+        'Enter Code',
+        'Enter the verification code that was sent to ' + number,
+        async input => await checkLogin(number, input),
+        'plain-text',
+        '000000',
+        'number-pad',
+      );
   } else {
     return Alert.alert('Error', res.msg);
   }
