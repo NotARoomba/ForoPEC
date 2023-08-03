@@ -30,9 +30,9 @@ usersRouter.get('/:number', async (req: Request, res: Response) => {
     if (user) {
       res.status(200).send({user, error: false, msg: 'The user exists!'});
     } else {
-      res.status(404).send({error: true, msg: 'User not found!'});
+      res.status(404).send({user: null, error: true, msg: 'User not found!'});
     }
   } catch (error) {
-    res.status(404).send({error: true, msg: error});
+    res.status(404).send({user: null, error: true, msg: error});
   }
 });

@@ -14,22 +14,34 @@ import {ScreenProp} from './DataTypes';
 
 const API = 'https://foropec2023-api.notaroomba.xyz';
 
-async function parseLogin(number: string) {
-  let res = await (
-    await fetch(API + '/verify/send', {
-      method: 'POST',
+async function callAPI(endpoint: string, method: string, body: Object) {
+  return await (
+    await fetch(API + endpoint, {
+      method: method,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        number,
-      }),
+      body: JSON.stringify(body),
     })
   ).json();
-  if (res.status === 200) {
+}
+
+async function parseLogin(number: string) {
+  let exists = await callAPI(
+    '/user/' + number[0] === '+' ? number.slice(3, number.length) : number,
+    'POST',
+    {number},
+  );
+  if (!exists.user && exists.error) {
+    return console.log('The user doesnt exist');
+  }
+  let res = await callAPI('/verify/send', 'POST', {number});
+  if (!res.error) {
+    //add error modal
     console.log('AY', res.body);
   } else {
+    //add input code modal
     console.log('sads', res);
   }
 }
