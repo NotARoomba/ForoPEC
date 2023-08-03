@@ -28,9 +28,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
         channel: 'sms',
       });
     if (verification.status === 'pending') {
-      res
-        .status(200)
-        .send({error: false, msg: 'The phone number does not exist!'});
+      res.status(200).send({error: false, msg: 'The code has been sent!'});
     } else if (!verification.lookup.valid) {
       res
         .status(404)

@@ -30,7 +30,7 @@ async function parseLogin(number: string) {
   if (res.status === 200) {
     console.log('AY', res.body);
   } else {
-    console.log('sads', res.body);
+    console.log('sads', res);
   }
 }
 
