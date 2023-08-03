@@ -53,14 +53,16 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
 verifyRouter.post('/check', async (req: Request, res: Response) => {
   const number: string = req?.body?.number as string;
   const code: string = req?.body?.code as string;
+  console.log(number, code);
   let verification;
   try {
     verification = await twilio.verify.v2
       .services(env.TW_VSID)
       .verificationChecks.create({
+        code: code,
         to: number,
-        code,
       });
+    console.log(verification);
     if (verification.status === 'approved') {
       res.status(200).send({error: false, msg: 'The code has been approved!'});
     } else {

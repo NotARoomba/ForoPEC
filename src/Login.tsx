@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Animated,
   SafeAreaView,
@@ -50,6 +50,7 @@ const storeData = async (key: string, value: string) => {
 
 async function checkLogin(number: string, code: string) {
   const check = await callAPI('/verify/check', 'POST', {number, code});
+  console.log(check);
   if (!check.error) {
     storeData(
       'number',
@@ -77,15 +78,14 @@ async function parseLogin(number: string) {
   }
   const res = await callAPI('/verify/send', 'POST', {number});
   if (!res.error) {
-    return async () =>
-      prompt(
-        'Enter Code',
-        'Enter the verification code that was sent to ' + number,
-        async input => await checkLogin(number, input),
-        'plain-text',
-        '000000',
-        'number-pad',
-      );
+    return prompt(
+      'Enter Code',
+      'Enter the verification code that was sent to ' + number,
+      async input => await checkLogin(number, input),
+      'plain-text',
+      '000000',
+      'number-pad',
+    );
   } else {
     return Alert.alert('Error', res.msg);
   }
