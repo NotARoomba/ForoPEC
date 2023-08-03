@@ -10,6 +10,7 @@ import Schedule from './src/Schedule';
 import {Animated} from 'react-native';
 import Login from './src/Login';
 import {Appearance} from 'react-native';
+import {callAPI} from './src/DataTypes';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -102,8 +103,20 @@ export default function App() {
   const updateDarkMode = (v: boolean) =>
     Appearance.setColorScheme(v ? 'light' : 'dark');
   useEffect(() => {
+    // checks if user is valid in database and if not then kicks out
+    //AsyncStorage.setItem('number', '3104250018');
     getData('number').then(res => {
-      setlLogged(res !== null);
+      if (res !== null) {
+        callAPI('/users/' + res, 'GET').then(userData => {
+          if (userData.user && !userData.error) {
+            setlLogged(true);
+          } else {
+            setlLogged(false);
+          }
+        });
+      } else {
+        setlLogged(false);
+      }
     });
     Appearance.addChangeListener(appearance => {
       setDarkMode(appearance.colorScheme === 'dark');

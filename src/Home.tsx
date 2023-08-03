@@ -19,29 +19,30 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
     {
       name: 'Stephen Hawking',
       projectName: 'A Brief History of Time',
-      image: require('../public/person1.jpg'),
+      image: '../public/person1.jpg',
     },
     {
       name: 'Albert Einstein',
       projectName: 'Special Relativity',
-      image: require('../public/person2.jpg'),
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg',
     },
     {
       name: 'Albert Einstein',
       projectName: 'Como los humanos nessecitan ayuda',
-      image: require('../public/person2.jpg'),
+      image: '../public/person2.jpg',
     },
   ];
   const presenters2: Presenter[] = [
     {
       name: 'Stephen',
       projectName: 'A Brief History of Time',
-      image: require('../public/person1.jpg'),
+      image: '../public/person1.jpg',
     },
     {
       name: 'Stephen',
       projectName: 'A Brief History of Time',
-      image: require('../public/person1.jpg'),
+      image: '../public/person1.jpg',
     },
   ];
   const salones: Salon[] = [
@@ -92,7 +93,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
                   horizontal
                   className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-neutral-100 dark:bg-neutral-900">
                   {s.presenters.map((p, i2) => (
-                    <PresenterCard key={i2} {...p} />
+                    <PresenterCard key={i2} {...p} {...{isDarkMode}} />
                   ))}
                 </ScrollView>
               </View>

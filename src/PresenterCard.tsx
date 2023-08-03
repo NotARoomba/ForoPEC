@@ -1,12 +1,17 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, Appearance} from 'react-native';
 import {Presenter} from './DataTypes';
 
 export default function PresenterCard({image, name, projectName}: Presenter) {
   return (
     <View className="flex flex-column m-2 mx-3 w-48 min-h-64 rounded-xl bg-neutral-200 dark:bg-neutral-800 p-2 shadow dark:shadow-sm shadow-neutral-500">
       <Image
-        source={image}
+        defaultSource={
+          Appearance.getColorScheme() === 'dark'
+            ? require('../public/user_light.png')
+            : require('../public/user_dark.png')
+        }
+        source={{uri: image}}
         className="flex h-28 w-11/12 align-middle justify-center m-auto rounded-xl"
         resizeMode={'contain'}
       />

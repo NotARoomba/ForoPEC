@@ -51,10 +51,7 @@ async function parseLogin(number: string, updateLogged: Function) {
     'GET',
   );
   if (!exists.user && exists.error) {
-    return Alert.alert(
-      'Error',
-      'The number is invalid! (Try entering an area code before ex. +57)',
-    );
+    return Alert.alert('Error', exists.msg);
   }
   const res = await callAPI('/verify/send', 'POST', {number});
   if (!res.error) {

@@ -55,8 +55,12 @@ export default function Profile({
             />
           </TouchableOpacity>
           <Image
-            source={require('../public/person1.jpg')}
-            className="flex h-32 w-32 align-middle justify-center m-auto bg-neutral-600 rounded-full"
+            source={
+              Appearance.getColorScheme() === 'dark'
+                ? require('../public/user_light.png')
+                : require('../public/user_dark.png')
+            }
+            className="flex h-32 w-32 align-middle justify-center m-auto rounded"
             resizeMode={'contain'}
           />
           <Text className="justify-center font-bold m-auto mt-4 text-3xl dark:text-neutral-50">

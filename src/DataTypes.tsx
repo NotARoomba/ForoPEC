@@ -1,10 +1,9 @@
 import {Animated} from 'react-native';
-import {ImageSourcePropType} from 'react-native/Libraries/Image/Image';
 
 export interface Presenter {
   name: string;
   projectName: string;
-  image: ImageSourcePropType;
+  image: string;
 }
 
 export interface Salon {
