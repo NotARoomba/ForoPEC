@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Home from './src/Home';
 import Profile from './src/Profile';
@@ -10,7 +9,7 @@ import Schedule from './src/Schedule';
 import {Animated} from 'react-native';
 import Login from './src/Login';
 import {Appearance} from 'react-native';
-import {callAPI} from './src/DataTypes';
+import {callAPI, getData} from './src/DataTypes';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -86,15 +85,6 @@ export default function App() {
       fadeIn();
     },
   });
-  const getData = async (key: string) => {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      return value !== null ? value : null;
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
-  };
   const [logged, setlLogged] = useState(false);
   const [isDarkMode, setDarkMode] = useState(
     Appearance.getColorScheme() === 'dark',

@@ -14,7 +14,6 @@ salonesRouter.post('/', async (req: Request, res: Response) => {
         .find(req?.body?.filter)
         .toArray()) as unknown as Presentation[];
     }
-    console.log(presenters, req?.body);
     res.status(200).send({presenters, error: false, msg: 'Presenters Exist!'});
   } catch (error) {
     res.status(500).send({error: true, msg: error});

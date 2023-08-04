@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {FunctionScreenProp} from './DataTypes';
+import {FunctionScreenProp, User, callAPI, getData} from './DataTypes';
+import QRCode from 'react-qr-code';
 
 export default function Profile({
   fadeAnim,
@@ -19,18 +20,22 @@ export default function Profile({
   isDarkMode,
   updateFunction,
 }: FunctionScreenProp) {
-  // const [user, set user] = useState<>([]);
-  // useEffect(() => {
-  //   callAPI('/salones/list', 'GET').then((salonesList: SalonAPI[]) => {
-  //     for (let salon of salonesList) {
-  //       callAPI('/salones', 'POST', {
-  //         filter: {salon: {name: salon.name, color: salon.color}},
-  //       }).then((presenters: Presenter[]) => {
-  //         setSalones([...salones, {...salon, presenters}]);
-  //       });
-  //     }
-  //   });
-  // });
+  const [u, setUser] = useState<User>({
+    name: '',
+    salon: '',
+    admin: false,
+    number: '',
+  });
+  useEffect(() => {
+    async function updateUser() {
+      const {user} = await callAPI(
+        '/users/' + (await getData('number')),
+        'GET',
+      );
+      setUser(user);
+    }
+    updateUser();
+  }, []);
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
@@ -76,16 +81,24 @@ export default function Profile({
             resizeMode={'contain'}
           />
           <Text className="justify-center font-bold m-auto mt-4 text-3xl dark:text-neutral-50">
-            Mr Potato
+            {u.name}
           </Text>
           <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
-            Salon 2B
+            {u.salon}
           </Text>
-          <Image
-            source={require('../public/qrcode.png')}
-            className="flex h-60 w-60 align-middle justify-center m-auto mt-10 bg-neutral-600 rounded"
-            resizeMode={'contain'}
-          />
+          <View className="flex h-60 w-60 align-middle justify-center m-auto mt-10 rounded">
+            <QRCode
+              size={245}
+              value={u.number.toString()}
+              fgColor={
+                Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
+              }
+              bgColor={
+                Appearance.getColorScheme() === 'dark' ? '#171717' : '#ffffff'
+              }
+              className="flex h-60 w-60 align-middle justify-center m-auto mt-10 rounded"
+            />
+          </View>
         </View>
       </SafeAreaView>
     </Animated.View>

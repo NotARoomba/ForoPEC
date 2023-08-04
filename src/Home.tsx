@@ -14,23 +14,18 @@ import PillButton from './PillButton';
 import PresenterCard from './PresenterCard';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
-  const [s, setSalones] = useState<Salon[]>([]);
+  const [sals, setSalones] = useState<Salon[]>([]);
   const [cs, setCS] = useState('');
   useEffect(() => {
     let salonesList: Salon[] = [];
     async function updateSalones() {
-      if (salonesList.length !== 0) {
-        //return;
-      }
       const {salones} = await callAPI('/salones/list', 'GET');
       for (let salon of salones) {
-        console.log(salon);
         const presenters = await callAPI('/salones', 'POST', {
           filter: {salon},
         });
-        salonesList.push({...salon, presenters});
+        salonesList.push({...salon, presenters: presenters.presenters});
       }
-      console.log(salonesList);
       setSalones([...salonesList]);
       setCS(salonesList[0].name);
     }
@@ -58,7 +53,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
           <ScrollView
             horizontal
             className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl bg-neutral-300 dark:bg-neutral-800">
-            {s.map((salon, i) => (
+            {sals.map((salon, i) => (
               <PillButton
                 key={i}
                 onPress={() => setCS(salon.name)}
@@ -68,7 +63,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
               />
             ))}
           </ScrollView>
-          {s
+          {sals
             .filter(v => v.name === cs)
             .map((s, i) => (
               <View key={i}>

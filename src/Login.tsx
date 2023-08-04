@@ -11,17 +11,8 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import {FunctionScreenProp, callAPI} from './DataTypes';
+import {FunctionScreenProp, callAPI, storeData} from './DataTypes';
 import prompt from '@powerdesigninc/react-native-prompt';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const storeData = async (key: string, value: string) => {
-  try {
-    await AsyncStorage.setItem(key, value);
-  } catch (e) {
-    console.error(e);
-  }
-};
 
 async function checkLogin(
   number: string,

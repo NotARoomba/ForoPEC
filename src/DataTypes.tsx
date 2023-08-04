@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Animated} from 'react-native';
 
 export interface SalonAPI {
@@ -20,6 +21,9 @@ export interface Salon {
 
 export interface User {
   name: string;
+  salon: string;
+  admin: boolean;
+  number: string;
 }
 
 export interface ScreenProp {
@@ -33,6 +37,24 @@ export interface FunctionScreenProp {
   isDarkMode: boolean;
   updateFunction: Function[];
 }
+
+export const storeData = async (key: string, value: string) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const getData = async (key: string) => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    return value !== null ? value : null;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
 
 const API = 'https://foropec2023-api.notaroomba.xyz';
 
