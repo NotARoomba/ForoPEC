@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -113,7 +113,7 @@ export default function App() {
     });
   }, []);
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DefaultTheme}>
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarStyle: {
@@ -129,6 +129,7 @@ export default function App() {
             paddingBottom: 0,
             alignItems: 'center',
             shadowColor: '#000000',
+            elevation: 0,
             shadowOffset: {
               width: 0,
               height: 10,
@@ -137,6 +138,7 @@ export default function App() {
             shadowRadius: 10,
             borderTopWidth: 0,
           },
+          headerTransparent: true,
           headerShown: false,
           tabBarIcon: ({focused, color, size}) =>
             getIcons(route, focused, color, size),
@@ -146,7 +148,8 @@ export default function App() {
         initialRouteName="Home"
         // eslint-disable-next-line react-native/no-inline-styles
         sceneContainerStyle={{
-          backgroundColor: isDarkMode ? '#171717' : '#f5f5f5',
+          zIndex: -900,
+          backgroundColor: 'rgba(52, 52, 52, 0.1)',
         }}>
         {logged ? (
           <Tab.Group>
