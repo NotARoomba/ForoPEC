@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -10,6 +10,7 @@ import {Animated} from 'react-native';
 import Login from './src/Login';
 import {Appearance} from 'react-native';
 import {callAPI, getData} from './src/DataTypes';
+import SplashScreen from 'react-native-splash-screen';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -107,13 +108,17 @@ export default function App() {
       } else {
         setlLogged(false);
       }
+      SplashScreen.hide();
     });
     Appearance.addChangeListener(appearance => {
       setDarkMode(appearance.colorScheme === 'dark');
     });
   }, []);
+  // const onNavigationReady = () => {
+  //   //SplashScreen.hide(); // just hide the splash screen after navigation ready
+  // };
   return (
-    <NavigationContainer theme={DefaultTheme}>
+    <NavigationContainer>
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarStyle: {

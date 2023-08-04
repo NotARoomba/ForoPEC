@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Animated,
   SafeAreaView,
@@ -12,6 +12,7 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import {FunctionScreenProp, callAPI, storeData} from './DataTypes';
 import prompt from '@powerdesigninc/react-native-prompt';
 
@@ -67,6 +68,9 @@ export default function Login({
   updateFunction,
 }: FunctionScreenProp) {
   const [number, onChangeNumber] = React.useState('');
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">

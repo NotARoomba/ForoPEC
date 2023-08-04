@@ -10,6 +10,7 @@ import {
   Appearance,
   RefreshControl,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import {ScreenProp, Salon, callAPI} from './DataTypes';
 import PillButton from './PillButton';
 import PresenterCard from './PresenterCard';
@@ -29,6 +30,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
       }
       setSalones([...salonesList]);
       setCS(salonesList[0].name);
+      SplashScreen.hide();
     }
     updateSalones();
   }, []);

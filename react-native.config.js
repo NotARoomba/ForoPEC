@@ -7,5 +7,8 @@ module.exports = {
       },
     },
   },
-  assets: ['./node_modules/react-native-vector-icons/Fonts', './public/inter'],
+  assets: [
+    './node_modules/react-native-vector-icons/Fonts/Feather.ttf',
+    './public/inter',
+  ],
 };
