@@ -75,7 +75,7 @@ export default function Login({
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <ScrollView className="pb-96">
+        <ScrollView className="pb-[1000px]">
           <View className="flex justify-center align-left mt-0">
             <Image
               source={

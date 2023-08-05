@@ -57,7 +57,7 @@ export default function Profile({
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView
-          className="pb-96"
+          className="pb-[1000px]"
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>

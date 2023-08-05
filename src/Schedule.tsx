@@ -62,7 +62,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView
-          className="pb-96"
+          className="pb-[1000px]"
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
@@ -73,7 +73,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
             <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
               {times[0].salon.name}
             </Text>
-            <View className="flex flex-row w-[335] m-auto h-64 rounded-xl bg-neutral-100 dark:bg-neutral-900 mt-0">
+            <View className="flex flex-row w-[335] m-auto h-[68vh] rounded-xl bg-neutral-100 dark:bg-neutral-900 mt-0">
               <ScrollView className="min-h-[68vh] rounded-xl">
                 {times.map((v, i) => (
                   <Row key={i} {...v} />

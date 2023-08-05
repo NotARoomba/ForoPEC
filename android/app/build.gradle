@@ -89,12 +89,12 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('ForoPEC2023-upload.keystore')) {
+            //if (project.hasProperty('ForoPEC2023.jks')) {
                 storeFile file(FOROPEC2023_UPLOAD_STORE_FILE)
                 storePassword FOROPEC2023_UPLOAD_STORE_PASSWORD
                 keyAlias FOROPEC2023_UPLOAD_KEY_ALIAS
                 keyPassword FOROPEC2023_UPLOAD_KEY_PASSWORD
-            }
+            //}
         }
     }
     buildTypes {
