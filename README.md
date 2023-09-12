@@ -2,5 +2,5 @@
 El aplicacion oficial del ForoPEC2023
 
 
-Hecho de parte de NotARoomba con ```react-native```
+Hecho con ```react-native``` y ```tailwindcss```
 
