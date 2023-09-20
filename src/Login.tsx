@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Animated,
   SafeAreaView,
@@ -15,6 +15,7 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 import {FunctionScreenProp, callAPI, storeData} from './DataTypes';
 import prompt from '@powerdesigninc/react-native-prompt';
+import {CountryPicker} from 'react-native-country-codes-picker';
 
 async function checkLogin(
   number: string,
@@ -29,7 +30,7 @@ async function checkLogin(
       number[0] === '+' ? number.slice(3, number.length) : number,
     );
     updateLogged(true);
-    Alert.alert('Success!');
+    // Alert.alert('Success!');
   } else {
     return Alert.alert('Error', check.msg);
   }
@@ -67,7 +68,10 @@ export default function Login({
   isDarkMode,
   updateFunction,
 }: FunctionScreenProp) {
-  const [number, onChangeNumber] = React.useState('');
+  const [number, onChangeNumber] = useState('');
+  const [show, setShow] = useState(false);
+  const [countryCode, setCountryCode] = useState('🇨🇴+57');
+  const [disable, setDisable] = useState(false);
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -86,21 +90,62 @@ export default function Login({
               className="flex h-36 w-11/12 align-middle justify-center m-auto bg-inherit"
               resizeMode={'contain'}
             />
-            <TextInput
+            {/* <TextInput
               onChangeText={onChangeNumber}
               value={number}
               placeholder="Phone Number"
               keyboardType="number-pad"
               placeholderTextColor={'#737373'}
               className="flex justify-center align-middle m-auto h-auto p-1 pl-3 text-3xl border dark:border-neutral-200 mt-5 w-72 text-center rounded-xl dark:text-neutral-50"
-            />
+            /> */}
+            <View className="flex flex-row justify-center m-auto align-middle">
+              <TouchableOpacity
+                onPress={() => setShow(!show)}
+                className=" bg-accent text-center align-middle p-1 h-12 mt-3 w-3/12 rounded-l-xl">
+                <Text className="align-middle m-auto text-xl text-dark font-bold">
+                  {countryCode}
+                </Text>
+              </TouchableOpacity>
+              <TextInput
+                onChangeText={onChangeNumber}
+                value={number}
+                placeholder="Phone Number"
+                keyboardType="phone-pad"
+                placeholderTextColor={'#737373'}
+                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 text-3xl border dark:border-neutral-200 mt-5 w-72 text-center rounded-xl rounded-l-none dark:text-neutral-50"
+              />
+            </View>
             <TouchableOpacity
-              onPress={() => parseLogin(number, updateFunction[0])}
+              onPress={() => {
+                if (countryCode === '') {
+                  Alert.alert('Error', 'Selecciona tu código de país.');
+                } else {
+                  setDisable(true);
+                  parseLogin(
+                    countryCode.slice(4) + number,
+                    updateFunction[0],
+                  ).then(() => {
+                    setDisable(false);
+                  });
+                }
+              }}
+              disabled={disable}
               className="flex justify-center align-middle p-2 bg-neutral-900 dark:bg-neutral-100 w-24 rounded-xl m-auto mt-4">
               <Text className="flex align-middle font-bold m-auto text-xl text-neutral-50 dark:text-neutral-900">
                 Login
               </Text>
             </TouchableOpacity>
+            <CountryPicker
+              show={show}
+              // when picker button press you will get the country object with dial code
+              pickerButtonOnPress={item => {
+                setCountryCode(item.flag + item.dial_code);
+                setShow(!show);
+              }}
+              onBackdropPress={() => setShow(!show)}
+              lang={'es'}
+              style={{modal: {height: 500}}}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>

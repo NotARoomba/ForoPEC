@@ -15,12 +15,12 @@ export const verifyRouter = express.Router();
 verifyRouter.use(express.json());
 
 verifyRouter.post('/send', async (req: Request, res: Response) => {
-  const number: string =
-    req?.body?.number[0] === '+'
-      ? req?.body?.number
-      : (('+57' + req?.body?.number) as string);
-  if (req?.body?.number === '') {
+  const number: string = req?.body?.number;
+  if (number === '') {
     return res.status(404).send({error: true, msg: 'Please add a number!'});
+  }
+  if (isNaN(parseInt(number.replace('+57', ''), 10))) {
+    return res.send({error: true, msg: 'Please add a valid number!'});
   }
   let verification;
   try {
@@ -54,10 +54,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
 });
 
 verifyRouter.post('/check', async (req: Request, res: Response) => {
-  const number: string =
-    req?.body?.number[0] === '+'
-      ? req?.body?.number
-      : (('+57' + req?.body?.number) as string);
+  const number: string = req?.body?.number;
   const code: string = req?.body?.code as string;
   console.log(number, code);
   let verification;

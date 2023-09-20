@@ -19,13 +19,12 @@ usersRouter.get('/', async (req: Request, res: Response) => {
 });
 
 usersRouter.get('/:number', async (req: Request, res: Response) => {
-  const id = req?.params?.number;
+  const number = req?.params?.number;
 
   try {
-    const query = {number: parseInt(id, 10)};
     let user = null;
     if (collections.users) {
-      user = (await collections.users.findOne(query)) as unknown as User;
+      user = (await collections.users.findOne({number})) as unknown as User;
     }
     if (user) {
       res.status(200).send({user, error: false, msg: 'The user exists!'});
