@@ -96,6 +96,7 @@ export default function App() {
   useEffect(() => {
     // checks if user is valid in database and if not then kicks out
     //AsyncStorage.removeItem('number');
+    // storeData('number', '+573104250018');
     getData('number').then(res => {
       if (res !== null) {
         callAPI('/users/' + res, 'GET').then(userData => {
