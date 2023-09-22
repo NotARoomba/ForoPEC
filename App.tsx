@@ -3,14 +3,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
 
-import Home from './src/Home';
-import Profile from './src/Profile';
-import Schedule from './src/Schedule';
+import Home from './src/pages/Home';
+import Profile from './src/pages/Profile';
+import Schedule from './src/pages/Schedule';
 import {Animated} from 'react-native';
-import Login from './src/Login';
+import Login from './src/pages/Login';
 import {Appearance} from 'react-native';
-import {callAPI, getData} from './src/DataTypes';
+import {callAPI, getData} from './src/utils/Functions';
 import SplashScreen from 'react-native-splash-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -90,12 +91,12 @@ export default function App() {
   const [isDarkMode, setDarkMode] = useState(
     Appearance.getColorScheme() === 'dark',
   );
-  const updateLogged = (v: boolean) => setlLogged(v);
+  const updateLogged = (v: boolean) => {setlLogged(v);AsyncStorage.removeItem('number');};
   const updateDarkMode = (v: boolean) =>
     Appearance.setColorScheme(v ? 'light' : 'dark');
   useEffect(() => {
     // checks if user is valid in database and if not then kicks out
-    //AsyncStorage.removeItem('number');
+    // AsyncStorage.removeItem('number');
     // storeData('number', '+573104250018');
     getData('number').then(res => {
       if (res !== null) {
@@ -109,7 +110,7 @@ export default function App() {
       } else {
         setlLogged(false);
       }
-      SplashScreen.hide();
+      // SplashScreen.hide();
     });
     Appearance.addChangeListener(appearance => {
       setDarkMode(appearance.colorScheme === 'dark');
@@ -229,12 +230,12 @@ export default function App() {
             }}>
             {props => (
               <Login
-                {...props}
-                fadeAnim={fadeAnim}
-                scale={scale}
-                isDarkMode
-                updateFunction={[updateLogged]}
-              />
+              {...props}
+              fadeAnim={fadeAnim}
+              scale={scale}
+              isDarkMode
+              updateFunction={[updateLogged]}
+            />
             )}
           </Tab.Screen>
         )}

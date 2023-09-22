@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, Text, Appearance} from 'react-native';
-import {Presenter} from './DataTypes';
+import {Presenter} from '../utils/DataTypes';
 
 export default function PresenterCard({image, name, projectName}: Presenter) {
   return (
@@ -8,8 +8,8 @@ export default function PresenterCard({image, name, projectName}: Presenter) {
       <Image
         defaultSource={
           Appearance.getColorScheme() === 'dark'
-            ? require('../public/user_light.png')
-            : require('../public/user_dark.png')
+            ? require('../../public/user_light.png')
+            : require('../../public/user_dark.png')
         }
         source={{uri: image}}
         className="flex h-28 w-11/12 align-middle justify-center m-auto rounded-xl"

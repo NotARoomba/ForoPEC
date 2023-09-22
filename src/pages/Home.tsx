@@ -11,9 +11,10 @@ import {
   RefreshControl,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {ScreenProp, Salon, callAPI} from './DataTypes';
-import PillButton from './PillButton';
-import PresenterCard from './PresenterCard';
+import {callAPI} from '../utils/Functions';
+import PillButton from '../components/PillButton';
+import PresenterCard from '../components/PresenterCard';
+import { ScreenProp, Salon } from '../utils/DataTypes';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [sals, setSalones] = useState<Salon[]>([]);
@@ -56,7 +57,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <StatusBar barStyle={Appearance.getColorScheme() === 'dark' ? 'light-content' : 'dark-content'} />
         <ScrollView
           className="pb-[1000px]"
           refreshControl={
@@ -66,8 +67,8 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
             <Image
               source={
                 Appearance.getColorScheme() === 'dark'
-                  ? require('../public/logo.png')
-                  : require('../public/logoDark.png')
+                  ? require('../../public/logo.png')
+                  : require('../../public/logoDark.png')
               }
               className="flex h-36 w-11/12 align-middle justify-center m-auto bg-inherit"
               resizeMode={'contain'}
