@@ -29,7 +29,6 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
       .verifications.create({
         to: number,
         channel: 'sms',
-        customFriendlyName: 'ForoPEC2023'
       });
     if (verification.status === 'pending') {
       res.status(200).send({error: false, msg: 'The code has been sent!'});
