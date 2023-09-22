@@ -14,7 +14,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {callAPI} from '../utils/Functions';
 import PillButton from '../components/PillButton';
 import PresenterCard from '../components/PresenterCard';
-import { ScreenProp, Salon } from '../utils/DataTypes';
+import {ScreenProp, Salon} from '../utils/DataTypes';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [sals, setSalones] = useState<Salon[]>([]);
@@ -57,7 +57,13 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
-        <StatusBar barStyle={Appearance.getColorScheme() === 'dark' ? 'light-content' : 'dark-content'} />
+        <StatusBar
+          barStyle={
+            Appearance.getColorScheme() === 'dark'
+              ? 'light-content'
+              : 'dark-content'
+          }
+        />
         <ScrollView
           className="pb-[1000px]"
           refreshControl={

@@ -14,9 +14,8 @@ import {
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {FunctionScreenProp} from '../utils/DataTypes';
-import { CountryPicker } from 'react-native-country-codes-picker';
-import { parseLogin } from '../utils/Functions';
-
+import {CountryPicker} from 'react-native-country-codes-picker';
+import {parseLogin} from '../utils/Functions';
 
 export default function Login({
   fadeAnim,
@@ -34,7 +33,13 @@ export default function Login({
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
-        <StatusBar barStyle={Appearance.getColorScheme() === 'dark' ? 'light-content' : 'dark-content'} />
+        <StatusBar
+          barStyle={
+            Appearance.getColorScheme() === 'dark'
+              ? 'light-content'
+              : 'dark-content'
+          }
+        />
         <ScrollView className="pb-[1000px]">
           <View className="flex justify-center align-left mt-0">
             <Image
@@ -92,7 +97,18 @@ export default function Login({
               }}
               onBackdropPress={() => setShow(!show)}
               lang={'es'}
-              style={{modal: {height: 500}}}
+              style={
+                Appearance.getColorScheme() === 'dark'
+                  ? {
+                      modal: {height: 500, backgroundColor: '#262626'},
+                      textInput: {backgroundColor: '#404040', color: '#f5f5f5'},
+                      line: {backgroundColor: '#737373'},
+                      countryButtonStyles: {backgroundColor: '#404040'},
+                      countryName: {color: '#f5f5f5'},
+                      dialCode: {color: '#f5f5f5'},
+                    }
+                  : {modal: {height: 500}}
+              }
             />
           </View>
         </ScrollView>

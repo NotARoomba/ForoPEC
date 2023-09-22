@@ -15,7 +15,7 @@ import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {FunctionScreenProp, User} from '../utils/DataTypes';
 import QRCode from 'react-qr-code';
-import { callAPI, getData } from '../utils/Functions';
+import {callAPI, getData} from '../utils/Functions';
 
 export default function Profile({
   fadeAnim,
@@ -56,7 +56,13 @@ export default function Profile({
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
-        <StatusBar barStyle={Appearance.getColorScheme() === 'dark' ? 'light-content' : 'dark-content'} />
+        <StatusBar
+          barStyle={
+            Appearance.getColorScheme() === 'dark'
+              ? 'light-content'
+              : 'dark-content'
+          }
+        />
         <ScrollView
           className="pb-[1000px]"
           refreshControl={

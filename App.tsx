@@ -91,7 +91,10 @@ export default function App() {
   const [isDarkMode, setDarkMode] = useState(
     Appearance.getColorScheme() === 'dark',
   );
-  const updateLogged = (v: boolean) => {setlLogged(v);AsyncStorage.removeItem('number');};
+  const updateLogged = (v: boolean) => {
+    setlLogged(v);
+    AsyncStorage.removeItem('number');
+  };
   const updateDarkMode = (v: boolean) =>
     Appearance.setColorScheme(v ? 'light' : 'dark');
   useEffect(() => {
@@ -230,12 +233,12 @@ export default function App() {
             }}>
             {props => (
               <Login
-              {...props}
-              fadeAnim={fadeAnim}
-              scale={scale}
-              isDarkMode
-              updateFunction={[updateLogged]}
-            />
+                {...props}
+                fadeAnim={fadeAnim}
+                scale={scale}
+                isDarkMode
+                updateFunction={[updateLogged]}
+              />
             )}
           </Tab.Screen>
         )}

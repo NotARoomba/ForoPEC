@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {Presenter, SalonAPI, ScreenProp} from '../utils/DataTypes';
 import Row from '../components/Row';
-import { callAPI, getData } from '../utils/Functions';
+import {callAPI, getData} from '../utils/Functions';
 
 export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [times, setTimes] = useState<Presenter[]>([
