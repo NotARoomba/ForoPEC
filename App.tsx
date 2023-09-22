@@ -10,7 +10,6 @@ import {Animated} from 'react-native';
 import Login from './src/pages/Login';
 import {Appearance} from 'react-native';
 import {callAPI, getData} from './src/utils/Functions';
-import SplashScreen from 'react-native-splash-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
