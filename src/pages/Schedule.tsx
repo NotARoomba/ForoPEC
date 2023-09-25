@@ -28,7 +28,6 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
         '/users/' + (await getData('number')),
         'GET',
       );
-      console.log(user)
       const salones: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
         .salones;
       const {presenters} = await callAPI('/salones', 'POST', {

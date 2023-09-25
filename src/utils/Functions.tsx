@@ -55,12 +55,9 @@ async function checkLogin(
   updateLogged: Function,
 ) {
   const check = await callAPI('/verify/check', 'POST', {number, code});
-  console.log(check);
   if (!check.error) {
     await storeData('number', number);
-    console.log(await getData('number'), number)
     updateLogged(true);
-    console.log('Login')
     // Alert.alert('Success!');
   } else {
     return Alert.alert('Error', check.msg);

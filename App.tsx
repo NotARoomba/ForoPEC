@@ -92,7 +92,7 @@ export default function App() {
   );
   const updateLogged = (v: boolean) => {
     setlLogged(v);
-    AsyncStorage.removeItem('number');
+    if (!v) AsyncStorage.removeItem('number');
   };
   const updateDarkMode = (v: boolean) =>
     Appearance.setColorScheme(v ? 'light' : 'dark');

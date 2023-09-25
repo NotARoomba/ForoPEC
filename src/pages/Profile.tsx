@@ -31,7 +31,6 @@ export default function Profile({
   });
   useEffect(() => {
     async function updateUser() {
-      console.log((await getData('number')));
       const {user} = await callAPI(
         '/users/' + (await getData('number')),
         'GET',
