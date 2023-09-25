@@ -91,7 +91,8 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
                 <PillButton
                   key={i}
                   onPress={() => setCS(salon.name)}
-                  color={isDarkMode ? 'bg-fl-g' : 'bg-fl-dg'}
+                  // color={isDarkMode ? 'bg-fl-g' : 'bg-fl-dg'}
+                  color={salon.color}
                   current={cs}
                   text={salon.name}
                 />
