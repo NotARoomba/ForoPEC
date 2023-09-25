@@ -20,7 +20,7 @@ usersRouter.get('/', async (req: Request, res: Response) => {
 
 usersRouter.get('/:number', async (req: Request, res: Response) => {
   const number = req?.params?.number;
-
+  console.log(`Getting data for: ${number}`);
   try {
     let user = null;
     if (collections.users) {

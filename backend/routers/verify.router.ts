@@ -56,7 +56,6 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
 verifyRouter.post('/check', async (req: Request, res: Response) => {
   const number: string = req?.body?.number;
   const code: string = req?.body?.code as string;
-  console.log(number, code);
   let verification;
   try {
     verification = await twilio.verify.v2
@@ -65,7 +64,6 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
         code,
         to: number,
       });
-    console.log(verification);
     if (verification.status === 'approved') {
       res.status(200).send({error: false, msg: 'The code has been approved!'});
     } else {
