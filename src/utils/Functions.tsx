@@ -37,6 +37,7 @@ export async function callAPI(
     ),
   );
   const hmac = `HMAC ${time}:${digest}`;
+  try {
   return method === 'POST'
     ? await (
         await fetch(API + endpoint, {
@@ -59,6 +60,9 @@ export async function callAPI(
           },
         })
       ).json();
+  } catch {
+    return {error: true, msg: 'Could not connect to the server!'};
+  }
 }
 
 async function checkLogin(email: string, code: string, updateLogged: Function) {
