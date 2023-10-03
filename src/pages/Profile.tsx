@@ -13,28 +13,26 @@ import {
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {FunctionScreenProp, User} from '../utils/DataTypes';
+import {FunctionScreenProp} from '../utils/DataTypes';
 import QRCode from 'react-qr-code';
 import {callAPI, getData} from '../utils/Functions';
+import User from '../../backend/models/user';
 
 export default function Profile({
   fadeAnim,
   scale,
-  isDarkMode,
   updateFunction,
 }: FunctionScreenProp) {
   const [u, setUser] = useState<User>({
     name: '',
     salon: '',
+    hasFood: false,
     admin: false,
-    number: '',
+    email: '',
   });
   useEffect(() => {
     async function updateUser() {
-      const {user} = await callAPI(
-        '/users/' + (await getData('number')),
-        'GET',
-      );
+      const {user} = await callAPI('/users/' + (await getData('email')), 'GET');
       setUser(user);
     }
     updateUser();
@@ -44,10 +42,7 @@ export default function Profile({
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     async function updateUser() {
-      const {user} = await callAPI(
-        '/users/' + (await getData('number')),
-        'GET',
-      );
+      const {user} = await callAPI('/users/' + (await getData('email')), 'GET');
       setUser(user);
       setRefreshing(false);
     }
@@ -117,7 +112,7 @@ export default function Profile({
             <View className="flex h-60 w-60 align-middle justify-center m-auto mt-10 rounded">
               <QRCode
                 size={245}
-                value={u.number.toString()}
+                value={u.email.toString()}
                 fgColor={
                   Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
                 }

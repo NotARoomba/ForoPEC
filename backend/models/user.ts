@@ -1,6 +1,6 @@
 export default class User {
   constructor(
-    public number: string,
+    public email: string,
     public name: string,
     public hasFood: boolean,
     public salon: string,

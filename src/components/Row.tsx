@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {Presenter} from './utils/DataTypes';
+import {Presenter} from '../utils/DataTypes';
 
 export default function Row(presenter: Presenter) {
   return (

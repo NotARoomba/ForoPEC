@@ -18,13 +18,6 @@ export interface Salon {
   presenters: Presenter[];
 }
 
-export interface User {
-  name: string;
-  salon: string;
-  admin: boolean;
-  number: string;
-}
-
 export interface ScreenProp {
   fadeAnim: Animated.Value;
   scale: Animated.Value;

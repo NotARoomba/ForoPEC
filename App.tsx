@@ -92,15 +92,17 @@ export default function App() {
   );
   const updateLogged = (v: boolean) => {
     setlLogged(v);
-    if (!v) AsyncStorage.removeItem('number');
+    if (!v) {
+      AsyncStorage.removeItem('email');
+    }
   };
   const updateDarkMode = (v: boolean) =>
     Appearance.setColorScheme(v ? 'light' : 'dark');
   useEffect(() => {
     // checks if user is valid in database and if not then kicks out
-    // AsyncStorage.removeItem('number');
-    // storeData('number', '+573104250018');
-    getData('number').then(res => {
+    // AsyncStorage.removeItem('email');
+    // storeData('email', '+573104250018');
+    getData('email').then(res => {
       if (res !== null) {
         callAPI('/users/' + res, 'GET').then(userData => {
           if (userData.user && !userData.error) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import ColorContrastChecker from 'color-contrast-checker'
+import ColorContrastChecker from 'color-contrast-checker';
 
 interface PillButtonProps {
   color: string;
@@ -21,10 +21,13 @@ export default function PillButton({
       onPress={onPress}
       className={`flex justify-center align-middle p-2 rounded-full w-28 ${
         text === current ? '' : ' opacity-60'
-      }`} style={{backgroundColor: color}}>
+      }`}
+      style={{backgroundColor: color}}>
       <Text
         className={`font-bold m-auto ${
-          ccc.isLevelAA(color, '#f5f5f5', 14) ? 'text-neutral-100' : 'text-neutral-900'
+          ccc.isLevelAA(color, '#f5f5f5', 14)
+            ? 'text-neutral-100'
+            : 'text-neutral-900'
         }`}>
         {text}
       </Text>

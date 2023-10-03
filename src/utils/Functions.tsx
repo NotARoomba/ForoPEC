@@ -1,5 +1,6 @@
 import prompt from '@powerdesigninc/react-native-prompt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CryptoJS from 'crypto-es';
 import {Alert} from 'react-native';
 
 export const storeData = async (key: string, value: string) => {
@@ -25,8 +26,17 @@ const API = 'https://foropec2023-api.notaroomba.xyz';
 export async function callAPI(
   endpoint: string,
   method: string,
-  body: Object = {},
+  body: object = {},
 ) {
+  const time = Date.now().toString();
+  const data = JSON.stringify(body);
+  const digest = CryptoJS.enc.Hex.stringify(
+    CryptoJS.HmacSHA256(
+      time + method + endpoint + CryptoJS.MD5(data).toString(),
+      Math.floor(Date.now() / (30 * 1000)).toString(),
+    ),
+  );
+  const hmac = `HMAC ${time}:${digest}`;
   return method === 'POST'
     ? await (
         await fetch(API + endpoint, {
@@ -34,6 +44,7 @@ export async function callAPI(
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            Authorization: hmac,
           },
           body: JSON.stringify(body),
         })
@@ -44,19 +55,16 @@ export async function callAPI(
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            Authorization: hmac,
           },
         })
       ).json();
 }
 
-async function checkLogin(
-  number: string,
-  code: string,
-  updateLogged: Function,
-) {
-  const check = await callAPI('/verify/check', 'POST', {number, code});
+async function checkLogin(email: string, code: string, updateLogged: Function) {
+  const check = await callAPI('/verify/check', 'POST', {email, code});
   if (!check.error) {
-    await storeData('number', number);
+    await storeData('email', email);
     updateLogged(true);
     // Alert.alert('Success!');
   } else {
@@ -64,18 +72,18 @@ async function checkLogin(
   }
 }
 
-export async function parseLogin(number: string, updateLogged: Function) {
-  console.log('/users/' + number);
-  let exists = await callAPI('/users/' + number, 'GET');
+export async function parseLogin(email: string, updateLogged: Function) {
+  console.log('/users/' + email);
+  let exists = await callAPI('/users/' + email, 'GET');
   if (!exists.user && exists.error) {
     return Alert.alert('Error', exists.msg);
   }
-  const res = await callAPI('/verify/send', 'POST', {number});
+  const res = await callAPI('/verify/send', 'POST', {email});
   if (!res.error) {
     return prompt(
       'Enter Code',
-      'Enter the verification code that was sent to ' + number,
-      async input => await checkLogin(number, input, updateLogged),
+      'Enter the verification code that was sent to ' + email,
+      async input => await checkLogin(email, input, updateLogged),
       'plain-text',
       '',
       'number-pad',
