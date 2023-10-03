@@ -39,6 +39,5 @@
     "outDir": "./",
     "esModuleInterop": true,
     "strict": true
-  },
-  "type": "module"
+  }
 }
