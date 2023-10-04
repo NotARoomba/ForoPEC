@@ -103,7 +103,7 @@ export default function Profile({
               className="flex h-32 w-32 align-middle justify-center m-auto rounded"
               resizeMode={'contain'}
             />
-            <Text className="justify-center font-bold m-auto mt-4 text-3xl dark:text-neutral-50">
+            <Text className="justify-center font-bold m-auto mt-4 text-3xl text-neutral-900 dark:text-neutral-50">
               {u.name}
             </Text>
             <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
