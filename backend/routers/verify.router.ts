@@ -77,7 +77,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
     const info = await transporter.sendMail({
       from: env.EMAIL,
       to: email,
-      subject: 'Foro Pensando en Colombia Verificación',
+      subject: 'Verificación Foro Pensando en Colombia',
       html: `
       <!DOCTYPE html>
       <html>
