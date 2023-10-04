@@ -101,7 +101,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
     `,
     attachments: [{
       filename: 'logo.png',
-      path: '../images/logo.png',
+      path: '/images/logo.png',
       cid: email //same cid value as in the html img src
   }]
       // text: `Tu codigo para Foro Pensando en Colombia es ${getVerificationCode(
