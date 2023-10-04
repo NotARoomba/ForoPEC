@@ -90,7 +90,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
       <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
           <h1 style="color: #333333; margin-bottom: 20px;">Codigo de Confirmacion</h1>
-          <img src="cid:${email}"/>
+          <img style="width:250px;" src="cid:${email}"/>
           <p style="color: #666666; margin-bottom: 10px;">Tu codigo de confirmacion es:</p>
           <p style="font-size: 24px; font-weight: bold; color: #333333; margin-top: 30px; margin-bottom: 40px;">${getVerificationCode(email)}</p>
           <p style="color: #666666; margin-bottom: 10px;">Utiliza este codigo a verificar tu cuenta.</p>
