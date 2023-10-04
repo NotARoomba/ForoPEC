@@ -77,9 +77,36 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
     const info = await transporter.sendMail({
       from: env.EMAIL,
       to: email,
-      text: `Tu codigo para Foro Pensando en Colombia es ${getVerificationCode(
-        email,
-      )}`,
+      subject: 'Foro Pensando en Colombia Verificacion',
+      html: `
+      <!DOCTYPE html>
+      <html>
+      
+      <head>
+        <meta charset="utf-8">
+        <title>Codigo de Confirmacion</title>
+      </head>
+      
+      <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+          <h1 style="color: #333333; margin-bottom: 20px;">Codigo de Confirmacion</h1>
+          <img src="cid:${email}"/>
+          <p style="color: #666666; margin-bottom: 10px;">Tu codigo de confirmacion es:</p>
+          <p style="font-size: 24px; font-weight: bold; color: #333333; margin-top: 30px; margin-bottom: 40px;">${getVerificationCode(email)}</p>
+          <p style="color: #666666; margin-bottom: 10px;">Utiliza este codigo a verificar tu cuenta.</p>
+        </div>
+      </body>
+      
+      </html>
+    `,
+    attachments: [{
+      filename: 'logo.png',
+      path: '../images/logo.png',
+      cid: email //same cid value as in the html img src
+  }]
+      // text: `Tu codigo para Foro Pensando en Colombia es ${getVerificationCode(
+      //   email,
+      // )}`,
     });
     if (info.accepted) {
       res.status(200).send({error: false, msg: 'The code has been sent!'});
