@@ -25,7 +25,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
   useEffect(() => {
     async function updateTimes() {
       const {user} = await callAPI(
-        '/users/' + (await getData('number')),
+        '/users/' + (await getData('email')),
         'GET',
       );
       const salones: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
@@ -44,7 +44,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
     setTimeout(() => {
       async function updateTimes() {
         const {user} = await callAPI(
-          '/users/' + (await getData('number')),
+          '/users/' + (await getData('email')),
           'GET',
         );
         const salones: SalonAPI[] = (await callAPI('/salones/list', 'GET'))

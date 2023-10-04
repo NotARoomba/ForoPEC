@@ -21,7 +21,7 @@ verifyRouter.use(express.json());
 
 const getVerificationCode = (email: string) => {
   return Buffer.from(
-    Math.floor(Date.now() / (10 * 60 * 1000)).toString() + email,
+    Math.floor(Date.now() / (2 * 60 * 1000)).toString() + email,
   )
     .toString()
     .replace(/[^0-9]/g, '')
