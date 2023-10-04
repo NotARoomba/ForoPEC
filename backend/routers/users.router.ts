@@ -18,13 +18,13 @@ usersRouter.get('/', async (req: Request, res: Response) => {
   }
 });
 
-usersRouter.get('/:number', async (req: Request, res: Response) => {
-  const number = req?.params?.number;
-  console.log(`Getting data for: ${number}`);
+usersRouter.get('/:email', async (req: Request, res: Response) => {
+  const email = req?.params?.email;
+  console.log(`Getting data for: ${email}`);
   try {
     let user = null;
     if (collections.users) {
-      user = (await collections.users.findOne({number})) as unknown as User;
+      user = (await collections.users.findOne({email})) as unknown as User;
     }
     if (user) {
       res.status(200).send({user, error: false, msg: 'The user exists!'});

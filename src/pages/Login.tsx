@@ -52,7 +52,7 @@ export default function Login({
                 value={email}
                 placeholder="Email"
                 placeholderTextColor={'#737373'}
-                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 pb-2.5 text-2xl w-9/12 border dark:border-neutral-200 rounded-xl  dark:text-neutral-50"
+                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 pb-2.5 text-2xl w-11/12 border dark:border-neutral-200 rounded-xl  dark:text-neutral-50"
               />
             </View>
             <TouchableOpacity
