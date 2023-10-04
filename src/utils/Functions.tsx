@@ -61,7 +61,7 @@ export async function callAPI(
         })
       ).json();
   } catch {
-    return {error: true, msg: 'Could not connect to the server!'};
+    return {error: true, msg: '¡No pudimos conectarnos al servidor!'};
   }
 }
 
@@ -85,8 +85,8 @@ export async function parseLogin(email: string, updateLogged: Function) {
   const res = await callAPI('/verify/send', 'POST', {email});
   if (!res.error) {
     return prompt(
-      'Enter Code',
-      'Enter the verification code that was sent to ' + email,
+      'Ingresa el Código',
+      'Ingrese el código de verificación que fue enviado a ' + email,
       async input => await checkLogin(email, input, updateLogged),
       'plain-text',
       '',
