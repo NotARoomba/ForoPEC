@@ -97,9 +97,6 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
       msg: 'There was an error sending the code!',
     });
   }
-  res
-    .status(404)
-    .send({error: true, msg: 'Unable to send the verification code!'});
 });
 
 verifyRouter.post('/check', async (req: Request, res: Response) => {
