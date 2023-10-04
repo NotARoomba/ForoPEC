@@ -70,30 +70,30 @@ const getVerificationCode = (email: string) => {
 verifyRouter.post('/send', async (req: Request, res: Response) => {
   const email: string = req.body.email;
   if (email === '') {
-    return res.status(404).send({error: true, msg: 'Please add an email!'});
+    return res.status(404).send({error: true, msg: '¡Por favor agregue un correo electrónico!'});
   }
   try {
     //send emailz
     const info = await transporter.sendMail({
       from: env.EMAIL,
       to: email,
-      subject: 'Foro Pensando en Colombia Verificacion',
+      subject: 'Foro Pensando en Colombia Verificación',
       html: `
       <!DOCTYPE html>
       <html>
       
       <head>
         <meta charset="utf-8">
-        <title>Codigo de Confirmacion</title>
+        <title>Codigo de Confirmación</title>
       </head>
       
       <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-          <h1 style="color: #333333; margin-bottom: 20px;">Codigo de Confirmacion</h1>
+          <h1 style="color: #333333; margin-bottom: 20px;">Codigo de Confirmación</h1>
           <img style="width:250px;" src="cid:${email}"/>
-          <p style="color: #666666; margin-bottom: 10px;">Tu codigo de confirmacion es:</p>
+          <p style="color: #666666; margin-bottom: 10px;">Tu codigo de confirmación es:</p>
           <p style="font-size: 24px; font-weight: bold; color: #333333; margin-top: 30px; margin-bottom: 40px;">${getVerificationCode(email)}</p>
-          <p style="color: #666666; margin-bottom: 10px;">Utiliza este codigo a verificar tu cuenta.</p>
+          <p style="color: #666666; margin-bottom: 10px;">Utiliza este código a verificar tu cuenta.</p>
         </div>
       </body>
       
@@ -109,19 +109,19 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
       // )}`,
     });
     if (info.accepted) {
-      res.status(200).send({error: false, msg: 'The code has been sent!'});
+      res.status(200).send({error: false, msg: '¡El código ha sido enviado!'});
     } else if (!info.rejected) {
-      res.status(404).send({error: true, msg: 'The email does not exist!'});
+      res.status(404).send({error: true, msg: '¡El correo electrónico no existe!'});
     } else {
       res
         .status(404)
-        .send({error: true, msg: 'There was an error sending the code!'});
+        .send({error: true, msg: '¡Hubo un error al enviar el código!'});
     }
   } catch (error: any) {
     console.log(error);
     return res.status(404).send({
       error: true,
-      msg: 'There was an error sending the code!',
+      msg: '¡Hubo un error al enviar el código!',
     });
   }
 });
@@ -130,15 +130,15 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
   const email: string = req?.body?.email;
   const code: string = req?.body?.code as string;
   if (code.length !== 6) {
-    return res.status(404).send({error: true, msg: 'The code is invalid!'});
+    return res.status(404).send({error: true, msg: '¡El código no es válido!'});
   }
   try {
     if (getVerificationCode(email) === code) {
-      res.status(200).send({error: false, msg: 'The code has been approved!'});
+      res.status(200).send({error: false, msg: '¡El código ha sido aprobado!'});
     } else {
-      res.status(404).send({error: true, msg: 'Incorrect code!'});
+      res.status(404).send({error: true, msg: '¡Código incorrecto!'});
     }
   } catch (error: any) {
-    res.status(404).send({error: true, msg: 'Unable to check the code!'});
+    res.status(404).send({error: true, msg: '¡No se puede verificar el código!'});
   }
 });
