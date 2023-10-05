@@ -16,8 +16,8 @@ import {
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {FunctionScreenProp} from '../utils/DataTypes';
-import SelectDropdown from 'react-native-select-dropdown'
+import {FunctionScreenProp, Salon, SalonAPI} from '../utils/DataTypes';
+import SelectDropdown from 'react-native-select-dropdown';
 import {callAPI, getData} from '../utils/Functions';
 import User from '../../backend/models/user';
 import {
@@ -28,6 +28,9 @@ import {
 } from 'react-native-vision-camera';
 import PillButton from '../components/PillButton';
 import QRCamera from '../components/QRCamera';
+import ForoPECEvents from '../../backend/models/events';
+import {io} from 'socket.io-client';
+import Config from 'react-native-config';
 
 export default function Profile({
   fadeAnim,
@@ -46,6 +49,8 @@ export default function Profile({
   const [cameraOpen, setCameraOpen] = useState(false);
   const {hasPermission, requestPermission} = useCameraPermission();
   const [modalShowing, setModalShowing] = useState(false);
+  const [checkingUser, setCheckingUser] = useState(false);
+  const [salones, setSalones] = useState<string[]>([]);
   const [userEdit, setUserEdit] = useState<User>({
     name: '',
     salon: '',
@@ -77,7 +82,16 @@ export default function Profile({
             ],
           );
         }
+        const salonesAPI: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
+          .salones;
+        setSalones(salonesAPI.map(v => v.name));
       }
+      const socket = io(Config.API_URL);
+      socket.on(ForoPECEvents.UPDATE_DATA, () => {
+        socket.emit(ForoPECEvents.REQUEST_DATA, user.email, (userData: User) => {
+          setUser(userData);
+        });
+      });
     }
     updateUserPerms();
   }, []);
@@ -116,28 +130,28 @@ export default function Profile({
   const codeScanner = useCodeScanner({
     codeTypes: ['qr'],
     onCodeScanned: async codes => {
-      const email = codes[0].value;
-      const {user} = await callAPI('/users/' + email, 'GET');
-      if (user) {
-        setCameraOpen(!cameraOpen);
-        setUserEdit(user);
-        setModalShowing(!modalShowing);
+      if (!checkingUser || Date.now() % 3 === 0) {
+        setCheckingUser(!checkingUser);
+        const email = codes[0].value;
+        const {user} = await callAPI('/users/' + email, 'GET');
+        if (user) {
+          setCameraOpen(!cameraOpen);
+          setUserEdit((({_id, ...o}) => o)(user));
+          setModalShowing(!modalShowing);
+        }
+        setCheckingUser(!checkingUser);
       }
     },
   });
 
   const updateUser = async () => {
-    console.log(userEdit);
     const status = await callAPI('/users/update', 'POST', userEdit);
-    console.log(status)
     if (status.error) {
       return Alert.alert('Error', status.msg);
     } else {
       setModalShowing(!modalShowing);
     }
-  }
-
-
+  };
 
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
@@ -200,28 +214,129 @@ export default function Profile({
             <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
               {u.salon} {u.admin ? '/ Admin' : ''}
             </Text>
-            <QRCamera user={u} cameraPerms={cameraPerms} codeScanner={codeScanner} cameraOpen={cameraOpen} setCameraOpen={setCameraOpen} />
-            <View className='flex justify-center align-middle mt-24 '>
-              <Modal animationType='fade' visible={modalShowing} onRequestClose={() => {setModalShowing(!modalShowing); setCameraOpen(!cameraOpen)}}>
-                <View  className='flex jutify-center align-middle m-auto bg-neutral-50 w-9/12 h-3/5 rounded-xl shadow-xl'>
-                  <View className='flex flex-row'>
-                    <Text className='m-auto mt-2 text-2xl font-bold'>Actualizar Usuario</Text>
+            <QRCamera
+              user={u}
+              cameraPerms={cameraPerms}
+              codeScanner={codeScanner}
+              cameraOpen={cameraOpen}
+              setCameraOpen={setCameraOpen}
+            />
+            <View className="flex justify-center align-middle mt-24 ">
+              <Modal
+                animationType="fade"
+                visible={modalShowing}
+                onRequestClose={() => {
+                  setModalShowing(!modalShowing);
+                  setCameraOpen(!cameraOpen);
+                }}>
+                <View className="flex jutify-center align-middle m-auto bg-neutral-50 w-9/12 h-3/5 rounded-xl shadow-xl">
+                  <View className="flex flex-row">
+                    <Text className="m-auto mt-2 text-2xl font-bold">
+                      Actualizar Usuario
+                    </Text>
+                  </View>
+                  <View className="h-0.5 w-11/12 bg-black mx-auto rounded-full" />
+                  <View className="mt-2">
+                    <View className="justify-center mx-auto my-2 w-full">
+                      <Text className="text-lg mx-auto">Name</Text>
+                      <TextInput
+                        onChange={str =>
+                          setUserEdit({...userEdit, name: str.nativeEvent.text})
+                        }
+                        value={userEdit.name}
+                        placeholder="Nombre"
+                        className="w-11/12 pl-1 mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
+                      />
                     </View>
-                    <View className='h-0.5 w-11/12 bg-black mx-auto rounded-full' />
-                    <View className='mt-2'>
-                      <View className='justify-center mx-auto my-2 w-full'>
-                        <Text className='text-lg mx-auto'>Name</Text>
-                        <TextInput onChange={(str) => setUserEdit({...userEdit, name: str.nativeEvent.text})} value={userEdit.name} placeholder='Nombre' className='w-11/12 pl-1 mx-auto h-8 rounded-xl outline border dark:border-neutral-200' />
-                      </View>
+                    <View className="justify-center mx-auto my-2 w-full">
+                      <Text className="text-lg mx-auto">Has Food</Text>
+                      <SelectDropdown
+                        buttonTextAfterSelection={(selectedItem, index) => {
+                          return selectedItem.label;
+                        }}
+                        rowTextForSelection={(item, index) => {
+                          return item.label;
+                        }}
+                        renderDropdownIcon={isOpened => {
+                          return (
+                            <Feather
+                              name={isOpened ? 'chevron-up' : 'chevron-down'}
+                              color={'#444'}
+                              size={28}
+                            />
+                          );
+                        }}
+                        defaultValue={{
+                          label: userEdit.hasFood ? 'Si' : 'No',
+                          value: userEdit.hasFood,
+                        }}
+                        dropdownStyle={{
+                          marginTop: -20,
+                          display: 'flex',
+                          borderRadius: 25,
+                        }}
+                        buttonStyle={{
+                          justifyContent: 'center',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                          borderRadius: 25,
+                        }}
+                        onSelect={choice =>
+                          setUserEdit({...userEdit, hasFood: choice.value})
+                        }
+                        data={[
+                          {label: 'Si', value: true},
+                          {label: 'No', value: false},
+                        ]}
+                      />
                     </View>
-                    <View className='flex flex-row justify-center'>
-                      <TouchableOpacity onPress={() => setModalShowing(!modalShowing)} className='bg-black flex justify-center align-middle p-2 rounded-full w-28'>
-                        <Text className='text-xl text-neutral-50 m-auto font-bold'>Close</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={updateUser} className='flex bg-black justify-center align-middle p-2 rounded-full w-28'>
-                        <Text className='text-lg text-neutral-50 m-auto font-bold'>Save</Text>
-                        </TouchableOpacity>
+                    <View className="justify-center mx-auto mt-0 mb-5 w-full">
+                      <Text className="text-lg mx-auto">Salon</Text>
+                      <SelectDropdown
+                        renderDropdownIcon={isOpened => {
+                          return (
+                            <Feather
+                              name={isOpened ? 'chevron-up' : 'chevron-down'}
+                              color={'#444'}
+                              size={28}
+                            />
+                          );
+                        }}
+                        defaultValue={userEdit.salon}
+                        dropdownStyle={{
+                          marginTop: -20,
+                          display: 'flex',
+                          borderRadius: 25,
+                        }}
+                        buttonStyle={{
+                          justifyContent: 'center',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                          borderRadius: 25,
+                        }}
+                        onSelect={choice =>
+                          setUserEdit({...userEdit, salon: choice})
+                        }
+                        data={salones}
+                      />
                     </View>
+                  </View>
+                  <View className="flex flex-row justify-center gap-2">
+                    <TouchableOpacity
+                      onPress={() => setModalShowing(!modalShowing)}
+                      className="bg-black flex justify-center align-middle p-2 rounded-full w-28">
+                      <Text className="text-xl text-neutral-50 m-auto font-bold">
+                        Close
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={updateUser}
+                      className="flex bg-black justify-center align-middle p-2 rounded-full w-28">
+                      <Text className="text-lg text-neutral-50 m-auto font-bold">
+                        Save
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </Modal>
             </View>

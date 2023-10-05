@@ -29,19 +29,16 @@ usersRouter.get('/:email', async (req: Request, res: Response) => {
     if (user) {
       res.status(200).send({user, error: false, msg: 'The user exists!'});
     } else {
-      res
-        .status(404)
-        .send({
-          user: null,
-          error: true,
-          msg: '¡No se encontró un usuario con esa dirección de correo electrónico!',
-        });
+      res.status(404).send({
+        user: null,
+        error: true,
+        msg: '¡No se encontró un usuario con esa dirección de correo electrónico!',
+      });
     }
   } catch (error) {
     res.status(404).send({user: null, error: true, msg: error});
   }
 });
-
 
 usersRouter.post('/update', async (req: Request, res: Response) => {
   const data: User = req.body;
@@ -57,9 +54,7 @@ usersRouter.post('/update', async (req: Request, res: Response) => {
     }
     res.send({error: false, msg: 'Usuario actualizado!'});
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.send({error: true, msg: error});
   }
 });
-
-

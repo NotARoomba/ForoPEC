@@ -19,6 +19,7 @@
     "hmac-auth-express": "^9.0.0",
     "mongodb": "^6.1.0",
     "nodemailer": "^6.9.5",
+    "socket.io": "^4.7.2",
     "ts-dotenv": "^0.9.1"
   },
   "engines": {

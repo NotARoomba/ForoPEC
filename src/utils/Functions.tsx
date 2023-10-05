@@ -2,6 +2,7 @@ import prompt from '@powerdesigninc/react-native-prompt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CryptoJS from 'crypto-es';
 import {Alert} from 'react-native';
+import Config from 'react-native-config';
 
 export const storeData = async (key: string, value: string) => {
   try {
@@ -21,8 +22,6 @@ export const getData = async (key: string) => {
   }
 };
 
-const API = 'https://foropec2023-api.notaroomba.xyz';
-
 export async function callAPI(
   endpoint: string,
   method: string,
@@ -40,7 +39,7 @@ export async function callAPI(
   try {
     return method === 'POST'
       ? await (
-          await fetch(API + endpoint, {
+          await fetch(Config.API_URL + endpoint, {
             method: method,
             headers: {
               Accept: 'application/json',
@@ -51,7 +50,7 @@ export async function callAPI(
           })
         ).json()
       : await (
-          await fetch(API + endpoint, {
+          await fetch(Config.API_URL + endpoint, {
             method: method,
             headers: {
               Accept: 'application/json',

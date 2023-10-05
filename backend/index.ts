@@ -1,17 +1,28 @@
 import express, {Request, Response} from 'express';
-import {connectToDatabase} from './services/database.service';
+import {collections, connectToDatabase} from './services/database.service';
 import {usersRouter} from './routers/users.router';
 import {verifyRouter} from './routers/verify.router';
 import {salonesRouter} from './routers/salones.router';
+import ForoPECEvents from './models/events';
+import { Server, Socket } from 'socket.io';
+import User from './models/user';
+import { createServer } from 'https';
+import { CorsOptions } from 'cors';
 
 const app = express();
+const httpServer = createServer(app);
 const port = 3001;
 
-const genSecret = async (req: Request) => {
-  return req ? Math.floor(Date.now() / (30 * 1000)).toString() : '';
+export const corsOptions: CorsOptions = {
+  origin: [
+    'https://foropec2023-api.notaroomba.xyz',
+    'http://foropec2023-api.notaroomba.xyz',
+  ],
 };
 
-connectToDatabase()
+const io = new Server(httpServer, {cors: corsOptions});
+
+connectToDatabase(io)
   .then(() => {
     // app.use(HMAC(genSecret, {minInterval: 30}));
     app.use('/users', usersRouter);
@@ -21,6 +32,21 @@ connectToDatabase()
     app.use('/', async (_req: Request, res: Response) => {
       res.status(200).send('You arent supposed to be here');
     });
+
+    io.on(ForoPECEvents.CONNECT, (socket: Socket) => {
+      console.log(`New client connected: ${socket.id}`);
+      //start the cycle
+      socket.emit(ForoPECEvents.UPDATE_DATA);
+      socket.on(
+        ForoPECEvents.REQUEST_DATA,
+        async (email: string, callback) => {
+          const user = await collections.users?.findOne({email});
+          return callback(user);
+        });
+        socket.on(ForoPECEvents.DISCONNECT, () => {
+          console.log('Client disconnected');
+        });
+      });
 
     // app.use(
     //   (
@@ -39,10 +65,11 @@ connectToDatabase()
     //     next();
     //   },
     // );
-
-    app.listen(port, () => {
-      console.log(`Server started at http://localhost:${port}`);
-    });
+    httpServer.listen(port);
+    console.log(`Server started!`);
+    // app.listen(port, () => {
+    //   console.log(`Server started at http://localhost:${port}`);
+    // });
   })
   .catch((error: Error) => {
     console.error('Database connection failed', error);

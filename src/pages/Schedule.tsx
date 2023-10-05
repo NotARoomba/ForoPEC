@@ -11,6 +11,10 @@ import {
 import {Presenter, SalonAPI, ScreenProp} from '../utils/DataTypes';
 import Row from '../components/Row';
 import {callAPI, getData} from '../utils/Functions';
+import Config from 'react-native-config';
+import {io} from 'socket.io-client';
+import ForoPECEvents from '../../backend/models/events';
+import User from '../../backend/models/user';
 
 export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [times, setTimes] = useState<Presenter[]>([
@@ -31,6 +35,23 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
         filter: {salon: salones.filter(v => v.name === user.salon)[0]},
       });
       setTimes(presenters);
+      const socket = io(Config.API_URL);
+      socket.on(ForoPECEvents.UPDATE_DATA, () => {
+        socket.emit(
+          ForoPECEvents.REQUEST_DATA,
+          user.email,
+          async (userData: User) => {
+            const salones: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
+              .salones;
+            const {presenters} = await callAPI('/salones', 'POST', {
+              filter: {
+                salon: salones.filter(v => v.name === userData.salon)[0],
+              },
+            });
+            setTimes(presenters);
+          },
+        );
+      });
     }
     updateTimes();
   }, []);

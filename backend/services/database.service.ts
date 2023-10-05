@@ -1,5 +1,7 @@
 import * as mongoDB from 'mongodb';
+import { Server } from 'socket.io';
 import * as dotenv from 'ts-dotenv';
+import ForoPECEvents from '../models/events';
 
 const env = dotenv.load({
   MONGODB: String,
@@ -14,7 +16,7 @@ export const collections: {
   salones?: mongoDB.Collection;
 } = {};
 
-export async function connectToDatabase() {
+export async function connectToDatabase(io: Server) {
   const client: mongoDB.MongoClient = new mongoDB.MongoClient(env.MONGODB);
   await client.connect();
 
@@ -29,6 +31,11 @@ export async function connectToDatabase() {
     env.SALON_COLLECTION,
   );
   collections.salones = salonsCollection;
-
+  usersCollection.watch().on('change', async next => {
+    io.emit(ForoPECEvents.UPDATE_DATA);
+  });
+  salonsCollection.watch().on('change', async next => {
+    io.emit(ForoPECEvents.UPDATE_DATA);
+  })
   console.log('Successfully connected to database!');
 }

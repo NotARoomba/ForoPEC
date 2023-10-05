@@ -10,9 +10,8 @@ export default function QRCamera({
   cameraPerms,
   codeScanner,
   cameraOpen,
-  setCameraOpen
+  setCameraOpen,
 }: QRCameraProps) {
-
   const device = useCameraDevice('back');
   return (
     <View>
@@ -44,7 +43,7 @@ export default function QRCamera({
           />
         </View>
       ) : (
-        <View className='justify-center flex mx-auto'>
+        <View className="justify-center flex mx-auto">
           {cameraPerms ? (
             device ? (
               <Camera
