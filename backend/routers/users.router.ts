@@ -18,24 +18,6 @@ usersRouter.get('/', async (req: Request, res: Response) => {
   }
 });
 
-usersRouter.post('/', async (req: Request, res: Response) => {
-  const data: User = req.body;
-  try {
-    if (collections.users) {
-      await collections.users.updateOne(
-        {email: data.email},
-        {$set: data},
-        {
-          upsert: true,
-        },
-      );
-    }
-    res.send({error: false, msg: 'Usuario actualizado!'});
-  } catch (error) {
-    res.send({error: true, msg: error});
-  }
-});
-
 usersRouter.get('/:email', async (req: Request, res: Response) => {
   const email = req?.params?.email;
   console.log(`Getting data for: ${email}`);
@@ -57,6 +39,25 @@ usersRouter.get('/:email', async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.status(404).send({user: null, error: true, msg: error});
+  }
+});
+
+
+usersRouter.post('/update', async (req: Request, res: Response) => {
+  const data: User = req.body;
+  try {
+    if (collections.users) {
+      await collections.users.updateOne(
+        {email: data.email},
+        {$set: data},
+        {
+          upsert: true,
+        },
+      );
+    }
+    res.send({error: false, msg: 'Usuario actualizado!'});
+  } catch (error) {
+    res.send({error: true, msg: error});
   }
 });
 

@@ -12,14 +12,14 @@ import {
   RefreshControl,
   Linking,
   Modal,
+  TextInput,
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {FunctionScreenProp} from '../utils/DataTypes';
-import QRCode from 'react-qr-code';
+import SelectDropdown from 'react-native-select-dropdown'
 import {callAPI, getData} from '../utils/Functions';
 import User from '../../backend/models/user';
-import Swiper from 'react-native-swiper';
 import {
   Camera,
   useCameraDevice,
@@ -126,9 +126,17 @@ export default function Profile({
     },
   });
 
-  useEffect(() => {
-    console.log(modalShowing);
-  }, [modalShowing]);
+  const updateUser = async () => {
+    const status = await callAPI('/users/', 'POST', userEdit);
+    console.log(status)
+    if (status.error) {
+      return Alert.alert('Error', status.msg);
+    } else {
+      setModalShowing(!modalShowing);
+    }
+  }
+
+
 
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
@@ -192,12 +200,27 @@ export default function Profile({
               {u.salon} {u.admin ? '/ Admin' : ''}
             </Text>
             <QRCamera user={u} cameraPerms={cameraPerms} codeScanner={codeScanner} cameraOpen={cameraOpen} setCameraOpen={setCameraOpen} />
-            <View className='flex justify-center align-middle mt-24'>
-              <Modal animationType='fade' visible={modalShowing} onRequestClose={() => {setModalShowing(!modalShowing); setCameraOpen(!cameraOpen)}} transparent>
-                <View className='flex jutify-center align-middle m-auto bg-neutral-50 w-9/12 h-3/5 rounded-xl shadow-xl'>
+            <View className='flex justify-center align-middle mt-24 '>
+              <Modal animationType='fade' visible={modalShowing} onRequestClose={() => {setModalShowing(!modalShowing); setCameraOpen(!cameraOpen)}}>
+                <View  className='flex jutify-center align-middle m-auto bg-neutral-50 w-9/12 h-3/5 rounded-xl shadow-xl'>
                   <View className='flex flex-row'>
-                    <Feather name='x' size={40} />
-                    <Text className='m-auto w-3/5'>Actualizar Usuario</Text></View>
+                    <Text className='m-auto mt-2 text-2xl font-bold'>Actualizar Usuario</Text>
+                    </View>
+                    <View className='h-0.5 w-11/12 bg-black mx-auto rounded-full' />
+                    <View className='mt-2'>
+                      <View className='justify-center mx-auto my-2 w-full'>
+                        <Text className='text-lg mx-auto'>Name</Text>
+                        <TextInput onChange={(str) => setUserEdit({...userEdit, name: str.nativeEvent.text})} value={userEdit.name} placeholder='Nombre' className='w-11/12 pl-1 mx-auto h-8 rounded-xl outline border dark:border-neutral-200' />
+                      </View>
+                    </View>
+                    <View className='flex flex-row justify-center'>
+                      <TouchableOpacity onPress={() => setModalShowing(!modalShowing)} className='bg-black flex justify-center align-middle p-2 rounded-full w-28'>
+                        <Text className='text-xl text-neutral-50 m-auto font-bold'>Close</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={updateUser} className='flex bg-black justify-center align-middle p-2 rounded-full w-28'>
+                        <Text className='text-lg text-neutral-50 m-auto font-bold'>Save</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
               </Modal>
             </View>

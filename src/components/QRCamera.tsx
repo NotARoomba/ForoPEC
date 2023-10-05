@@ -44,11 +44,11 @@ export default function QRCamera({
           />
         </View>
       ) : (
-        <View>
+        <View className='justify-center flex mx-auto'>
           {cameraPerms ? (
             device ? (
               <Camera
-                className="w-60 aspect-square justify-center m-auto rounded mt-24"
+                className="w-60 h-60"
                 isActive
                 device={device}
                 codeScanner={codeScanner}
