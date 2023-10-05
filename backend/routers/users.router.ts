@@ -57,6 +57,7 @@ usersRouter.post('/update', async (req: Request, res: Response) => {
     }
     res.send({error: false, msg: 'Usuario actualizado!'});
   } catch (error) {
+    console.log(error)
     res.send({error: true, msg: error});
   }
 });

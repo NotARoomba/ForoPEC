@@ -127,7 +127,8 @@ export default function Profile({
   });
 
   const updateUser = async () => {
-    const status = await callAPI('/users/', 'POST', userEdit);
+    console.log(userEdit);
+    const status = await callAPI('/users/update', 'POST', userEdit);
     console.log(status)
     if (status.error) {
       return Alert.alert('Error', status.msg);
