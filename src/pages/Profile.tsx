@@ -88,8 +88,11 @@ export default function Profile({
       }
       const socket = io(Config.API_URL);
       socket.on(ForoPECEvents.UPDATE_DATA, () => {
-        socket.emit(ForoPECEvents.REQUEST_DATA, user.email, (userData: User) => {
+        socket.emit(ForoPECEvents.REQUEST_DATA, user.email, async (userData: User) => {
           setUser(userData);
+          const salonesAPI: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
+          .salones;
+        setSalones(salonesAPI.map(v => v.name));
         });
       });
     }
@@ -235,7 +238,7 @@ export default function Profile({
                       Actualizar Usuario
                     </Text>
                   </View>
-                  <View className="h-0.5 w-11/12 bg-black mx-auto rounded-full" />
+                  <View className="h-0.5 w-10/12 bg-black mx-auto rounded-full" />
                   <View className="mt-2">
                     <View className="justify-center mx-auto my-2 w-full">
                       <Text className="text-lg mx-auto">Name</Text>
@@ -269,6 +272,9 @@ export default function Profile({
                         defaultValue={{
                           label: userEdit.hasFood ? 'Si' : 'No',
                           value: userEdit.hasFood,
+                        }}
+                        buttonTextStyle={{
+                          marginRight: -14,
                         }}
                         dropdownStyle={{
                           marginTop: -20,
@@ -307,6 +313,9 @@ export default function Profile({
                           marginTop: -20,
                           display: 'flex',
                           borderRadius: 25,
+                        }}
+                        buttonTextStyle={{
+                          marginRight: -14,
                         }}
                         buttonStyle={{
                           justifyContent: 'center',
