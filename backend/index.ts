@@ -5,7 +5,7 @@ import {verifyRouter} from './routers/verify.router';
 import {salonesRouter} from './routers/salones.router';
 import ForoPECEvents from './models/events';
 import { Server, Socket } from 'socket.io';
-import { createServer } from 'https';
+import { createServer } from 'http';
 import cors, { CorsOptions } from 'cors';
 
 const app = express();

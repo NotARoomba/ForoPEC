@@ -36,6 +36,7 @@ export async function callAPI(
     ),
   );
   const hmac = `HMAC ${time}:${digest}`;
+  console.log(Config.API_URL)
   try {
     return method === 'POST'
       ? await (
