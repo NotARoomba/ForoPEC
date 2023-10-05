@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -10,6 +10,8 @@ import {
   Alert,
   ScrollView,
   RefreshControl,
+  Linking,
+  Modal,
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
@@ -17,6 +19,15 @@ import {FunctionScreenProp} from '../utils/DataTypes';
 import QRCode from 'react-qr-code';
 import {callAPI, getData} from '../utils/Functions';
 import User from '../../backend/models/user';
+import Swiper from 'react-native-swiper';
+import {
+  Camera,
+  useCameraDevice,
+  useCameraPermission,
+  useCodeScanner,
+} from 'react-native-vision-camera';
+import PillButton from '../components/PillButton';
+import QRCamera from '../components/QRCamera';
 
 export default function Profile({
   fadeAnim,
@@ -30,24 +41,95 @@ export default function Profile({
     admin: false,
     email: '',
   });
+
+  const [cameraPerms, setCameraPerms] = useState(false);
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const {hasPermission, requestPermission} = useCameraPermission();
+  const [modalShowing, setModalShowing] = useState(false);
+  const [userEdit, setUserEdit] = useState<User>({
+    name: '',
+    salon: '',
+    hasFood: false,
+    admin: false,
+    email: '',
+  });
+
   useEffect(() => {
-    async function updateUser() {
+    async function updateUserPerms() {
       const {user} = await callAPI('/users/' + (await getData('email')), 'GET');
       setUser(user);
+      if (user.admin) {
+        if (hasPermission || (await requestPermission())) {
+          setCameraPerms(true);
+        } else {
+          Alert.alert(
+            'Activa Camera',
+            'Necesitamos tu cámara para escanear los códigos QR.',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => 1,
+              },
+              {
+                text: 'Grant',
+                onPress: () => Linking.openSettings(),
+              },
+            ],
+          );
+        }
+      }
     }
-    updateUser();
+    updateUserPerms();
   }, []);
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    async function updateUser() {
+    async function updateUserPerms() {
       const {user} = await callAPI('/users/' + (await getData('email')), 'GET');
       setUser(user);
       setRefreshing(false);
+      if (user.admin) {
+        if (hasPermission || (await requestPermission())) {
+          setCameraPerms(true);
+        } else {
+          Alert.alert(
+            'Activa Camera',
+            'Necesitamos tu cámara para escanear los códigos QR.',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => 1,
+              },
+              {
+                text: 'Grant',
+                onPress: () => Linking.openSettings(),
+              },
+            ],
+          );
+        }
+      }
     }
-    updateUser();
+    updateUserPerms();
   }, []);
+
+  const codeScanner = useCodeScanner({
+    codeTypes: ['qr'],
+    onCodeScanned: async codes => {
+      const email = codes[0].value;
+      const {user} = await callAPI('/users/' + email, 'GET');
+      if (user) {
+        setCameraOpen(!cameraOpen);
+        setUserEdit(user);
+        setModalShowing(!modalShowing);
+      }
+    },
+  });
+
+  useEffect(() => {
+    console.log(modalShowing);
+  }, [modalShowing]);
+
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
@@ -107,20 +189,17 @@ export default function Profile({
               {u.name}
             </Text>
             <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
-              {u.salon}
+              {u.salon} {u.admin ? '/ Admin' : ''}
             </Text>
-            <View className="flex h-60 w-60 align-middle justify-center m-auto mt-10 rounded">
-              <QRCode
-                size={245}
-                value={u.email.toString()}
-                fgColor={
-                  Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
-                }
-                bgColor={
-                  Appearance.getColorScheme() === 'dark' ? '#171717' : '#ffffff'
-                }
-                className="flex h-60 w-60 align-middle justify-center m-auto mt-10 rounded"
-              />
+            <QRCamera user={u} cameraPerms={cameraPerms} codeScanner={codeScanner} cameraOpen={cameraOpen} setCameraOpen={setCameraOpen} />
+            <View className='flex justify-center align-middle mt-24'>
+              <Modal animationType='fade' visible={modalShowing} onRequestClose={() => {setModalShowing(!modalShowing); setCameraOpen(!cameraOpen)}} transparent>
+                <View className='flex jutify-center align-middle m-auto bg-neutral-50 w-9/12 h-3/5 rounded-xl shadow-xl'>
+                  <View className='flex flex-row'>
+                    <Feather name='x' size={40} />
+                    <Text className='m-auto w-3/5'>Actualizar Usuario</Text></View>
+                </View>
+              </Modal>
             </View>
           </View>
         </ScrollView>

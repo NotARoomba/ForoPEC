@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necesitamos tu cámara para escanear los códigos QR.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Feather.ttf</string>

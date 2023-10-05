@@ -159,7 +159,7 @@ export default function App() {
         // eslint-disable-next-line react-native/no-inline-styles
         sceneContainerStyle={{
           zIndex: -900,
-          backgroundColor: 'rgba(52, 52, 52, 0.1)',
+          backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
         }}>
         {logged ? (
           <Tab.Group>

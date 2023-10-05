@@ -58,9 +58,11 @@ export default function Login({
             <TouchableOpacity
               onPress={() => {
                 setDisable(true);
-                parseLogin(email, updateFunction[0]).then(() => {
-                  setDisable(false);
-                });
+                parseLogin(email.toLocaleLowerCase(), updateFunction[0]).then(
+                  () => {
+                    setDisable(false);
+                  },
+                );
               }}
               disabled={disable}
               className="flex justify-center align-middle p-2 bg-neutral-900 dark:bg-neutral-100 w-24 rounded-xl m-auto mt-4">

@@ -1,4 +1,6 @@
 import {Animated} from 'react-native';
+import User from '../../backend/models/user';
+import {CodeScanner} from 'react-native-vision-camera';
 
 export interface SalonAPI {
   name: string;
@@ -10,6 +12,14 @@ export interface Presenter {
   image: string;
   salon: SalonAPI;
   time: string;
+}
+
+export interface QRCameraProps {
+  user: User;
+  cameraPerms: boolean;
+  codeScanner: CodeScanner;
+  cameraOpen: boolean;
+  setCameraOpen: (open: boolean) => void;
 }
 
 export interface Salon {

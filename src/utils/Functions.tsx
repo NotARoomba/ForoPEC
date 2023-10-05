@@ -38,28 +38,28 @@ export async function callAPI(
   );
   const hmac = `HMAC ${time}:${digest}`;
   try {
-  return method === 'POST'
-    ? await (
-        await fetch(API + endpoint, {
-          method: method,
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: hmac,
-          },
-          body: JSON.stringify(body),
-        })
-      ).json()
-    : await (
-        await fetch(API + endpoint, {
-          method: method,
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: hmac,
-          },
-        })
-      ).json();
+    return method === 'POST'
+      ? await (
+          await fetch(API + endpoint, {
+            method: method,
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: hmac,
+            },
+            body: JSON.stringify(body),
+          })
+        ).json()
+      : await (
+          await fetch(API + endpoint, {
+            method: method,
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: hmac,
+            },
+          })
+        ).json();
   } catch {
     return {error: true, msg: '¡No pudimos conectarnos al servidor!'};
   }

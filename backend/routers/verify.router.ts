@@ -21,7 +21,15 @@ verifyRouter.use(express.json());
 
 const getVerificationCode = (email: string) => {
   return Buffer.from(
-    (Math.floor(Date.now() / (2 * 60 * 1000)) * Math.floor(Date.now() / (2 * 60 * 1000))).toString() + email + (Math.floor(Date.now() / (2 * 60 * 1000)) * Math.floor(Date.now() / (2 * 60 * 1000))).toString(),
+    (
+      Math.floor(Date.now() / (2 * 60 * 1000)) *
+      Math.floor(Date.now() / (2 * 60 * 1000))
+    ).toString() +
+      email +
+      (
+        Math.floor(Date.now() / (2 * 60 * 1000)) *
+        Math.floor(Date.now() / (2 * 60 * 1000))
+      ).toString(),
   )
     .toString()
     .replace(/[^0-9]/g, '')
@@ -70,7 +78,9 @@ const getVerificationCode = (email: string) => {
 verifyRouter.post('/send', async (req: Request, res: Response) => {
   const email: string = req.body.email;
   if (email === '') {
-    return res.status(404).send({error: true, msg: '¡Por favor agregue un correo electrónico!'});
+    return res
+      .status(404)
+      .send({error: true, msg: '¡Por favor agregue un correo electrónico!'});
   }
   try {
     //send emailz
@@ -92,18 +102,22 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
           <h1 style="color: #333333; margin-bottom: 20px;">Codigo de Confirmación</h1>
           <img style="width:250px;" src="cid:${email}"/>
           <p style="color: #666666; margin-bottom: 10px;">Tu codigo de confirmación es:</p>
-          <p style="font-size: 24px; font-weight: bold; color: #333333; margin-top: 30px; margin-bottom: 40px;">${getVerificationCode(email)}</p>
+          <p style="font-size: 24px; font-weight: bold; color: #333333; margin-top: 30px; margin-bottom: 40px;">${getVerificationCode(
+            email,
+          )}</p>
           <p style="color: #666666; margin-bottom: 10px;">Utiliza este código a verificar tu cuenta.</p>
         </div>
       </body>
       
       </html>
     `,
-    attachments: [{
-      filename: 'logo.png',
-      path: process.cwd() + '/images/logo.png',
-      cid: email //same cid value as in the html img src
-  }]
+      attachments: [
+        {
+          filename: 'logo.png',
+          path: process.cwd() + '/images/logo.png',
+          cid: email, //same cid value as in the html img src
+        },
+      ],
       // text: `Tu codigo para Foro Pensando en Colombia es ${getVerificationCode(
       //   email,
       // )}`,
@@ -111,7 +125,9 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
     if (info.accepted) {
       res.status(200).send({error: false, msg: '¡El código ha sido enviado!'});
     } else if (!info.rejected) {
-      res.status(404).send({error: true, msg: '¡El correo electrónico no existe!'});
+      res
+        .status(404)
+        .send({error: true, msg: '¡El correo electrónico no existe!'});
     } else {
       res
         .status(404)
@@ -139,6 +155,8 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
       res.status(404).send({error: true, msg: '¡Código incorrecto!'});
     }
   } catch (error: any) {
-    res.status(404).send({error: true, msg: '¡No se puede verificar el código!'});
+    res
+      .status(404)
+      .send({error: true, msg: '¡No se puede verificar el código!'});
   }
 });

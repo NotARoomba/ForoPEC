@@ -86,7 +86,8 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
             </Text>
             <ScrollView
               horizontal
-              className="flex flex-row w-[335] m-auto mt-2 h-8 rounded-xl bg-neutral-300 dark:bg-neutral-800">
+              contentContainerStyle={{justifyContent: 'space-between'}}
+              className="flex flex-row w-[335] m-auto mt-2 h-fit rounded-full bg-neutral-300 dark:bg-neutral-800">
               {sals.map((salon, i) => (
                 <PillButton
                   key={i}
