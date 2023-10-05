@@ -5,9 +5,8 @@ import {verifyRouter} from './routers/verify.router';
 import {salonesRouter} from './routers/salones.router';
 import ForoPECEvents from './models/events';
 import { Server, Socket } from 'socket.io';
-import User from './models/user';
 import { createServer } from 'https';
-import { CorsOptions } from 'cors';
+import cors, { CorsOptions } from 'cors';
 
 const app = express();
 const httpServer = createServer(app);
@@ -24,7 +23,9 @@ const io = new Server(httpServer, {cors: corsOptions});
 
 connectToDatabase(io)
   .then(() => {
+    app.use(cors(corsOptions));
     // app.use(HMAC(genSecret, {minInterval: 30}));
+    app.use(express.json({limit: '500mb'}));
     app.use('/users', usersRouter);
     app.use('/verify', verifyRouter);
     app.use('/salones', salonesRouter);
