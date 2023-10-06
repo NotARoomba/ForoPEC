@@ -248,7 +248,7 @@ export default function Profile({
                         }
                         value={userEdit.name}
                         placeholder="Nombre"
-                        className="w-11/12 pl-1 mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
+                        className="w-11/12 pl-1 text-center mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
                       />
                     </View>
                     <View className="justify-center mx-auto my-2 w-full">
