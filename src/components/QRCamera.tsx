@@ -1,5 +1,5 @@
-import {View, Appearance, TouchableOpacity, Linking, Text} from 'react-native';
-import {Camera, useCameraDevice} from 'react-native-vision-camera';
+import {View, Appearance, TouchableOpacity, Linking, Text, useWindowDimensions} from 'react-native';
+import {Camera, useCameraDevice, useCameraFormat} from 'react-native-vision-camera';
 import QRCode from 'react-qr-code';
 import PillButton from './PillButton';
 import {useState} from 'react';
@@ -13,14 +13,18 @@ export default function QRCamera({
   setCameraOpen,
 }: QRCameraProps) {
   const device = useCameraDevice('back');
+  const scale = useWindowDimensions().scale;
+  const format = useCameraFormat(device, [
+    {videoResolution: {width: 240, height: 240}},
+    // {videoAspectRatio: 1}
+  ]);
   return (
     <View>
-      <View className="justify-center mx-auto my-5">
+      <View className="justify-center mx-auto mt-3 mb-5">
         {user.admin ? (
           <PillButton
             onPress={() => setCameraOpen(!cameraOpen)}
-            // color={isDarkMode ? 'bg-fl-g' : 'bg-fl-dg'}
-            color={'#000000'}
+            color={Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#000000'}
             current={cameraOpen ? 'QR' : 'Camera'}
             text={cameraOpen ? 'QR' : 'Camera'}
           />
@@ -47,7 +51,9 @@ export default function QRCamera({
           {cameraPerms ? (
             device ? (
               <Camera
-                className="w-60 h-60"
+                className="w-60 aspect-square"
+                format={format}
+                style={{marginTop: scale * 20}}
                 isActive
                 device={device}
                 codeScanner={codeScanner}

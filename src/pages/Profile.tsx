@@ -158,7 +158,7 @@ export default function Profile({
 
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
-      <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
+      <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900 text-black dark:text-neutral-100">
         <StatusBar
           barStyle={
             Appearance.getColorScheme() === 'dark'
@@ -211,7 +211,7 @@ export default function Profile({
               className="flex h-32 w-32 align-middle justify-center m-auto rounded"
               resizeMode={'contain'}
             />
-            <Text className="justify-center font-bold m-auto mt-4 text-3xl text-neutral-900 dark:text-neutral-50">
+            <Text className="justify-center font-bold m-auto mt-4  text-center px-3 text-3xl text-neutral-900 dark:text-neutral-50">
               {u.name}
             </Text>
             <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
@@ -224,35 +224,38 @@ export default function Profile({
               cameraOpen={cameraOpen}
               setCameraOpen={setCameraOpen}
             />
-            <View className="flex justify-center align-middle mt-24 ">
+            <View className="flex justify-center align-middle mt-24 bg-black ">
               <Modal
                 animationType="fade"
                 visible={modalShowing}
+                style={{backgroundColor: '#000000'}}
+                transparent
                 onRequestClose={() => {
                   setModalShowing(!modalShowing);
                   setCameraOpen(!cameraOpen);
                 }}>
-                <View className="flex jutify-center align-middle m-auto bg-neutral-50 w-9/12 h-3/5 rounded-xl shadow-xl">
+                  <View className='flex justify-center bg-neutral-50/70 dark:bg-neutral-900/70 h-screen'>
+                <View className="flex jutify-center align-middle m-auto bg-neutral-50 dark:bg-neutral-900 w-9/12 h-3/5 rounded-xl shadow-xl">
                   <View className="flex flex-row">
-                    <Text className="m-auto mt-2 text-2xl font-bold">
+                    <Text className="m-auto mt-2 text-2xl font-bold text-black dark:text-white  ">
                       Actualizar Usuario
                     </Text>
                   </View>
-                  <View className="h-0.5 w-10/12 bg-black mx-auto rounded-full" />
+                  <View className="h-0.5 w-10/12 bg-black dark:bg-neutral-200 mx-auto rounded-full" />
                   <View className="mt-2">
                     <View className="justify-center mx-auto my-2 w-full">
-                      <Text className="text-lg mx-auto">Name</Text>
+                      <Text className="text-lg mx-auto text-black dark:text-white">Nombre</Text>
                       <TextInput
                         onChange={str =>
                           setUserEdit({...userEdit, name: str.nativeEvent.text})
                         }
                         value={userEdit.name}
                         placeholder="Nombre"
-                        className="w-11/12 pl-1 text-center mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
+                        className="w-11/12 pl-1 pt-0 pb-0 text-center mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
                       />
                     </View>
                     <View className="justify-center mx-auto my-2 w-full">
-                      <Text className="text-lg mx-auto">Has Food</Text>
+                      <Text className="text-lg mx-auto text-black dark:text-white">Ha Comido?</Text>
                       <SelectDropdown
                         buttonTextAfterSelection={(selectedItem, index) => {
                           return selectedItem.label;
@@ -275,6 +278,7 @@ export default function Profile({
                         }}
                         buttonTextStyle={{
                           marginRight: -14,
+                          fontWeight: 'bold'
                         }}
                         dropdownStyle={{
                           marginTop: -20,
@@ -297,7 +301,7 @@ export default function Profile({
                       />
                     </View>
                     <View className="justify-center mx-auto mt-0 mb-5 w-full">
-                      <Text className="text-lg mx-auto">Salon</Text>
+                      <Text className="text-lg mx-auto text-black dark:text-white">Salon</Text>
                       <SelectDropdown
                         renderDropdownIcon={isOpened => {
                           return (
@@ -316,6 +320,7 @@ export default function Profile({
                         }}
                         buttonTextStyle={{
                           marginRight: -14,
+                          fontWeight: 'bold'
                         }}
                         buttonStyle={{
                           justifyContent: 'center',
@@ -333,20 +338,22 @@ export default function Profile({
                   <View className="flex flex-row justify-center gap-2">
                     <TouchableOpacity
                       onPress={() => setModalShowing(!modalShowing)}
-                      className="bg-black flex justify-center align-middle p-2 rounded-full w-28">
-                      <Text className="text-xl text-neutral-50 m-auto font-bold">
+                      className="bg-black dark:bg-neutral-200 flex justify-center align-middle p-2 rounded-full w-28">
+                      <Text className="text-xl text-neutral-50 dark:text-black m-auto font-bold">
                         Close
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={updateUser}
-                      className="flex bg-black justify-center align-middle p-2 rounded-full w-28">
-                      <Text className="text-lg text-neutral-50 m-auto font-bold">
+                      className="flex bg-black dark:bg-neutral-200 justify-center align-middle p-2 rounded-full w-28">
+                      <Text className="text-lg text-neutral-50 dark:text-black m-auto font-bold">
                         Save
                       </Text>
                     </TouchableOpacity>
                   </View>
                 </View>
+                    
+                    </View>
               </Modal>
             </View>
           </View>
