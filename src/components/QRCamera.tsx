@@ -1,4 +1,4 @@
-import {View, Appearance, TouchableOpacity, Linking, Text, useWindowDimensions} from 'react-native';
+import {View, Appearance, TouchableOpacity, Linking, Text, useWindowDimensions, Platform} from 'react-native';
 import {Camera, useCameraDevice, useCameraFormat} from 'react-native-vision-camera';
 import QRCode from 'react-qr-code';
 import PillButton from './PillButton';
@@ -53,7 +53,8 @@ export default function QRCamera({
               <Camera
                 className="w-60 aspect-square"
                 format={format}
-                style={{marginTop: scale * 20}}
+                //stupid android bug
+                style={Platform.OS === 'android' ? {marginTop: scale * 20} : {}}
                 isActive
                 device={device}
                 codeScanner={codeScanner}
