@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* ForoPEC2023Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ForoPEC2023Tests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-ForoPEC2023.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-ForoPEC2023.a */; };
+		00E356F31AD99517003FC87E /* ForoPECTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ForoPECTests.m */; };
+		0C80B921A6F3F58F76C31292 /* libPods-ForoPEC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-ForoPEC.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1834FEE0E22042AD83CC87DB /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5F6828D887F4D64AACCF4CB /* Inter-ExtraLight.ttf */; };
 		2917E62868C54898B5E0B4DA /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC103046C88F455A81790E60 /* Inter-Light.ttf */; };
 		62A84AD325CB4BBDB2A822A8 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEFF1B16698B4E6ABB64B729 /* Inter-Black.ttf */; };
-		7699B88040F8A987B510C191 /* libPods-ForoPEC2023-ForoPEC2023Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC2023-ForoPEC2023Tests.a */; };
+		7699B88040F8A987B510C191 /* libPods-ForoPEC-ForoPECTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC-ForoPECTests.a */; };
 		78F0C316FFEC49E6B9698D51 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6ED0BDBB160C4A3C8CBB1AC9 /* Inter-Bold.ttf */; };
 		7AACD520EDA84728AFF8B4DA /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59F4BE9B71994F92B1E37F82 /* Inter-Medium.ttf */; };
 		7C217A520E024FC784366FAC /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F071BEB5038F4E898D45940D /* Inter-ExtraBold.ttf */; };
@@ -32,31 +32,31 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = ForoPEC2023;
+			remoteInfo = "ForoPEC";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* ForoPEC2023Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForoPEC2023Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* ForoPECTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ForoPECTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ForoPEC2023Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForoPEC2023Tests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ForoPEC2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForoPEC2023.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ForoPEC2023/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ForoPEC2023/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ForoPEC2023/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ForoPEC2023/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ForoPEC2023/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC2023-ForoPEC2023Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ForoPEC2023-ForoPEC2023Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* ForoPECTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ForoPECTests.m"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* ForoPEC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ForoPEC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "ForoPEC/AppDelegate.h"; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "ForoPEC/AppDelegate.mm"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "ForoPEC/Images.xcassets"; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "ForoPEC/Info.plist"; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "ForoPEC/main.m"; sourceTree = "<group>"; };
+		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC-ForoPECTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ForoPEC-ForoPECTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22960DB5A85A47F98C30F6AA /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../public/inter/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-ForoPEC2023.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC2023.debug.xcconfig"; path = "Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-ForoPEC2023.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC2023.release.xcconfig"; path = "Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023.release.xcconfig"; sourceTree = "<group>"; };
+		3B4392A12AC88292D35C810B /* Pods-ForoPEC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC.debug.xcconfig"; path = "Target Support Files/Pods-ForoPEC/Pods-ForoPEC.debug.xcconfig"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-ForoPEC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC.release.xcconfig"; path = "Target Support Files/Pods-ForoPEC/Pods-ForoPEC.release.xcconfig"; sourceTree = "<group>"; };
 		59F4BE9B71994F92B1E37F82 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../public/inter/Inter-Medium.ttf"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-ForoPEC2023-ForoPEC2023Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC2023-ForoPEC2023Tests.debug.xcconfig"; path = "Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-ForoPEC2023.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ForoPEC2023.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B7EB9410499542E8C5724F5 /* Pods-ForoPEC-ForoPECTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC-ForoPECTests.debug.xcconfig"; path = "Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-ForoPEC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ForoPEC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB48AD309244CA1B06EFD21 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		6E497A77681342E5A562A2EB /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../public/inter/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		6ED0BDBB160C4A3C8CBB1AC9 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../public/inter/Inter-Bold.ttf"; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-ForoPEC2023-ForoPEC2023Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC2023-ForoPEC2023Tests.release.xcconfig"; path = "Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests.release.xcconfig"; sourceTree = "<group>"; };
+		89C6BE57DB24E9ADA2F236DE /* Pods-ForoPEC-ForoPECTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC-ForoPECTests.release.xcconfig"; path = "Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2C520718DFC4623A954A6C9 /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../public/inter/Inter-Thin.ttf"; sourceTree = "<group>"; };
 		AEFF1B16698B4E6ABB64B729 /* Inter-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.ttf"; path = "../public/inter/Inter-Black.ttf"; sourceTree = "<group>"; };
 		B5F6828D887F4D64AACCF4CB /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLight.ttf"; path = "../public/inter/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-ForoPEC2023-ForoPEC2023Tests.a in Frameworks */,
+				7699B88040F8A987B510C191 /* libPods-ForoPEC-ForoPECTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,20 +79,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-ForoPEC2023.a in Frameworks */,
+				0C80B921A6F3F58F76C31292 /* libPods-ForoPEC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* ForoPEC2023Tests */ = {
+		00E356EF1AD99517003FC87E /* ForoPECTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* ForoPEC2023Tests.m */,
+				00E356F21AD99517003FC87E /* ForoPECTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = ForoPEC2023Tests;
+			path = "ForoPECTests";
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -103,7 +103,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* ForoPEC2023 */ = {
+		13B07FAE1A68108700A75B9A /* ForoPEC */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -113,15 +113,15 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				FEBA8CB72A79896300E9C8EA /* SplashScreen.storyboard */,
 			);
-			name = ForoPEC2023;
+			name = "ForoPEC";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-ForoPEC2023.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC2023-ForoPEC2023Tests.a */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-ForoPEC.a */,
+				19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC-ForoPECTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,9 +153,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* ForoPEC2023 */,
+				13B07FAE1A68108700A75B9A /* ForoPEC */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* ForoPEC2023Tests */,
+				00E356EF1AD99517003FC87E /* ForoPECTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -169,8 +169,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ForoPEC2023.app */,
-				00E356EE1AD99517003FC87E /* ForoPEC2023Tests.xctest */,
+				13B07F961A680F5B00A75B9A /* ForoPEC.app */,
+				00E356EE1AD99517003FC87E /* ForoPECTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,10 +178,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-ForoPEC2023.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-ForoPEC2023.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-ForoPEC2023-ForoPEC2023Tests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-ForoPEC2023-ForoPEC2023Tests.release.xcconfig */,
+				3B4392A12AC88292D35C810B /* Pods-ForoPEC.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-ForoPEC.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-ForoPEC-ForoPECTests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-ForoPEC-ForoPECTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -189,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* ForoPEC2023Tests */ = {
+		00E356ED1AD99517003FC87E /* ForoPECTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ForoPEC2023Tests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ForoPECTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -205,14 +205,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = ForoPEC2023Tests;
-			productName = ForoPEC2023Tests;
-			productReference = 00E356EE1AD99517003FC87E /* ForoPEC2023Tests.xctest */;
+			name = "ForoPECTests";
+			productname = "ForoPECTests";
+			productReference = 00E356EE1AD99517003FC87E /* ForoPECTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* ForoPEC2023 */ = {
+		13B07F861A680F5B00A75B9A /* ForoPEC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ForoPEC2023" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ForoPEC" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -227,9 +227,9 @@
 			);
 			dependencies = (
 			);
-			name = ForoPEC2023;
-			productName = ForoPEC2023;
-			productReference = 13B07F961A680F5B00A75B9A /* ForoPEC2023.app */;
+			name = "ForoPEC";
+			productName = "ForoPEC";
+			productReference = 13B07F961A680F5B00A75B9A /* ForoPEC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -249,7 +249,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ForoPEC2023" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ForoPEC" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -262,8 +262,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* ForoPEC2023 */,
-				00E356ED1AD99517003FC87E /* ForoPEC2023Tests */,
+				13B07F861A680F5B00A75B9A /* ForoPEC */,
+				00E356ED1AD99517003FC87E /* ForoPECTests */,
 			);
 		};
 /* End PBXProject section */
@@ -320,15 +320,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC/Pods-ForoPEC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC/Pods-ForoPEC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC/Pods-ForoPEC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -346,7 +346,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ForoPEC2023-ForoPEC2023Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ForoPEC-ForoPECTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -368,7 +368,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ForoPEC2023-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ForoPEC-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -381,15 +381,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
@@ -398,15 +398,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC/Pods-ForoPEC-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC/Pods-ForoPEC-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023/Pods-ForoPEC2023-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC/Pods-ForoPEC-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -415,15 +415,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC2023-ForoPEC2023Tests/Pods-ForoPEC2023-ForoPEC2023Tests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForoPEC-ForoPECTests/Pods-ForoPEC-ForoPECTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -452,7 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* ForoPEC2023Tests.m in Sources */,
+				00E356F31AD99517003FC87E /* ForoPECTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +470,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* ForoPEC2023 */;
+			target = 13B07F861A680F5B00A75B9A /* ForoPEC */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -478,14 +478,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-ForoPEC2023-ForoPEC2023Tests.debug.xcconfig */;
+			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-ForoPEC-ForoPECTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ForoPEC2023Tests/Info.plist;
+				INFOPLIST_FILE = "ForoPECTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,19 +497,19 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForoPEC2023.app/ForoPEC2023";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForoPEC.app/ForoPEC";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-ForoPEC2023-ForoPEC2023Tests.release.xcconfig */;
+			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-ForoPEC-ForoPECTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = ForoPEC2023Tests/Info.plist;
+				INFOPLIST_FILE = "ForoPECTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,22 +521,23 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForoPEC2023.app/ForoPEC2023";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForoPEC.app/ForoPEC";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-ForoPEC2023.debug.xcconfig */;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-ForoPEC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2499QNG3JJ;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = ForoPEC2023/Info.plist;
+				INFOPLIST_FILE = "ForoPEC/Info.plist";
+             INFOPLIST_KEY_CFBundleDisplayName = "ForoPEC";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,8 +548,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.notaroomba.ForoPEC2023;
-				PRODUCT_NAME = ForoPEC2023;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
+				PRODUCT_NAME = "ForoPEC";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -557,13 +558,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-ForoPEC2023.release.xcconfig */;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-ForoPEC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2499QNG3JJ;
-				INFOPLIST_FILE = ForoPEC2023/Info.plist;
+				INFOPLIST_FILE = "ForoPEC/Info.plist";
+             INFOPLIST_KEY_CFBundleDisplayName = "ForoPEC";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -574,8 +576,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.notaroomba.ForoPEC2023;
-				PRODUCT_NAME = ForoPEC2023;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
+				PRODUCT_NAME = "ForoPEC";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -723,7 +725,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ForoPEC2023Tests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ForoPECTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -732,7 +734,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ForoPEC2023" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ForoPEC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -741,7 +743,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ForoPEC2023" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ForoPEC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

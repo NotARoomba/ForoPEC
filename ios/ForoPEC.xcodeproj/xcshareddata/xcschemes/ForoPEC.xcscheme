@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ForoPEC2023.app"
-               BlueprintName = "ForoPEC2023"
-               ReferencedContainer = "container:ForoPEC2023.xcodeproj">
+               BuildableName = "ForoPEC.app"
+               BlueprintName = "ForoPEC"
+               ReferencedContainer = "container:ForoPEC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ForoPEC2023Tests.xctest"
-               BlueprintName = "ForoPEC2023Tests"
-               ReferencedContainer = "container:ForoPEC2023.xcodeproj">
+               BuildableName = "ForoPECTests.xctest"
+               BlueprintName = "ForoPECTests"
+               ReferencedContainer = "container:ForoPEC.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ForoPEC2023.app"
-            BlueprintName = "ForoPEC2023"
-            ReferencedContainer = "container:ForoPEC2023.xcodeproj">
+            BuildableName = "ForoPEC.app"
+            BlueprintName = "ForoPEC"
+            ReferencedContainer = "container:ForoPEC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ForoPEC2023.app"
-            BlueprintName = "ForoPEC2023"
-            ReferencedContainer = "container:ForoPEC2023.xcodeproj">
+            BuildableName = "ForoPEC.app"
+            BlueprintName = "ForoPEC"
+            ReferencedContainer = "container:ForoPEC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
