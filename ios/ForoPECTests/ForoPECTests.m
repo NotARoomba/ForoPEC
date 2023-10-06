@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface ForoPEC2023Tests : XCTestCase
+@interface ForoPECTests : XCTestCase
 
 @end
 
-@implementation ForoPEC2023Tests
+@implementation ForoPECTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

@@ -75,9 +75,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.foropec2023"
+    namespace "com.notaroomba.foropec"
     defaultConfig {
-        applicationId "com.foropec2023"
+        applicationId "com.notaroomba.foropec"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

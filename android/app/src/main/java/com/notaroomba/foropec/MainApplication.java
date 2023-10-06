@@ -1,4 +1,4 @@
-package com.foropec2023;
+package com.notaroomba.foropec;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
