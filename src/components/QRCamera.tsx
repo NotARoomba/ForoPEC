@@ -4,6 +4,7 @@ import QRCode from 'react-qr-code';
 import PillButton from './PillButton';
 import {useState} from 'react';
 import {QRCameraProps} from '../utils/DataTypes';
+import { Dimensions } from 'react-native'
 
 export default function QRCamera({
   user,
@@ -15,8 +16,9 @@ export default function QRCamera({
   const device = useCameraDevice('back');
   const scale = useWindowDimensions().scale;
   const format = useCameraFormat(device, [
-    {videoResolution: {width: 240, height: 240}},
+    {videoResolution: {width: (Dimensions.get('window').width / 3) * 2, height: (Dimensions.get('window').width / 3) * 2}},
     // {videoAspectRatio: 1}
+    {fps: 60}
   ]);
   return (
     <View>
@@ -33,9 +35,9 @@ export default function QRCamera({
         )}
       </View>
       {!cameraOpen ? (
-        <View className="flex h-60 w-60 align-middle justify-center m-auto rounded bg-white">
+        <View className="flex w-2/3 align-middle justify-center m-auto rounded bg-white">
           <QRCode
-            size={245}
+            size={(Dimensions.get('window').width / 3) * 2}
             value={user.email.toString()}
             fgColor={
               Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
@@ -43,7 +45,7 @@ export default function QRCamera({
             bgColor={
               Appearance.getColorScheme() === 'dark' ? '#171717' : '#ffffff'
             }
-            className="flex h-60 w-60 align-middle justify-center m-auto mt-10 rounded"
+            className="flex w-2/3 align-middle justify-center mx-auto  mt-10 rounded"
           />
         </View>
       ) : (
@@ -51,10 +53,8 @@ export default function QRCamera({
           {cameraPerms ? (
             device ? (
               <Camera
-                className="w-60 aspect-square"
+                className="w-2/3 aspect-square"
                 format={format}
-                //stupid android bug
-                style={Platform.OS === 'android' ? {marginTop: scale * 20} : {}}
                 isActive
                 device={device}
                 codeScanner={codeScanner}

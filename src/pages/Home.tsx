@@ -11,10 +11,15 @@ import {
   RefreshControl,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {callAPI} from '../utils/Functions';
+import {callAPI, getData} from '../utils/Functions';
 import PillButton from '../components/PillButton';
 import PresenterCard from '../components/PresenterCard';
-import {ScreenProp, Salon} from '../utils/DataTypes';
+import {ScreenProp, Salon, SalonAPI} from '../utils/DataTypes';
+import {io} from 'socket.io-client';
+import Config from 'react-native-config';
+import ForoPECEvents from '../../backend/models/events';
+import User from '../../backend/models/user';
+import { Dimensions } from 'react-native';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [sals, setSalones] = useState<Salon[]>([]);
@@ -29,8 +34,25 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
         });
         salonesList.push({...salon, presenters: presenters.presenters});
       }
+      const {user} = await callAPI('/users/' + (await getData('email')), 'GET');
       setSalones([...salonesList]);
-      setCS(salonesList[0].name);
+      setCS(salonesList.filter(s => s.presenters.filter(p => p.projectName.length != 0).length > 0)[0].name);
+      const socket = io(Config.API_URL);
+      socket.on(ForoPECEvents.UPDATE_DATA, () => {
+        console.log('UPDATED HOME')
+        socket.emit(ForoPECEvents.REQUEST_DATA, user.email, async (userData: User) => {
+          const salonesAPI: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
+          .salones;
+          let updSalones: Salon[] = [];
+          for (let salon of salonesAPI) {
+            const presenters = await callAPI('/salones', 'POST', {
+              filter: {salon},
+            });
+            updSalones.push({...salon, presenters: presenters.presenters});
+          }
+        setSalones(updSalones);
+        });
+      });
       SplashScreen.hide();
     }
     updateSalones();
@@ -49,7 +71,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
         salonesList.push({...salon, presenters: presenters.presenters});
       }
       setSalones([...salonesList]);
-      setCS(salonesList[0].name);
+      setCS(salonesList.filter(s => s.presenters.filter(p => p.projectName.length != 0).length > 0)[0].name);
       setRefreshing(false);
     }
     updateUser();
@@ -66,9 +88,10 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
         />
         <ScrollView
           className="pb-[1000px]"
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }>
+          // refreshControl={
+          //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          // }
+          >
           <View className="flex justify-center align-middle">
             <Image
               source={
@@ -87,8 +110,9 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
             <ScrollView
               horizontal
               contentContainerStyle={{justifyContent: 'space-between'}}
-              className="flex flex-row w-[335] m-auto mt-2 h-fit rounded-full bg-neutral-300 dark:bg-neutral-800">
-              {sals.map((salon, i) => (
+              style={{width: (Dimensions.get('window').width / 12) * 10}}
+              className="flex flex-row m-auto mt-2 h-fit rounded-full bg-neutral-300 dark:bg-neutral-800">
+              {sals.filter(s => s.presenters.filter(p => p.projectName.length != 0).length > 0).map((salon, i) => (
                 <PillButton
                   key={i}
                   onPress={() => setCS(salon.name)}
@@ -108,8 +132,12 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
                   </Text>
                   <ScrollView
                     horizontal
-                    className="flex flex-row w-[335] m-auto h-72 rounded-xl bg-neutral-100 dark:bg-neutral-900">
-                    {s.presenters.map((p, i2) => (
+                    style={{width: (Dimensions.get('window').width / 12) * 10}}
+                    className="flex flex-row m-auto h-72 rounded-xl bg-neutral-100 dark:bg-neutral-900">
+                      {/* only allow ponencias that are:
+                      1. Not events like lunch where the project name would be an empty string
+                      2. do not allow ponencias that are in a different salon than general and are main ponencias  */}
+                    {s.presenters.filter(p => p.projectName !== "" || (p.salon.name == 'Ponencias Centrales' && p.name.toLocaleLowerCase().includes('ponencia central'))).map((p, i2) => (
                       <PresenterCard key={i2} {...p} {...{isDarkMode}} />
                     ))}
                   </ScrollView>

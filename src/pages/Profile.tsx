@@ -133,9 +133,10 @@ export default function Profile({
   const codeScanner = useCodeScanner({
     codeTypes: ['qr'],
     onCodeScanned: async codes => {
+      console.log(codes);
       if (!checkingUser || Date.now() % 3 === 0) {
         setCheckingUser(!checkingUser);
-        const email = codes[0].value;
+        const email = codes[0].value?.toLocaleLowerCase();
         const {user} = await callAPI('/users/' + email, 'GET');
         if (user) {
           setCameraOpen(!cameraOpen);
@@ -168,9 +169,10 @@ export default function Profile({
         />
         <ScrollView
           className="pb-[1000px]"
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }>
+          // refreshControl={
+          //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          // }
+          >
           <View className="flex justify-center align-left mt-5">
             <TouchableOpacity
               onPress={() =>
@@ -267,7 +269,7 @@ export default function Profile({
                           return (
                             <Feather
                               name={isOpened ? 'chevron-up' : 'chevron-down'}
-                              color={'#444'}
+                              color={Appearance.getColorScheme() === 'dark' ? '#16BA65': '#026D36'}
                               size={28}
                             />
                           );
@@ -278,18 +280,26 @@ export default function Profile({
                         }}
                         buttonTextStyle={{
                           marginRight: -14,
-                          fontWeight: 'bold'
-                        }}
-                        dropdownStyle={{
-                          marginTop: -20,
-                          display: 'flex',
-                          borderRadius: 25,
+                          fontWeight: 'bold',
+                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
                         }}
                         buttonStyle={{
                           justifyContent: 'center',
                           marginLeft: 'auto',
                           marginRight: 'auto',
                           borderRadius: 25,
+                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5'
+                        }}
+                        dropdownStyle={{
+                          display: 'flex',
+                          borderRadius: 25,
+                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5',
+                        }}
+                        rowTextStyle={{
+                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
+                        }}
+                        rowStyle={{
+                          borderBottomColor: Appearance.getColorScheme() === 'dark' ? '#525252': '#a3a3a3',
                         }}
                         onSelect={choice =>
                           setUserEdit({...userEdit, hasFood: choice.value})
@@ -307,26 +317,34 @@ export default function Profile({
                           return (
                             <Feather
                               name={isOpened ? 'chevron-up' : 'chevron-down'}
-                              color={'#444'}
+                              color={Appearance.getColorScheme() === 'dark' ? '#16BA65': '#026D36'}
                               size={28}
                             />
                           );
                         }}
                         defaultValue={userEdit.salon}
-                        dropdownStyle={{
-                          marginTop: -20,
-                          display: 'flex',
-                          borderRadius: 25,
-                        }}
                         buttonTextStyle={{
                           marginRight: -14,
-                          fontWeight: 'bold'
+                          fontWeight: 'bold',
+                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
                         }}
                         buttonStyle={{
                           justifyContent: 'center',
                           marginLeft: 'auto',
                           marginRight: 'auto',
                           borderRadius: 25,
+                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5'
+                        }}
+                        dropdownStyle={{
+                          display: 'flex',
+                          borderRadius: 25,
+                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5',
+                        }}
+                        rowTextStyle={{
+                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
+                        }}
+                        rowStyle={{
+                          borderBottomColor: Appearance.getColorScheme() === 'dark' ? '#525252': '#a3a3a3',
                         }}
                         onSelect={choice =>
                           setUserEdit({...userEdit, salon: choice})

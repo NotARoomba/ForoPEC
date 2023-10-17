@@ -11,7 +11,9 @@ export default function PresenterCard({image, name, projectName}: Presenter) {
             ? require('../../public/user_light.png')
             : require('../../public/user_dark.png')
         }
-        source={{uri: image}}
+        source={image.length == 0 ? Appearance.getColorScheme() === 'dark'
+        ? require('../../public/user_light.png')
+        : require('../../public/user_dark.png') : {uri: image}}
         className="flex h-28 w-11/12 align-middle justify-center m-auto rounded-xl"
         resizeMode={'contain'}
       />

@@ -19,7 +19,7 @@ export default function PillButton({
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`flex justify-center align-middle p-2 rounded-full w-28 ${
+      className={`flex justify-center align-middle p-2 rounded-full min-w-[112px] ${
         text === current ? '' : ' opacity-60'
       }`}
       style={{backgroundColor: color}}>
