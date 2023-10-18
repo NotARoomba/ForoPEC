@@ -36,13 +36,15 @@ export async function connectToDatabase(io: Server) {
     .watch([], {fullDocument: 'updateLookup'})
     .on('change', async next => {
       if (next.operationType === 'update' || next.operationType === 'insert' || next.operationType === 'replace') {
-        console.log(
-          usersConnected[next.fullDocument?.email],
-          next.fullDocument,
-        );
-        io.to(usersConnected[next.fullDocument?.email]).emit(
-          ForoPECEvents.UPDATE_DATA,
-        );
+        if (usersConnected[next.fullDocument?.email] !== undefined) {
+          console.log(
+            usersConnected[next.fullDocument?.email],
+            next.fullDocument,
+          );
+          io.to(usersConnected[next.fullDocument?.email]).emit(
+            ForoPECEvents.UPDATE_DATA,
+          );
+        } 
       }
     });
   salonsCollection.watch().on('change', async next => {
