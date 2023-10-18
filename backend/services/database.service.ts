@@ -2,6 +2,7 @@ import * as mongoDB from 'mongodb';
 import { Server } from 'socket.io';
 import * as dotenv from 'ts-dotenv';
 import ForoPECEvents from '../models/events';
+import { usersConnected } from '..';
 
 const env = dotenv.load({
   MONGODB: String,
@@ -31,8 +32,11 @@ export async function connectToDatabase(io: Server) {
     env.SALON_COLLECTION,
   );
   collections.salones = salonsCollection;
-  usersCollection.watch().on('change', async next => {
-    io.emit(ForoPECEvents.UPDATE_DATA);
+  usersCollection.watch([], { fullDocument: 'updateLookup' }).on('change', async next => {
+    if (next.operationType === 'update') {
+      console.log(usersConnected[next.fullDocument?.email], next.fullDocument)
+      io.to(usersConnected[next.fullDocument?.email]).emit(ForoPECEvents.UPDATE_DATA);
+    }
   });
   salonsCollection.watch().on('change', async next => {
     io.emit(ForoPECEvents.UPDATE_DATA);

@@ -21,6 +21,8 @@ export const corsOptions: CorsOptions = {
 
 const io = new Server(httpServer, {cors: corsOptions});
 
+export let usersConnected: { [key: string]: string } = {};
+
 connectToDatabase(io)
   .then(() => {
     app.use(cors(corsOptions));
@@ -41,6 +43,7 @@ connectToDatabase(io)
       socket.on(
         ForoPECEvents.REQUEST_DATA,
         async (email: string, callback) => {
+          usersConnected[email] = socket.id;
           const user = await collections.users?.findOne({email});
           return callback(user);
         });
