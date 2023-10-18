@@ -41,7 +41,11 @@ connectToDatabase(io)
       //start the cycle
       socket.emit(ForoPECEvents.UPDATE_DATA);
       socket.on(ForoPECEvents.REQUEST_DATA, async (email: string, callback) => {
-        usersConnected[email].push(socket.id);
+        if (usersConnected[email]) {
+          usersConnected[email].push(socket.id);
+        } else {
+          usersConnected[email] = [socket.id]
+        }
         const user = await collections.users?.findOne({email});
         return callback(user);
       });
