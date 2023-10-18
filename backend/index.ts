@@ -46,18 +46,15 @@ connectToDatabase(io)
         return callback(user);
       });
       socket.on(ForoPECEvents.DISCONNECT, () => {
-        console.log('Client disconnected');
-      });
-    });
-    io.on(ForoPECEvents.DISCONNECT, (socket: Socket) => {
-      for (var user in usersConnected) {
-        if (
-          usersConnected.hasOwnProperty(user) &&
-          usersConnected[user] == socket.id
-        ) {
-          delete usersConnected[user];
+        for (var user in usersConnected) {
+          if (
+            usersConnected.hasOwnProperty(user) &&
+            usersConnected[user] == socket.id
+          ) {
+            delete usersConnected[user];
+          }
         }
-      }
+      });
     });
 
     // app.use(
