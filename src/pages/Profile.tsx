@@ -88,12 +88,17 @@ export default function Profile({
       }
       const socket = io(Config.API_URL);
       socket.on(ForoPECEvents.UPDATE_DATA, () => {
-        socket.emit(ForoPECEvents.REQUEST_DATA, user.email, async (userData: User) => {
-          setUser(userData);
-          const salonesAPI: SalonAPI[] = (await callAPI('/salones/list', 'GET'))
-          .salones;
-        setSalones(salonesAPI.map(v => v.name));
-        });
+        socket.emit(
+          ForoPECEvents.REQUEST_DATA,
+          user.email,
+          async (userData: User) => {
+            setUser(userData);
+            const salonesAPI: SalonAPI[] = (
+              await callAPI('/salones/list', 'GET')
+            ).salones;
+            setSalones(salonesAPI.map(v => v.name));
+          },
+        );
       });
     }
     updateUserPerms();
@@ -172,7 +177,7 @@ export default function Profile({
           // refreshControl={
           //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           // }
-          >
+        >
           <View className="flex justify-center align-left mt-5">
             <TouchableOpacity
               onPress={() =>
@@ -236,142 +241,188 @@ export default function Profile({
                   setModalShowing(!modalShowing);
                   setCameraOpen(!cameraOpen);
                 }}>
-                  <View className='flex justify-center bg-neutral-50/70 dark:bg-neutral-900/70 h-screen'>
-                <View className="flex jutify-center align-middle m-auto bg-neutral-50 dark:bg-neutral-900 w-9/12 h-3/5 rounded-xl shadow-xl">
-                  <View className="flex flex-row">
-                    <Text className="m-auto mt-2 text-2xl font-bold text-black dark:text-white  ">
-                      Actualizar Usuario
-                    </Text>
-                  </View>
-                  <View className="h-0.5 w-10/12 bg-black dark:bg-neutral-200 mx-auto rounded-full" />
-                  <View className="mt-2">
-                    <View className="justify-center mx-auto my-2 w-full">
-                      <Text className="text-lg mx-auto text-black dark:text-white">Nombre</Text>
-                      <TextInput
-                        onChange={str =>
-                          setUserEdit({...userEdit, name: str.nativeEvent.text})
-                        }
-                        value={userEdit.name}
-                        placeholder="Nombre"
-                        className="w-11/12 pl-1 pt-0 pb-0 text-center mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
-                      />
-                    </View>
-                    <View className="justify-center mx-auto my-2 w-full">
-                      <Text className="text-lg mx-auto text-black dark:text-white">Ha Comido?</Text>
-                      <SelectDropdown
-                        buttonTextAfterSelection={(selectedItem, index) => {
-                          return selectedItem.label;
-                        }}
-                        rowTextForSelection={(item, index) => {
-                          return item.label;
-                        }}
-                        renderDropdownIcon={isOpened => {
-                          return (
-                            <Feather
-                              name={isOpened ? 'chevron-up' : 'chevron-down'}
-                              color={Appearance.getColorScheme() === 'dark' ? '#16BA65': '#026D36'}
-                              size={28}
-                            />
-                          );
-                        }}
-                        defaultValue={{
-                          label: userEdit.hasFood ? 'Si' : 'No',
-                          value: userEdit.hasFood,
-                        }}
-                        buttonTextStyle={{
-                          marginRight: -14,
-                          fontWeight: 'bold',
-                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
-                        }}
-                        buttonStyle={{
-                          justifyContent: 'center',
-                          marginLeft: 'auto',
-                          marginRight: 'auto',
-                          borderRadius: 25,
-                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5'
-                        }}
-                        dropdownStyle={{
-                          display: 'flex',
-                          borderRadius: 25,
-                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5',
-                        }}
-                        rowTextStyle={{
-                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
-                        }}
-                        rowStyle={{
-                          borderBottomColor: Appearance.getColorScheme() === 'dark' ? '#525252': '#a3a3a3',
-                        }}
-                        onSelect={choice =>
-                          setUserEdit({...userEdit, hasFood: choice.value})
-                        }
-                        data={[
-                          {label: 'Si', value: true},
-                          {label: 'No', value: false},
-                        ]}
-                      />
-                    </View>
-                    <View className="justify-center mx-auto mt-0 mb-5 w-full">
-                      <Text className="text-lg mx-auto text-black dark:text-white">Salon</Text>
-                      <SelectDropdown
-                        renderDropdownIcon={isOpened => {
-                          return (
-                            <Feather
-                              name={isOpened ? 'chevron-up' : 'chevron-down'}
-                              color={Appearance.getColorScheme() === 'dark' ? '#16BA65': '#026D36'}
-                              size={28}
-                            />
-                          );
-                        }}
-                        defaultValue={userEdit.salon}
-                        buttonTextStyle={{
-                          marginRight: -14,
-                          fontWeight: 'bold',
-                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
-                        }}
-                        buttonStyle={{
-                          justifyContent: 'center',
-                          marginLeft: 'auto',
-                          marginRight: 'auto',
-                          borderRadius: 25,
-                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5'
-                        }}
-                        dropdownStyle={{
-                          display: 'flex',
-                          borderRadius: 25,
-                          backgroundColor:  Appearance.getColorScheme() === 'dark' ? '#262626': '#e5e5e5',
-                        }}
-                        rowTextStyle={{
-                          color: Appearance.getColorScheme() === 'dark' ? '#fafafa': '#171717'
-                        }}
-                        rowStyle={{
-                          borderBottomColor: Appearance.getColorScheme() === 'dark' ? '#525252': '#a3a3a3',
-                        }}
-                        onSelect={choice =>
-                          setUserEdit({...userEdit, salon: choice})
-                        }
-                        data={salones}
-                      />
-                    </View>
-                  </View>
-                  <View className="flex flex-row justify-center gap-2">
-                    <TouchableOpacity
-                      onPress={() => setModalShowing(!modalShowing)}
-                      className="bg-black dark:bg-neutral-200 flex justify-center align-middle p-2 rounded-full w-28">
-                      <Text className="text-xl text-neutral-50 dark:text-black m-auto font-bold">
-                        Close
+                <View className="flex justify-center bg-neutral-50/70 dark:bg-neutral-900/70 h-screen">
+                  <View className="flex jutify-center align-middle m-auto bg-neutral-50 dark:bg-neutral-900 w-9/12 h-3/5 rounded-xl shadow-xl">
+                    <View className="flex flex-row">
+                      <Text className="m-auto mt-2 text-2xl font-bold text-black dark:text-white  ">
+                        Actualizar Usuario
                       </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={updateUser}
-                      className="flex bg-black dark:bg-neutral-200 justify-center align-middle p-2 rounded-full w-28">
-                      <Text className="text-lg text-neutral-50 dark:text-black m-auto font-bold">
-                        Save
-                      </Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View className="h-0.5 w-10/12 bg-black dark:bg-neutral-200 mx-auto rounded-full" />
+                    <View className="mt-2">
+                      <View className="justify-center mx-auto my-2 w-full">
+                        <Text className="text-lg mx-auto text-black dark:text-white">
+                          Nombre
+                        </Text>
+                        <TextInput
+                          onChange={str =>
+                            setUserEdit({
+                              ...userEdit,
+                              name: str.nativeEvent.text,
+                            })
+                          }
+                          value={userEdit.name}
+                          placeholder="Nombre"
+                          className="w-11/12 pl-1 pt-0 pb-0 text-center mx-auto h-8 rounded-xl outline border dark:border-neutral-200"
+                        />
+                      </View>
+                      <View className="justify-center mx-auto my-2 w-full">
+                        <Text className="text-lg mx-auto text-black dark:text-white">
+                          Ha Comido?
+                        </Text>
+                        <SelectDropdown
+                          buttonTextAfterSelection={(selectedItem, index) => {
+                            return selectedItem.label;
+                          }}
+                          rowTextForSelection={(item, index) => {
+                            return item.label;
+                          }}
+                          renderDropdownIcon={isOpened => {
+                            return (
+                              <Feather
+                                name={isOpened ? 'chevron-up' : 'chevron-down'}
+                                color={
+                                  Appearance.getColorScheme() === 'dark'
+                                    ? '#16BA65'
+                                    : '#026D36'
+                                }
+                                size={28}
+                              />
+                            );
+                          }}
+                          defaultValue={{
+                            label: userEdit.hasFood ? 'Si' : 'No',
+                            value: userEdit.hasFood,
+                          }}
+                          buttonTextStyle={{
+                            marginRight: -14,
+                            fontWeight: 'bold',
+                            color:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#fafafa'
+                                : '#171717',
+                          }}
+                          buttonStyle={{
+                            justifyContent: 'center',
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                            borderRadius: 25,
+                            backgroundColor:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#262626'
+                                : '#e5e5e5',
+                          }}
+                          dropdownStyle={{
+                            display: 'flex',
+                            borderRadius: 25,
+                            backgroundColor:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#262626'
+                                : '#e5e5e5',
+                          }}
+                          rowTextStyle={{
+                            color:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#fafafa'
+                                : '#171717',
+                          }}
+                          rowStyle={{
+                            borderBottomColor:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#525252'
+                                : '#a3a3a3',
+                          }}
+                          onSelect={choice =>
+                            setUserEdit({...userEdit, hasFood: choice.value})
+                          }
+                          data={[
+                            {label: 'Si', value: true},
+                            {label: 'No', value: false},
+                          ]}
+                        />
+                      </View>
+                      <View className="justify-center mx-auto mt-0 mb-5 w-full">
+                        <Text className="text-lg mx-auto text-black dark:text-white">
+                          Salon
+                        </Text>
+                        <SelectDropdown
+                          renderDropdownIcon={isOpened => {
+                            return (
+                              <Feather
+                                name={isOpened ? 'chevron-up' : 'chevron-down'}
+                                color={
+                                  Appearance.getColorScheme() === 'dark'
+                                    ? '#16BA65'
+                                    : '#026D36'
+                                }
+                                size={28}
+                              />
+                            );
+                          }}
+                          defaultValue={userEdit.salon}
+                          buttonTextStyle={{
+                            marginRight: -14,
+                            fontWeight: 'bold',
+                            color:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#fafafa'
+                                : '#171717',
+                          }}
+                          buttonStyle={{
+                            justifyContent: 'center',
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                            borderRadius: 25,
+                            backgroundColor:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#262626'
+                                : '#e5e5e5',
+                          }}
+                          dropdownStyle={{
+                            display: 'flex',
+                            borderRadius: 25,
+                            backgroundColor:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#262626'
+                                : '#e5e5e5',
+                          }}
+                          rowTextStyle={{
+                            color:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#fafafa'
+                                : '#171717',
+                          }}
+                          rowStyle={{
+                            borderBottomColor:
+                              Appearance.getColorScheme() === 'dark'
+                                ? '#525252'
+                                : '#a3a3a3',
+                          }}
+                          onSelect={choice =>
+                            setUserEdit({...userEdit, salon: choice})
+                          }
+                          data={salones}
+                        />
+                      </View>
+                    </View>
+                    <View className="flex flex-row justify-center gap-2">
+                      <TouchableOpacity
+                        onPress={() => setModalShowing(!modalShowing)}
+                        className="bg-black dark:bg-neutral-200 flex justify-center align-middle p-2 rounded-full w-28">
+                        <Text className="text-xl text-neutral-50 dark:text-black m-auto font-bold">
+                          Close
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={updateUser}
+                        className="flex bg-black dark:bg-neutral-200 justify-center align-middle p-2 rounded-full w-28">
+                        <Text className="text-lg text-neutral-50 dark:text-black m-auto font-bold">
+                          Save
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
-                    
-                    </View>
               </Modal>
             </View>
           </View>

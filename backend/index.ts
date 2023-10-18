@@ -4,9 +4,9 @@ import {usersRouter} from './routers/users.router';
 import {verifyRouter} from './routers/verify.router';
 import {salonesRouter} from './routers/salones.router';
 import ForoPECEvents from './models/events';
-import { Server, Socket } from 'socket.io';
-import { createServer } from 'http';
-import cors, { CorsOptions } from 'cors';
+import {Server, Socket} from 'socket.io';
+import {createServer} from 'http';
+import cors, {CorsOptions} from 'cors';
 
 const app = express();
 const httpServer = createServer(app);
@@ -21,7 +21,7 @@ export const corsOptions: CorsOptions = {
 
 const io = new Server(httpServer, {cors: corsOptions});
 
-export let usersConnected: { [key: string]: string } = {};
+export let usersConnected: {[key: string]: string} = {};
 
 connectToDatabase(io)
   .then(() => {
@@ -40,17 +40,25 @@ connectToDatabase(io)
       console.log(`New client connected: ${socket.id}`);
       //start the cycle
       socket.emit(ForoPECEvents.UPDATE_DATA);
-      socket.on(
-        ForoPECEvents.REQUEST_DATA,
-        async (email: string, callback) => {
-          usersConnected[email] = socket.id;
-          const user = await collections.users?.findOne({email});
-          return callback(user);
-        });
-        socket.on(ForoPECEvents.DISCONNECT, () => {
-          console.log('Client disconnected');
-        });
+      socket.on(ForoPECEvents.REQUEST_DATA, async (email: string, callback) => {
+        usersConnected[email] = socket.id;
+        const user = await collections.users?.findOne({email});
+        return callback(user);
       });
+      socket.on(ForoPECEvents.DISCONNECT, () => {
+        console.log('Client disconnected');
+      });
+    });
+    io.on(ForoPECEvents.DISCONNECT, (socket: Socket) => {
+      for (var user in usersConnected) {
+        if (
+          usersConnected.hasOwnProperty(user) &&
+          usersConnected[user] == socket.id
+        ) {
+          delete usersConnected[user];
+        }
+      }
+    });
 
     // app.use(
     //   (

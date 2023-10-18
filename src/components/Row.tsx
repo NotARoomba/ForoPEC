@@ -10,16 +10,22 @@ export default function Row(presenter: Presenter) {
           {presenter.time}
         </Text>
       </View>
-      <View className={"p-2 flex flex-column " + (presenter.projectName == "" ? 'w-2/3' : 'w-1/3')}>
+      <View
+        className={
+          'p-2 flex flex-column ' +
+          (presenter.projectName == '' ? 'w-2/3' : 'w-1/3')
+        }>
         <Text className="flex flex-column text-center font-bold m-auto text-sm text-neutral-900 dark:text-neutral-300">
           {presenter.name}
         </Text>
       </View>
-      {presenter.projectName !=="" && <View className="p-2 w-1/3 flex flex-column">
-        <Text className="flex flex-column text-center font-bold m-auto text-sm text-neutral-900 dark:text-neutral-300">
-          {presenter.projectName}
-        </Text>
-      </View>}
+      {presenter.projectName !== '' && (
+        <View className="p-2 w-1/3 flex flex-column">
+          <Text className="flex flex-column text-center font-bold m-auto text-sm text-neutral-900 dark:text-neutral-300">
+            {presenter.projectName}
+          </Text>
+        </View>
+      )}
     </View>
   );
 }
