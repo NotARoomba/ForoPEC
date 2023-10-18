@@ -21,7 +21,7 @@ export const corsOptions: CorsOptions = {
 
 const io = new Server(httpServer, {cors: corsOptions});
 
-export let usersConnected: {[key: string]: string} = {};
+export let usersConnected: {[key: string]: string[]} = {};
 
 connectToDatabase(io)
   .then(() => {
@@ -41,7 +41,7 @@ connectToDatabase(io)
       //start the cycle
       socket.emit(ForoPECEvents.UPDATE_DATA);
       socket.on(ForoPECEvents.REQUEST_DATA, async (email: string, callback) => {
-        usersConnected[email] = socket.id;
+        usersConnected[email].push(socket.id);
         const user = await collections.users?.findOne({email});
         return callback(user);
       });
@@ -49,7 +49,7 @@ connectToDatabase(io)
         for (var user in usersConnected) {
           if (
             usersConnected.hasOwnProperty(user) &&
-            usersConnected[user] == socket.id
+            usersConnected[user].includes(socket.id)
           ) {
             delete usersConnected[user];
           }

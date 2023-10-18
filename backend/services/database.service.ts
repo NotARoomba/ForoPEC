@@ -41,9 +41,11 @@ export async function connectToDatabase(io: Server) {
             usersConnected[next.fullDocument?.email],
             next.fullDocument,
           );
-          io.to(usersConnected[next.fullDocument?.email]).emit(
-            ForoPECEvents.UPDATE_DATA,
-          );
+          for (let id of usersConnected[next.fullDocument?.email]) {
+            io.sockets.sockets.get(id)?.emit(
+              ForoPECEvents.UPDATE_DATA,
+            );
+          }
         } 
       }
     });
