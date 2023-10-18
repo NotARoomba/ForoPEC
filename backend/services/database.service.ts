@@ -37,10 +37,6 @@ export async function connectToDatabase(io: Server) {
     .on('change', async next => {
       if (next.operationType === 'update' || next.operationType === 'insert' || next.operationType === 'replace') {
         if (usersConnected[next.fullDocument?.email] !== undefined) {
-          console.log(
-            usersConnected[next.fullDocument?.email],
-            next.fullDocument,
-          );
           for (let id of usersConnected[next.fullDocument?.email]) {
             io.sockets.sockets.get(id)?.emit(
               ForoPECEvents.UPDATE_DATA,
