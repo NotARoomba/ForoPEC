@@ -35,6 +35,7 @@ export async function connectToDatabase(io: Server) {
   usersCollection
     .watch([], {fullDocument: 'updateLookup'})
     .on('change', async next => {
+      console.log(next.operationType)
       if (next.operationType === 'update') {
         console.log(
           usersConnected[next.fullDocument?.email],
