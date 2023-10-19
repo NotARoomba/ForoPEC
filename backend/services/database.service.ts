@@ -17,6 +17,8 @@ export const collections: {
   salones?: mongoDB.Collection;
 } = {};
 
+var isUpdating = false;
+
 export async function connectToDatabase(io: Server) {
   const client: mongoDB.MongoClient = new mongoDB.MongoClient(env.MONGODB);
   await client.connect();
@@ -46,7 +48,11 @@ export async function connectToDatabase(io: Server) {
       }
     });
   salonsCollection.watch().on('change', async next => {
-    io.emit(ForoPECEvents.UPDATE_DATA);
+    if (!isUpdating) {
+      isUpdating = !isUpdating;
+      setTimeout(() => isUpdating = !isUpdating, 10000);
+      io.emit(ForoPECEvents.UPDATE_DATA);
+    }
   });
   console.log('Successfully connected to database!');
 }
