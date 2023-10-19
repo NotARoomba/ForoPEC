@@ -38,7 +38,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
       setSalones([...salonesList]);
       setCS(
         salonesList.filter(
-          s => s.presenters.filter(p => p.projectName.length != 0).length > 0,
+          s => s.presenters.filter(p => p.projectName.length != 0).length > 0 && s.name.toLocaleLowerCase().includes('central'),
         )[0].name,
       );
       const socket = io(Config.API_URL);
