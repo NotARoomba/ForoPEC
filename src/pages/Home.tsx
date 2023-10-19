@@ -38,7 +38,9 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
       setSalones([...salonesList]);
       setCS(
         salonesList.filter(
-          s => s.presenters.filter(p => p.projectName.length != 0).length > 0 && s.name.toLocaleLowerCase().includes('central'),
+          s =>
+            s.presenters.filter(p => p.projectName.length != 0).length > 0 &&
+            s.name.toLocaleLowerCase().includes('central'),
         )[0].name,
       );
       const socket = io(Config.API_URL);
@@ -159,11 +161,16 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
                     {s.presenters
                       .filter(
                         p =>
-                          p.projectName !== '' ||
-                          (p.salon.name == 'Ponencias Centrales' &&
-                            p.name
-                              .toLocaleLowerCase()
-                              .includes('ponencia central')),
+                          p.projectName !== '' &&
+                          (s.name == 'Ponencias Centrales' ||
+                            !(
+                              p.projectName
+                                .toLocaleLowerCase()
+                                .includes('ponencia') &&
+                              p.projectName
+                                .toLocaleLowerCase()
+                                .includes('central')
+                            )),
                       )
                       .map((p, i2) => (
                         <PresenterCard key={i2} {...p} {...{isDarkMode}} />

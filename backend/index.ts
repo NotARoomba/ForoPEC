@@ -44,7 +44,7 @@ connectToDatabase(io)
         if (usersConnected[email]) {
           usersConnected[email].push(socket.id);
         } else {
-          usersConnected[email] = [socket.id]
+          usersConnected[email] = [socket.id];
         }
         const user = await collections.users?.findOne({email});
         return callback(user);

@@ -37,20 +37,22 @@ export async function connectToDatabase(io: Server) {
   usersCollection
     .watch([], {fullDocument: 'updateLookup'})
     .on('change', async next => {
-      if (next.operationType === 'update' || next.operationType === 'insert' || next.operationType === 'replace') {
+      if (
+        next.operationType === 'update' ||
+        next.operationType === 'insert' ||
+        next.operationType === 'replace'
+      ) {
         if (usersConnected[next.fullDocument?.email] !== undefined) {
           for (let id of usersConnected[next.fullDocument?.email]) {
-            io.sockets.sockets.get(id)?.emit(
-              ForoPECEvents.UPDATE_DATA,
-            );
+            io.sockets.sockets.get(id)?.emit(ForoPECEvents.UPDATE_DATA);
           }
-        } 
+        }
       }
     });
   salonsCollection.watch().on('change', async next => {
     if (!isUpdating) {
       isUpdating = !isUpdating;
-      setTimeout(() => isUpdating = !isUpdating, 10000);
+      setTimeout(() => (isUpdating = !isUpdating), 10000);
       io.emit(ForoPECEvents.UPDATE_DATA);
     }
   });
