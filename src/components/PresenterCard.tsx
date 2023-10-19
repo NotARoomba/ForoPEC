@@ -4,7 +4,7 @@ import {Presenter} from '../utils/DataTypes';
 
 export default function PresenterCard({image, name, projectName}: Presenter) {
   return (
-    <View className={"flex flex-column m-2 mx-3 min-h-64 rounded-xl bg-neutral-200 dark:bg-neutral-800 p-2 shadow dark:shadow-sm shadow-neutral-500 " + ((name+projectName).length < 60 ? 'w-48' : (name+projectName).length  < 120 ? 'w-64' : 'w-80' )}>
+    <View className={"flex flex-column m-2 mx-3 min-h-64 rounded-xl bg-neutral-200 dark:bg-neutral-800 p-2 shadow dark:shadow-sm shadow-neutral-500 " + ((name+projectName).length < 60 ? 'w-48' : (name+projectName).length  < 100 ? 'w-64' : 'w-80' )}>
       <Image
         defaultSource={
           Appearance.getColorScheme() === 'dark'

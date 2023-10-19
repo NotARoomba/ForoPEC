@@ -86,7 +86,7 @@ export default function QRCamera({
               onPress={() => Linking.openSettings()}
               className="justify-center">
               <Text className="text-3xl text-center m-auto align-middle">
-                Necesitamos tu cámara para escanear los códigos QR. Haze clic
+                Necesitamos tu cámara para escanear los códigos QR. Haz clic
                 para cambiarlo!
               </Text>
             </TouchableOpacity>
