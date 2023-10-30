@@ -3,4 +3,4 @@
 brew install node
 brew install cocoapods
 npm install
-npx pod-install
+pod install
