@@ -14,8 +14,8 @@ const port = 3001;
 
 export const corsOptions: CorsOptions = {
   origin: [
-    'https://foropec2023-api.notaroomba.xyz',
-    'http://foropec2023-api.notaroomba.xyz',
+    'https://foropec2023-api.notaroomba.dev',
+    'http://foropec2023-api.notaroomba.dev',
   ],
 };
 
