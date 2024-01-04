@@ -32,20 +32,20 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = "ForoPEC";
+			remoteInfo = ForoPEC;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* ForoPECTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ForoPECTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* ForoPECTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForoPECTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ForoPECTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ForoPECTests.m"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ForoPEC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ForoPEC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "ForoPEC/AppDelegate.h"; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "ForoPEC/AppDelegate.mm"; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "ForoPEC/Images.xcassets"; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "ForoPEC/Info.plist"; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "ForoPEC/main.m"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* ForoPECTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForoPECTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* ForoPEC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForoPEC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ForoPEC/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ForoPEC/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ForoPEC/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ForoPEC/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ForoPEC/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ForoPEC-ForoPECTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ForoPEC-ForoPECTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22960DB5A85A47F98C30F6AA /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../public/inter/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-ForoPEC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForoPEC.debug.xcconfig"; path = "Target Support Files/Pods-ForoPEC/Pods-ForoPEC.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				00E356F21AD99517003FC87E /* ForoPECTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = "ForoPECTests";
+			path = ForoPECTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -113,7 +113,7 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				FEBA8CB72A79896300E9C8EA /* SplashScreen.storyboard */,
 			);
-			name = "ForoPEC";
+			name = ForoPEC;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -205,8 +205,8 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "ForoPECTests";
-			productname = "ForoPECTests";
+			name = ForoPECTests;
+			productName = ForoPECTests;
 			productReference = 00E356EE1AD99517003FC87E /* ForoPECTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -227,8 +227,8 @@
 			);
 			dependencies = (
 			);
-			name = "ForoPEC";
-			productName = "ForoPEC";
+			name = ForoPEC;
+			productName = ForoPEC;
 			productReference = 13B07F961A680F5B00A75B9A /* ForoPEC.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -485,7 +485,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ForoPECTests/Info.plist";
+				INFOPLIST_FILE = ForoPECTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,7 +497,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
+				PRODUCT_BUNDLE_IDENTIFIER = com.notaroomba.foropec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForoPEC.app/ForoPEC";
 			};
@@ -509,7 +509,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "ForoPECTests/Info.plist";
+				INFOPLIST_FILE = ForoPECTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,7 +521,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
+				PRODUCT_BUNDLE_IDENTIFIER = com.notaroomba.foropec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForoPEC.app/ForoPEC";
 			};
@@ -534,10 +534,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2499QNG3JJ;
+				DEVELOPMENT_TEAM = 3YY5ZGX52B;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "ForoPEC/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "ForoPEC";
+				INFOPLIST_FILE = ForoPEC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ForoPEC;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -548,8 +548,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
-				PRODUCT_NAME = "ForoPEC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.notaroomba.foropec;
+				PRODUCT_NAME = ForoPEC;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -563,9 +563,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2499QNG3JJ;
-				INFOPLIST_FILE = "ForoPEC/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "ForoPEC";
+				DEVELOPMENT_TEAM = 3YY5ZGX52B;
+				INFOPLIST_FILE = ForoPEC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ForoPEC;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,8 +576,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.notaroomba.foropec";
-				PRODUCT_NAME = "ForoPEC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.notaroomba.foropec;
+				PRODUCT_NAME = ForoPEC;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -624,6 +624,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -650,6 +651,10 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -692,6 +697,10 @@
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -715,6 +724,10 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
