@@ -11,6 +11,7 @@ import Login from './src/pages/Login';
 import {Appearance} from 'react-native';
 import {callAPI, getData} from './src/utils/Functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import STATUS_CODES from './backend/models/status';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
@@ -87,6 +88,7 @@ export default function App() {
     },
   });
   const [logged, setlLogged] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [isDarkMode, setDarkMode] = useState(
     Appearance.getColorScheme() === 'dark',
   );
@@ -102,20 +104,19 @@ export default function App() {
     // checks if user is valid in database and if not then kicks out
     // AsyncStorage.removeItem('email');
     // storeData('email', '+573104250018');
-    getData('email').then(res => {
-      if (res !== null) {
-        callAPI('/users/' + res, 'GET').then(userData => {
-          if (userData.user && !userData.error) {
-            setlLogged(true);
-          } else {
-            setlLogged(false);
-          }
-        });
-      } else {
-        setlLogged(false);
+    async function checkIfLogin() {
+      const number = await getData('email');
+      if (!number) {
+        setLoaded(true);
+        return updateLogged(false);
       }
-      // SplashScreen.hide();
-    });
+      const data = await callAPI('/users/' + number, 'GET');
+      if (data.status == STATUS_CODES.NO_CONNECTION) updateLogged(true);
+      else if (data.status !== STATUS_CODES.SUCCESS) updateLogged(false);
+      else updateLogged(true);
+      setLoaded(true);
+    }
+    checkIfLogin();
     Appearance.addChangeListener(appearance => {
       setDarkMode(appearance.colorScheme === 'dark');
     });
@@ -124,8 +125,8 @@ export default function App() {
   //   //SplashScreen.hide(); // just hide the splash screen after navigation ready
   // };
   return (
-    <NavigationContainer>
-      <Tab.Navigator
+    <>{loaded && <>{logged ? ( <NavigationContainer>
+       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarStyle: {
             backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
@@ -161,7 +162,7 @@ export default function App() {
           zIndex: -900,
           backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
         }}>
-        {logged ? (
+       
           <Tab.Group>
             <Tab.Screen
               name="Home"
@@ -220,30 +221,14 @@ export default function App() {
               )}
             </Tab.Screen>
           </Tab.Group>
-        ) : (
-          <Tab.Screen
-            name="Login"
-            listeners={listeners}
-            options={{
-              tabBarLabelStyle: {
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: 'bold',
-                paddingBottom: 5,
-              },
-            }}>
-            {props => (
-              <Login
-                {...props}
-                fadeAnim={fadeAnim}
-                scale={scale}
-                isDarkMode
-                updateFunction={[updateLogged]}
-              />
-            )}
-          </Tab.Screen>
-        )}
       </Tab.Navigator>
-    </NavigationContainer>
+    </NavigationContainer>) : (
+        <Login
+              fadeAnim={fadeAnim}
+              scale={scale}
+              isDarkMode
+              updateFunction={[updateLogged]}
+            />
+          )}</>}</>
   );
 }
