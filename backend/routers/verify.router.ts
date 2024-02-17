@@ -1,4 +1,4 @@
-import { SHA256 } from 'crypto-es/lib/sha256';
+import { SHA256 } from 'crypto-js';
 import express, {Request, Response} from 'express';
 import * as nodemailer from 'nodemailer';
 import {load} from 'ts-dotenv';
