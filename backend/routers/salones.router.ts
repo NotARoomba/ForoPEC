@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express';
 import {collections} from '../services/database.service';
 import Presentation from '../models/presentation';
+import STATUS_CODES from '../models/status';
 
 export const salonesRouter = express.Router();
 
@@ -14,9 +15,9 @@ salonesRouter.post('/', async (req: Request, res: Response) => {
         .find(req?.body?.filter)
         .toArray()) as unknown as Presentation[];
     }
-    res.status(200).send({presenters, error: false, msg: 'Presenters Exist!'});
+    res.status(200).send({presenters, status: STATUS_CODES.SUCCESS});
   } catch (error) {
-    res.status(500).send({error: true, msg: error});
+    res.status(500).send({status: STATUS_CODES.GENERIC_ERROR});
   }
 });
 
@@ -26,8 +27,8 @@ salonesRouter.get('/list', async (req: Request, res: Response) => {
     if (collections.salones) {
       salones = await collections.salones.distinct('salon');
     }
-    res.status(200).send({salones, error: false, msg: 'Salones Exist!'});
+    res.status(200).send({salones, status: STATUS_CODES.SUCCESS});
   } catch (error) {
-    res.status(500).send({error: true, msg: error});
+    res.status(500).send({status: STATUS_CODES.GENERIC_ERROR});
   }
 });

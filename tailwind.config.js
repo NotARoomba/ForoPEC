@@ -5,7 +5,9 @@ module.exports = {
     extend: {
       colors: {
         'fl-bg': '#F0F3E0',
-        'fl-y': '#FECB02',
+        'fl-text': '#FCFDE9',
+        'fl-y': '#FDCB04',
+        'fl-ly': '#FEE272',
         'fl-b': '#073E87',
         'fl-r': '#D8011B',
         'fl-g': '#16BA65',

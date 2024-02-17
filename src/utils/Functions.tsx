@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CryptoJS from 'crypto-es';
 import {Alert} from 'react-native';
 import Config from 'react-native-config';
+import STATUS_CODES from '../../backend/models/status';
+import { Localizations } from './Localizations';
 
 export const storeData = async (key: string, value: string) => {
   try {
@@ -59,39 +61,50 @@ export async function callAPI(
             },
           })
         ).json();
-  } catch {
-    return {error: true, msg: '¡No pudimos conectarnos al servidor!'};
+  } catch (error: any) {
+    if (!error.response) return {status: STATUS_CODES.NO_CONNECTION};
+    // Alert.alert('Error!', 'No podemos conectar a nuestro servidor! Revisa tu conexion al internet.')
+    return {
+      status: STATUS_CODES.GENERIC_ERROR,
+    };
   }
 }
 
 async function checkLogin(email: string, code: string, updateLogged: Function) {
   const check = await callAPI('/verify/check', 'POST', {email, code});
-  if (!check.error) {
+  if (check.status == STATUS_CODES.SUCCESS) {
     await storeData('email', email);
     updateLogged(true);
-    // Alert.alert('Success!');
   } else {
-    return Alert.alert('Error', check.msg);
+    return Alert.alert(
+      Localizations.error,
+      Localizations.getString(STATUS_CODES[check.status]),
+    );
   }
 }
 
-export async function parseLogin(email: string, updateLogged: Function) {
+export async function parseLogin(email: string, updateLogged: Function, setLoading: Function) {
   console.log('/users/' + email);
-  let exists = await callAPI('/users/' + email, 'GET');
-  if (!exists.user && exists.error) {
-    return Alert.alert('Error', exists.msg);
-  }
   const res = await callAPI('/verify/send', 'POST', {email});
-  if (!res.error) {
-    return prompt(
-      'Ingresa el Código',
-      'Ingrese el código de verificación que fue enviado a ' + email,
-      async input => await checkLogin(email, input, updateLogged),
-      'plain-text',
-      '',
-      'number-pad',
-    );
+  if (res.status == STATUS_CODES.SUCCESS) {
+    setLoading(false);
+    setTimeout(() => {
+      return prompt(
+        Localizations.enterCodeTitle,
+        Localizations.enterCodeDesc + email,
+        async input => await checkLogin(email, input, updateLogged),
+        'plain-text',
+        '',
+        'number-pad',
+      );
+    }, 250);
   } else {
-    return Alert.alert('Error', res.msg);
+    setLoading(false);
+    setTimeout(() => {
+      return Alert.alert(
+        Localizations.error,
+        Localizations.getString(STATUS_CODES[res.status]),
+      );
+    }, 250);
   }
 }

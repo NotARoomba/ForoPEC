@@ -1,6 +1,8 @@
+import { SHA256 } from 'crypto-es/lib/sha256';
 import express, {Request, Response} from 'express';
 import * as nodemailer from 'nodemailer';
 import {load} from 'ts-dotenv';
+import STATUS_CODES from '../models/status';
 
 const env = load({
   EMAIL: String,
@@ -21,15 +23,14 @@ verifyRouter.use(express.json());
 
 const getVerificationCode = (email: string) => {
   if (email === 'danalspaugh@royalschool.edu.co') return "200365"
-  return Buffer.from(
-      email +
+  return SHA256(
+    email +
       (
-        Math.floor(Date.now() / (2 * 60 * 1000)) *
         Math.floor(Date.now() / (2 * 60 * 1000))
       ).toString(),
   )
     .toString()
-    .replace(/[^0-9]/g, '')
+    .replace(/[^0-9]/g, "")
     .substring(0, 6);
 };
 
@@ -77,7 +78,7 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
   if (email === '') {
     return res
       .status(404)
-      .send({error: true, msg: '¡Por favor agregue un correo electrónico!'});
+      .send({status: STATUS_CODES.EMAIL_NOT_EXIST});
   }
   try {
     //send emailz
@@ -120,21 +121,20 @@ verifyRouter.post('/send', async (req: Request, res: Response) => {
       // )}`,
     });
     if (info.accepted) {
-      res.status(200).send({error: false, msg: '¡El código ha sido enviado!'});
+      res.status(200).send({status: STATUS_CODES.SUCCESS});
     } else if (!info.rejected) {
       res
         .status(404)
-        .send({error: true, msg: '¡El correo electrónico no existe!'});
+        .send({status: STATUS_CODES.EMAIL_NOT_EXIST});
     } else {
       res
         .status(404)
-        .send({error: true, msg: '¡Hubo un error al enviar el código!'});
+        .send({status: STATUS_CODES.ERROR_SENDING_CODE});
     }
   } catch (error: any) {
     console.log(error);
     return res.status(404).send({
-      error: true,
-      msg: '¡Hubo un error al enviar el código!',
+      status: STATUS_CODES.ERROR_SENDING_CODE
     });
   }
 });
@@ -143,17 +143,17 @@ verifyRouter.post('/check', async (req: Request, res: Response) => {
   const email: string = req?.body?.email;
   const code: string = req?.body?.code as string;
   if (code.length !== 6) {
-    return res.status(404).send({error: true, msg: '¡El código no es válido!'});
+    return res.status(404).send({status: STATUS_CODES.CODE_DENIED});
   }
   try {
     if (getVerificationCode(email) === code) {
-      res.status(200).send({error: false, msg: '¡El código ha sido aprobado!'});
+      res.status(200).send({status: STATUS_CODES.SUCCESS});
     } else {
-      res.status(404).send({error: true, msg: '¡Código incorrecto!'});
+      res.status(404).send({status: STATUS_CODES.CODE_DENIED});
     }
   } catch (error: any) {
     res
       .status(404)
-      .send({error: true, msg: '¡No se puede verificar el código!'});
+      .send({status: STATUS_CODES.GENERIC_ERROR});
   }
 });

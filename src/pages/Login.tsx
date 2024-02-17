@@ -14,6 +14,7 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 import {FunctionScreenProp} from '../utils/DataTypes';
 import {parseLogin} from '../utils/Functions';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function Login({
   fadeAnim,
@@ -21,13 +22,14 @@ export default function Login({
   updateFunction,
 }: FunctionScreenProp) {
   const [email, onChangeEmail] = useState('');
-  const [disable, setDisable] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 2000);
   }, []);
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
-      <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
+      <SafeAreaView className="bg-fl-bg dark:bg-neutral-900">
         <StatusBar
           barStyle={
             Appearance.getColorScheme() === 'dark'
@@ -35,43 +37,55 @@ export default function Login({
               : 'dark-content'
           }
         />
-        <ScrollView className="pb-[1000px]">
-          <View className="flex justify-center align-left mt-0">
+        
+        <Spinner
+          visible={loading}
+          overlayColor="#00000099"
+          textContent={"Loading"}
+          textStyle={{color: '#fff', marginTop: -50}}
+          animation="fade"
+        />
+        <ScrollView className="h-[100vh]">
+          <View className="flex justify-around align-left mt-0">
             <Image
               source={
                 Appearance.getColorScheme() === 'dark'
                   ? require('../../public/logo.png')
                   : require('../../public/logoDark.png')
               }
-              className="flex h-36 w-11/12 align-middle justify-center m-auto bg-inherit"
+              className="flex h-36 w-11/12 align-middle justify-center m-auto bg-inherit mt-[5vh]"
               resizeMode={'contain'}
             />
+            <View className=' bg-fl-y w-5/6 mx-auto rounded-xl py-8 mt-[10vh]'>
+              <View className='gap-0 mx-auto'>
+            <Text className='text-xl font-semibold pl-1 text-fl-text'>Email</Text>
             <View className="flex flex-row justify-center m-auto align-middle mt-5">
               <TextInput
                 onChangeText={onChangeEmail}
                 value={email}
-                placeholder="Email"
-                placeholderTextColor={'#737373'}
-                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 pb-2.5 text-2xl w-11/12 border dark:border-neutral-200 rounded-xl  dark:text-neutral-50"
+                keyboardType='email-address'
+                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 pb-2.5 text-2xl w-11/12 text-neutral-800/75 rounded-xl bg-fl-ly  dark:text-neutral-50"
               />
+            </View>
             </View>
             <TouchableOpacity
               onPress={() => {
-                setDisable(true);
-                parseLogin(email.toLocaleLowerCase(), updateFunction[0]).then(
-                  () => {
-                    setDisable(false);
-                  },
-                );
+                setLoading(true);
+                parseLogin(email.toLocaleLowerCase(), updateFunction[0], setLoading);
               }}
-              disabled={disable}
-              className="flex justify-center align-middle p-2 bg-neutral-900 dark:bg-neutral-100 w-24 rounded-xl m-auto mt-4">
+              disabled={loading}
+              className="flex justify-center align-middle p-2 py-3 bg-fl-b dark:bg-neutral-100 w-2/3 rounded-full m-auto mt-4">
               <Text className="flex align-middle font-bold m-auto text-xl text-neutral-50 dark:text-neutral-900">
                 Login
               </Text>
             </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
+        <View className='bottom-20 text-center mx-auto'>
+          <Text className='text-base dark:text-fl-text'>Made with love</Text>
+          <Text className='font-bold text-center text-base dark:text-fl-text'>@notaroomba</Text>
+        </View>
       </SafeAreaView>
     </Animated.View>
   );

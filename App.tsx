@@ -125,10 +125,11 @@ export default function App() {
   //   //SplashScreen.hide(); // just hide the splash screen after navigation ready
   // };
   return (
-    <>{loaded && <>{logged ? ( <NavigationContainer>
-       <Tab.Navigator
+    <>{loaded && <NavigationContainer>
+      <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarStyle: {
+            display: logged ? 'flex' : 'none',
             backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
             position: 'absolute',
             bottom: 10,
@@ -162,7 +163,7 @@ export default function App() {
           zIndex: -900,
           backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
         }}>
-       
+        {logged ? (
           <Tab.Group>
             <Tab.Screen
               name="Home"
@@ -221,14 +222,30 @@ export default function App() {
               )}
             </Tab.Screen>
           </Tab.Group>
+        ) : (
+          <Tab.Screen
+            name="Login"
+            listeners={listeners}
+            options={{
+              tabBarLabelStyle: {
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: 'bold',
+                paddingBottom: 5,
+              },
+            }}>
+            {props => (
+              <Login
+                {...props}
+                fadeAnim={fadeAnim}
+                scale={scale}
+                isDarkMode
+                updateFunction={[updateLogged]}
+              />
+            )}
+          </Tab.Screen>
+        )}
       </Tab.Navigator>
-    </NavigationContainer>) : (
-        <Login
-              fadeAnim={fadeAnim}
-              scale={scale}
-              isDarkMode
-              updateFunction={[updateLogged]}
-            />
-          )}</>}</>
+    </NavigationContainer>}</>
   );
 }
