@@ -8,6 +8,7 @@ import {
   ScrollView,
   RefreshControl,
   Appearance,
+  ActivityIndicator,
 } from 'react-native';
 import {Presenter, Salon, SalonAPI, ScreenProp} from '../utils/DataTypes';
 import Row from '../components/Row';
@@ -96,8 +97,8 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
       <SafeAreaView className="bg-fl-bg dark:bg-neutral-900">
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <ScrollView
-          className="pb-[1000px]"
+        <View
+          className="h-[100vh]"
           // refreshControl={
           //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           // }
@@ -181,14 +182,14 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
             <View
               style={{width: (Dimensions.get('window').width / 12) * 10}}
               className="flex flex-row m-auto h-[68vh] mt-3 align-middle rounded-xl bg-fl-bg  dark:bg-neutral-900">
-              <ScrollView className="min-h-[68vh] rounded-xl">
+              {times.length != 0 ? <ScrollView className="min-h-[68vh]  rounded-xl">
                 {times.map((v, i) => (
                   <Row key={i} {...v} />
                 ))}
-              </ScrollView>
+              </ScrollView> : <ActivityIndicator size='large' className='w-full h-full' />}
             </View>
           </View>
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </Animated.View>
   );
