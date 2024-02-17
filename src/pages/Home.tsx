@@ -93,7 +93,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   }, []);
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
-      <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
+      <SafeAreaView className="bg-fl-bg dark:bg-neutral-900">
         <StatusBar
           barStyle={
             Appearance.getColorScheme() === 'dark'
@@ -154,7 +154,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
                   <ScrollView
                     horizontal
                     style={{width: (Dimensions.get('window').width / 12) * 10}}
-                    className="flex flex-row m-auto h-72 rounded-xl bg-neutral-100 dark:bg-neutral-900">
+                    className="flex flex-row m-auto h-72 rounded-xl bg-fl-bg dark:bg-neutral-900">
                     {/* only allow ponencias that are:
                       1. Not events like lunch where the project name would be an empty string
                       2. do not allow ponencias that are in a different salon than general and are main ponencias  */}

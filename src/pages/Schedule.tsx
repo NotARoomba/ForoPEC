@@ -94,7 +94,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
 
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
-      <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900">
+      <SafeAreaView className="bg-fl-bg dark:bg-neutral-900">
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView
           className="pb-[1000px]"
@@ -128,7 +128,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
                   backgroundColor:
                     Appearance.getColorScheme() === 'dark'
                       ? '#262626'
-                      : '#e5e5e5',
+                      : '#F8F9F0',
                 }}
                 dropdownStyle={{
                   display: 'flex',
@@ -180,7 +180,7 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
 
             <View
               style={{width: (Dimensions.get('window').width / 12) * 10}}
-              className="flex flex-row m-auto h-[68vh] mt-3 align-middle rounded-xl bg-neutral-100  dark:bg-neutral-900">
+              className="flex flex-row m-auto h-[68vh] mt-3 align-middle rounded-xl bg-fl-bg  dark:bg-neutral-900">
               <ScrollView className="min-h-[68vh] rounded-xl">
                 {times.map((v, i) => (
                   <Row key={i} {...v} />

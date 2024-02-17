@@ -15,6 +15,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {FunctionScreenProp} from '../utils/DataTypes';
 import {parseLogin} from '../utils/Functions';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function Login({
   fadeAnim,
@@ -45,7 +46,7 @@ export default function Login({
           textStyle={{color: '#fff', marginTop: -50}}
           animation="fade"
         />
-        <ScrollView className="h-[100vh]">
+        <KeyboardAwareScrollView className="h-[100vh]">
           <View className="flex justify-around align-left mt-0">
             <Image
               source={
@@ -81,7 +82,7 @@ export default function Login({
             </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
         <View className='bottom-20 text-center mx-auto'>
           <Text className='text-base dark:text-fl-text'>Made with love</Text>
           <Text className='font-bold text-center text-base dark:text-fl-text'>@notaroomba</Text>

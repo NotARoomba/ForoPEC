@@ -6,7 +6,7 @@ export default function PresenterCard({image, name, projectName}: Presenter) {
   return (
     <View
       className={
-        'flex flex-column m-2 mx-3 min-h-64 rounded-xl bg-neutral-200 dark:bg-neutral-800 p-2 shadow dark:shadow-sm shadow-neutral-500 ' +
+        'flex flex-column m-2 mx-3 min-h-64 rounded-xl bg-fl-bg dark:bg-neutral-800 p-2 shadow dark:shadow-sm shadow-neutral-500 ' +
         ((name + projectName).length < 60
           ? 'w-48'
           : (name + projectName).length < 100

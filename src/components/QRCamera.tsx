@@ -62,7 +62,7 @@ export default function QRCamera({
               Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#171717'
             }
             bgColor={
-              Appearance.getColorScheme() === 'dark' ? '#171717' : '#ffffff'
+              Appearance.getColorScheme() === 'dark' ? '#171717' : '#F0F3E0'
             }
             className="flex w-2/3 align-middle justify-center mx-auto  mt-10 rounded"
           />

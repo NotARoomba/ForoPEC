@@ -164,7 +164,7 @@ export default function Profile({
 
   return (
     <Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
-      <SafeAreaView className="bg-neutral-100 dark:bg-neutral-900 text-black dark:text-neutral-100">
+      <SafeAreaView className="bg-fl-bg dark:bg-neutral-900 text-black dark:text-neutral-100">
         <StatusBar
           barStyle={
             Appearance.getColorScheme() === 'dark'
@@ -197,7 +197,7 @@ export default function Profile({
                 e.preventDefault();
                 Alert.alert('Logout', 'Are you sure you want to logout?', [
                   {text: 'No'},
-                  {text: 'Yes', onPress: () => updateFunction[1](false)},
+                  {text: 'Yes', onPress: () => updateFunction[1](false), style: 'destructive',},
                 ]);
               }}
               className="w-12 absolute right-0 top-0">

@@ -130,13 +130,13 @@ export default function App() {
         screenOptions={({route}) => ({
           tabBarStyle: {
             display: logged ? 'flex' : 'none',
-            backgroundColor: isDarkMode ? '#000000' : '#e7e7e7',
+            backgroundColor: isDarkMode ? '#000000' : '#F0F3E0',
             position: 'absolute',
             bottom: 10,
             borderRadius: 10,
-            width: 350,
+            width: 300,
             left: '50%',
-            marginLeft: -175,
+            marginLeft: -150,
             height: 60,
             paddingBottom: 0,
             alignItems: 'center',
@@ -144,17 +144,17 @@ export default function App() {
             elevation: 0,
             shadowOffset: {
               width: 0,
-              height: 10,
+              height: 4,
             },
             shadowOpacity: 0.25,
-            shadowRadius: 10,
+            shadowRadius: 8,
             borderTopWidth: 0,
           },
           headerTransparent: true,
           headerShown: false,
           tabBarIcon: ({focused, color, size}) =>
             getIcons(route, focused, color, size),
-          tabBarActiveTintColor: isDarkMode ? '#16BA65' : '#026D36',
+          tabBarActiveTintColor: route.name === "Home" ? "#FDCB04" : route.name === "Schedule" ? "#166FE4" : "#D8011B",
           tabBarInactiveTintColor: isDarkMode ? 'gray' : '#171717',
         })}
         initialRouteName="Home"
