@@ -12,15 +12,18 @@ import {Appearance} from 'react-native';
 import {callAPI, getData} from './src/utils/Functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import STATUS_CODES from './backend/models/status';
+import Colibri from './src/pages/Colibri';
 function getIcons(route: any, focused: any, color: any, size: any) {
   let iconName: string = 'home';
 
   if (route.name === 'Home') {
-    iconName = focused ? 'home' : 'home';
+    iconName = 'home';
   } else if (route.name === 'Schedule') {
-    iconName = focused ? 'list' : 'list';
-  } else if (route.name === 'Profile') {
-    iconName = focused ? 'user' : 'user';
+    iconName = 'list';
+  } else if (route.name === 'Colibri') {
+    iconName = 'feather'
+  } else if(route.name === 'Profile') {
+    iconName = 'user';
   }
   return (
     <Feather
@@ -80,6 +83,7 @@ export default function App() {
         navigation.getState().history[navigation.getState().history.length - 1]
           .key !== route.key
       ) {
+        //also fade out tab bar if on colibri
         fadeOut(() => navigation.navigate(route.name));
       }
     },
@@ -154,7 +158,7 @@ export default function App() {
           headerShown: false,
           tabBarIcon: ({focused, color, size}) =>
             getIcons(route, focused, color, size),
-          tabBarActiveTintColor: route.name === "Home" ? "#FDCB04" : route.name === "Schedule" ? "#166FE4" : "#D8011B",
+          tabBarActiveTintColor: route.name === "Home" ? "#FDCB04" : route.name === "Schedule" ? "#166FE4" : route.name === "Colibri" ? "#D8011B" : "#551A8B",
           tabBarInactiveTintColor: isDarkMode ? 'gray' : '#171717',
         })}
         initialRouteName="Home"
@@ -193,6 +197,29 @@ export default function App() {
               }}>
               {props => (
                 <Schedule
+                  {...props}
+                  fadeAnim={fadeAnim}
+                  scale={scale}
+                  isDarkMode
+                />
+              )}
+            </Tab.Screen>
+            <Tab.Screen
+              name="Colibri"
+              listeners={listeners}
+              options={{
+                tabBarStyle: {
+                  display: 'none'
+                },
+                tabBarLabelStyle: {
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  paddingBottom: 5,
+                },
+              }}>
+              {props => (
+                <Colibri
                   {...props}
                   fadeAnim={fadeAnim}
                   scale={scale}

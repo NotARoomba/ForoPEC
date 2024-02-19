@@ -65,7 +65,7 @@ export default function Login({
                 onChangeText={onChangeEmail}
                 value={email}
                 keyboardType='email-address'
-                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 pb-2.5 text-2xl w-11/12 text-neutral-800/75 rounded-xl bg-fl-ly  dark:text-neutral-50"
+                className="flex justify-center align-middle m-auto h-auto p-1 pl-3 pb-2.5 text-2xl w-11/12 text-neutral-800/75 rounded-xl bg-fl-ly "
               />
             </View>
             </View>
