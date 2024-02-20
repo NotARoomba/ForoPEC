@@ -17,7 +17,7 @@ import PillButton from './PillButton';
 import {useState} from 'react';
 import {QRCameraProps} from '../utils/Types';
 import {Dimensions} from 'react-native';
-import ReAnimated, { FadeIn } from 'react-native-reanimated'
+import ReAnimated, {FadeIn} from 'react-native-reanimated';
 
 export default function QRCamera({
   user,
@@ -30,8 +30,8 @@ export default function QRCamera({
   const format = useCameraFormat(device, [
     {
       videoResolution: {
-        width: (Dimensions.get('window').width),
-        height: (Dimensions.get('window').width),
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width,
       },
     },
     // {videoAspectRatio: 1}
@@ -41,20 +41,24 @@ export default function QRCamera({
     <View>
       <View className="justify-center mx-auto mt-3 mb-5">
         {user.admin ? (
-          <ReAnimated.View entering={FadeIn.duration(500)}><PillButton
-            onPress={() => setCameraOpen(!cameraOpen)}
-            color={
-              Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#000000'
-            }
-            current={cameraOpen ? 'QR' : 'Camera'}
-            text={cameraOpen ? 'QR' : 'Camera'}
-          /></ReAnimated.View>
+          <ReAnimated.View entering={FadeIn.duration(500)}>
+            <PillButton
+              onPress={() => setCameraOpen(!cameraOpen)}
+              color={
+                Appearance.getColorScheme() === 'dark' ? '#ffffff' : '#000000'
+              }
+              current={cameraOpen ? 'QR' : 'Camera'}
+              text={cameraOpen ? 'QR' : 'Camera'}
+            />
+          </ReAnimated.View>
         ) : (
           <></>
         )}
       </View>
       {!cameraOpen ? (
-        <ReAnimated.View entering={FadeIn.duration(1000)} className="flex w-2/3 align-middle justify-center m-auto rounded bg-white">
+        <ReAnimated.View
+          entering={FadeIn.duration(1000)}
+          className="flex w-2/3 align-middle justify-center m-auto rounded bg-white">
           <QRCode
             size={(Dimensions.get('window').width / 3) * 2}
             value={user.email.toString()}
@@ -68,7 +72,9 @@ export default function QRCamera({
           />
         </ReAnimated.View>
       ) : (
-        <ReAnimated.View entering={FadeIn.duration(1000)} className="justify-center flex mx-auto">
+        <ReAnimated.View
+          entering={FadeIn.duration(1000)}
+          className="justify-center flex mx-auto">
           {cameraPerms ? (
             device ? (
               <Camera

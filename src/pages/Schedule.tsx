@@ -19,7 +19,7 @@ import ForoPECEvents from '../../backend/models/events';
 import User from '../../backend/models/user';
 import SelectDropdown from 'react-native-select-dropdown';
 import Feather from 'react-native-vector-icons/Feather';
-import ReAnimated, { FadeIn } from 'react-native-reanimated';
+import ReAnimated, {FadeIn} from 'react-native-reanimated';
 import {Dimensions} from 'react-native';
 
 export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
@@ -109,86 +109,98 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
               Schedule
             </Text>
             {/* button to change salon only for admin */}
-            
+
             {isAdmin && salonesList.length !== 0 ? (
-              <ReAnimated.View entering={FadeIn.duration(500)}><SelectDropdown
-                data={salonesList}
-                key={currentSalon}
-                buttonTextStyle={{
-                  marginRight: -14,
-                  fontWeight: 'bold',
-                  color:
-                    Appearance.getColorScheme() === 'dark'
-                      ? '#fafafa'
-                      : '#171717',
-                }}
-                buttonStyle={{
-                  justifyContent: 'center',
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  borderRadius: 25,
-                  width: (Dimensions.get('window').width / 3) * 2,
-                  backgroundColor:
-                    Appearance.getColorScheme() === 'dark'
-                      ? '#262626'
-                      : '#F8F9F0',
-                }}
-                dropdownStyle={{
-                  display: 'flex',
-                  borderRadius: 25,
-                  backgroundColor:
-                    Appearance.getColorScheme() === 'dark'
-                      ? '#262626'
-                      : '#e5e5e5',
-                }}
-                rowTextStyle={{
-                  color:
-                    Appearance.getColorScheme() === 'dark'
-                      ? '#fafafa'
-                      : '#171717',
-                }}
-                rowStyle={{
-                  borderBottomColor:
-                    Appearance.getColorScheme() === 'dark'
-                      ? '#525252'
-                      : '#a3a3a3',
-                }}
-                buttonTextAfterSelection={(selectedItem, index) => {
-                  return selectedItem.name;
-                }}
-                rowTextForSelection={(item, index) => {
-                  return item.name;
-                }}
-                renderDropdownIcon={isOpened => {
-                  return (
-                    <Feather
-                      name={isOpened ? 'chevron-up' : 'chevron-down'}
-                      color={
-                        Appearance.getColorScheme() === 'dark'
-                          ? '#16BA65'
-                          : '#026D36'
-                      }
-                      size={28}
-                    />
-                  );
-                }}
-                onSelect={(salon: SalonAPI) => changeSalon(salon)}
-                defaultButtonText={currentSalon}
-              /></ReAnimated.View>
-            ) : currentSalon !== "" ? (
-              <ReAnimated.View entering={FadeIn.duration(500)}><Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
-                {currentSalon}
-              </Text></ReAnimated.View>
-            ) : <></>}
+              <ReAnimated.View entering={FadeIn.duration(500)}>
+                <SelectDropdown
+                  data={salonesList}
+                  key={currentSalon}
+                  buttonTextStyle={{
+                    marginRight: -14,
+                    fontWeight: 'bold',
+                    color:
+                      Appearance.getColorScheme() === 'dark'
+                        ? '#fafafa'
+                        : '#171717',
+                  }}
+                  buttonStyle={{
+                    justifyContent: 'center',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    borderRadius: 25,
+                    width: (Dimensions.get('window').width / 3) * 2,
+                    backgroundColor:
+                      Appearance.getColorScheme() === 'dark'
+                        ? '#262626'
+                        : '#F8F9F0',
+                  }}
+                  dropdownStyle={{
+                    display: 'flex',
+                    borderRadius: 25,
+                    backgroundColor:
+                      Appearance.getColorScheme() === 'dark'
+                        ? '#262626'
+                        : '#e5e5e5',
+                  }}
+                  rowTextStyle={{
+                    color:
+                      Appearance.getColorScheme() === 'dark'
+                        ? '#fafafa'
+                        : '#171717',
+                  }}
+                  rowStyle={{
+                    borderBottomColor:
+                      Appearance.getColorScheme() === 'dark'
+                        ? '#525252'
+                        : '#a3a3a3',
+                  }}
+                  buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem.name;
+                  }}
+                  rowTextForSelection={(item, index) => {
+                    return item.name;
+                  }}
+                  renderDropdownIcon={isOpened => {
+                    return (
+                      <Feather
+                        name={isOpened ? 'chevron-up' : 'chevron-down'}
+                        color={
+                          Appearance.getColorScheme() === 'dark'
+                            ? '#16BA65'
+                            : '#026D36'
+                        }
+                        size={28}
+                      />
+                    );
+                  }}
+                  onSelect={(salon: SalonAPI) => changeSalon(salon)}
+                  defaultButtonText={currentSalon}
+                />
+              </ReAnimated.View>
+            ) : currentSalon !== '' ? (
+              <ReAnimated.View entering={FadeIn.duration(500)}>
+                <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
+                  {currentSalon}
+                </Text>
+              </ReAnimated.View>
+            ) : (
+              <></>
+            )}
 
             <View
               style={{width: (Dimensions.get('window').width / 12) * 10}}
               className="flex flex-row m-auto h-[68vh] mt-3 align-middle rounded-xl bg-fl-bg  dark:bg-neutral-900">
-              {times.length != 0 ? <ReAnimated.ScrollView entering={FadeIn.duration(500)} className="min-h-[68vh]  rounded-xl">
-                {times.map((v, i) => (
-                  <Row key={i} {...v} />
-                ))}
-              </ReAnimated.ScrollView> : <ActivityIndicator size='large' className='w-full h-full' />}
+              {times.length != 0 ? (
+                <ReAnimated.ScrollView
+                  entering={FadeIn.duration(500)}
+                  className="min-h-[68vh]  rounded-xl">
+                  {times.map((v, i) => (
+                    <Row key={i} {...v} />
+                  ))}
+                </ReAnimated.ScrollView>
+              ) : (
+                <ActivityIndicator size="large" className="w-full h-full" />
+              )}
             </View>
           </View>
         </View>

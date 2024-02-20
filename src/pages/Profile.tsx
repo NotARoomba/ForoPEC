@@ -31,7 +31,7 @@ import QRCamera from '../components/QRCamera';
 import ForoPECEvents from '../../backend/models/events';
 import {io} from 'socket.io-client';
 import Config from 'react-native-config';
-import ReAnimated, { FadeIn } from 'react-native-reanimated'
+import ReAnimated, {FadeIn} from 'react-native-reanimated';
 
 export default function Profile({
   fadeAnim,
@@ -198,7 +198,11 @@ export default function Profile({
                 e.preventDefault();
                 Alert.alert('Logout', 'Are you sure you want to logout?', [
                   {text: 'No'},
-                  {text: 'Yes', onPress: () => updateFunction[1](false), style: 'destructive',},
+                  {
+                    text: 'Yes',
+                    onPress: () => updateFunction[1](false),
+                    style: 'destructive',
+                  },
                 ]);
               }}
               className="w-12 absolute right-0 top-0">
@@ -219,10 +223,16 @@ export default function Profile({
               className="flex h-32 w-32 align-middle justify-center m-auto rounded"
               resizeMode={'contain'}
             />
-            <ReAnimated.Text entering={FadeIn.duration(500)} key={u.name} className="justify-center font-bold m-auto mt-4  text-center px-3 text-3xl text-neutral-900 dark:text-neutral-50">
+            <ReAnimated.Text
+              entering={FadeIn.duration(500)}
+              key={u.name}
+              className="justify-center font-bold m-auto mt-4  text-center px-3 text-3xl text-neutral-900 dark:text-neutral-50">
               {u.name}
             </ReAnimated.Text>
-            <ReAnimated.Text entering={FadeIn.duration(500)} key={u.salon + u.admin} className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
+            <ReAnimated.Text
+              entering={FadeIn.duration(500)}
+              key={u.salon + u.admin}
+              className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
               {u.salon} {u.admin ? '/ Admin' : ''}
             </ReAnimated.Text>
             <QRCamera

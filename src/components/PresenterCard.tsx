@@ -10,8 +10,8 @@ export default function PresenterCard({image, name, projectName}: Presenter) {
         ((name + projectName).length < 60
           ? 'w-48'
           : (name + projectName).length < 100
-          ? 'w-64'
-          : 'w-80')
+            ? 'w-64'
+            : 'w-80')
       }>
       <Image
         defaultSource={

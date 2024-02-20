@@ -50,17 +50,15 @@ export interface PillButtonProps {
 export interface ObjectProps {
   body: Matter.Body;
   size: Matter.Vector;
-  color: string
+  color: string;
 }
 
-export interface BirdProps extends ObjectProps {
- 
-}
+export interface BirdProps extends ObjectProps {}
 
 export const COLIBRI = {
-  MAX_WIDTH: Dimensions.get("screen").width,
-  MAX_HEIGHT: Dimensions.get("screen").height,
+  MAX_WIDTH: Dimensions.get('screen').width,
+  MAX_HEIGHT: Dimensions.get('screen').height,
   FLOOR_WIDTH: 64,
   GAP_SIZE: 200, // gap between the two parts of the pipe
-  PIPE_WIDTH: 100 // width of the pipe
-}
+  PIPE_WIDTH: 100, // width of the pipe
+};

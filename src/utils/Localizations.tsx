@@ -39,6 +39,6 @@ export const Localizations = new LocalizedStrings({
     logoutDesc: '¿Está seguro de que desea cerrar sesión?',
     logout: 'Cerrar sesión',
     sending: 'Enviando',
-      close: 'Cerrar'
-  }
+    close: 'Cerrar',
+  },
 });

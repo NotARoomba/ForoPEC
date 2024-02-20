@@ -21,7 +21,7 @@ import Config from 'react-native-config';
 import ForoPECEvents from '../../backend/models/events';
 import User from '../../backend/models/user';
 import {Dimensions} from 'react-native';
-import ReAnimated, { FadeIn } from 'react-native-reanimated';
+import ReAnimated, {FadeIn} from 'react-native-reanimated';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [sals, setSalones] = useState<Salon[]>([]);
@@ -124,64 +124,72 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
             <Text className="justify-center font-bold m-auto mt-0 text-2xl text-neutral-900 dark:text-neutral-50">
               Salones
             </Text>
-            {sals.length !== 0 ? <ReAnimated.View entering={FadeIn.duration(500)}><ScrollView
-              horizontal
-              contentContainerStyle={{justifyContent: 'space-between'}}
-              style={{width: (Dimensions.get('window').width / 12) * 10}}
-              className="flex flex-row m-auto mt-2 h-fit rounded-full bg-neutral-300 dark:bg-neutral-800">
-              {sals
-                .filter(
-                  s =>
-                    s.presenters.filter(p => p.projectName.length != 0).length >
-                    0,
-                )
-                .map((salon, i) => (
-                  <PillButton
-                    key={i}
-                    onPress={() => setCS(salon.name)}
-                    // color={isDarkMode ? 'bg-fl-g' : 'bg-fl-dg'}
-                    color={salon.color}
-                    current={cs}
-                    text={salon.name}
-                  />
-                ))}
-            </ScrollView>
-            {sals
-              .filter(v => v.name === cs)
-              .map((s, i) => (
-                <View key={i}>
-                  <Text className="justify-center  font-bold m-auto mt-5 text-xl text-neutral-800 dark:text-neutral-300">
-                    {s.name}
-                  </Text>
-                  <ScrollView
-                    horizontal
-                    style={{width: (Dimensions.get('window').width / 12) * 10}}
-                    className="flex flex-row m-auto h-72 rounded-xl bg-fl-bg dark:bg-neutral-900">
-                    {/* only allow ponencias that are:
+            {sals.length !== 0 ? (
+              <ReAnimated.View entering={FadeIn.duration(500)}>
+                <ScrollView
+                  horizontal
+                  contentContainerStyle={{justifyContent: 'space-between'}}
+                  style={{width: (Dimensions.get('window').width / 12) * 10}}
+                  className="flex flex-row m-auto mt-2 h-fit rounded-full bg-neutral-300 dark:bg-neutral-800">
+                  {sals
+                    .filter(
+                      s =>
+                        s.presenters.filter(p => p.projectName.length != 0)
+                          .length > 0,
+                    )
+                    .map((salon, i) => (
+                      <PillButton
+                        key={i}
+                        onPress={() => setCS(salon.name)}
+                        // color={isDarkMode ? 'bg-fl-g' : 'bg-fl-dg'}
+                        color={salon.color}
+                        current={cs}
+                        text={salon.name}
+                      />
+                    ))}
+                </ScrollView>
+                {sals
+                  .filter(v => v.name === cs)
+                  .map((s, i) => (
+                    <View key={i}>
+                      <Text className="justify-center  font-bold m-auto mt-5 text-xl text-neutral-800 dark:text-neutral-300">
+                        {s.name}
+                      </Text>
+                      <ScrollView
+                        horizontal
+                        style={{
+                          width: (Dimensions.get('window').width / 12) * 10,
+                        }}
+                        className="flex flex-row m-auto h-72 rounded-xl bg-fl-bg dark:bg-neutral-900">
+                        {/* only allow ponencias that are:
                       1. Not events like lunch where the project name would be an empty string
                       2. do not allow ponencias that are in a different salon than general and are main ponencias  */}
-                    {s.presenters
-                      .filter(
-                        p =>
-                          p.projectName !== '' &&
-                          (s.name == 'Ponencias Centrales' ||
-                            !(
-                              p.projectName
-                                .toLocaleLowerCase()
-                                .includes('ponencia') &&
-                              p.projectName
-                                .toLocaleLowerCase()
-                                .includes('central')
-                            )),
-                      )
-                      .map((p, i2) => (
-                        <PresenterCard key={i2} {...p} {...{isDarkMode}} />
-                      ))}
-                  </ScrollView>
-                </View>
-              ))}</ReAnimated.View> : <ActivityIndicator size='large' className='w-full h-full' /> }
+                        {s.presenters
+                          .filter(
+                            p =>
+                              p.projectName !== '' &&
+                              (s.name == 'Ponencias Centrales' ||
+                                !(
+                                  p.projectName
+                                    .toLocaleLowerCase()
+                                    .includes('ponencia') &&
+                                  p.projectName
+                                    .toLocaleLowerCase()
+                                    .includes('central')
+                                )),
+                          )
+                          .map((p, i2) => (
+                            <PresenterCard key={i2} {...p} {...{isDarkMode}} />
+                          ))}
+                      </ScrollView>
+                    </View>
+                  ))}
+              </ReAnimated.View>
+            ) : (
+              <ActivityIndicator size="large" className="w-full h-full" />
+            )}
           </View>
-        </ScrollView> 
+        </ScrollView>
       </SafeAreaView>
     </Animated.View>
   );

@@ -4,7 +4,7 @@ import CryptoJS from 'crypto-es';
 import {Alert} from 'react-native';
 import Config from 'react-native-config';
 import STATUS_CODES from '../../backend/models/status';
-import { Localizations } from './Localizations';
+import {Localizations} from './Localizations';
 
 export const storeData = async (key: string, value: string) => {
   try {
@@ -83,7 +83,11 @@ async function checkLogin(email: string, code: string, updateLogged: Function) {
   }
 }
 
-export async function parseLogin(email: string, updateLogged: Function, setLoading: Function) {
+export async function parseLogin(
+  email: string,
+  updateLogged: Function,
+  setLoading: Function,
+) {
   console.log('/users/' + email);
   const res = await callAPI('/verify/send', 'POST', {email});
   if (res.status == STATUS_CODES.SUCCESS) {
