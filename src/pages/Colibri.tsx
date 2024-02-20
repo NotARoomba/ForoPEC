@@ -15,9 +15,9 @@ export default function Colibri({fadeAnim, scale, isDarkMode}: ScreenProp) {
   console.log(COLIBRI)
   const engine = Matter.Engine.create({ enableSleeping: false });
   const world = engine.world;
-  const floor = Matter.Bodies.rectangle(0, COLIBRI.MAX_HEIGHT - COLIBRI.FLOOR_WIDTH, COLIBRI.MAX_WIDTH, COLIBRI.FLOOR_WIDTH, { isStatic: true });
-  const bird = Matter.Bodies.rectangle(COLIBRI.MAX_WIDTH / 2, COLIBRI.MAX_HEIGHT / 2, COLIBRI.FLOOR_WIDTH, COLIBRI.FLOOR_WIDTH, { isStatic: false });
-  Matter.World.add(world, [bird, floor])
+  const floor = Matter.Bodies.rectangle(COLIBRI.MAX_WIDTH / 2, COLIBRI.MAX_HEIGHT - COLIBRI.FLOOR_WIDTH, COLIBRI.MAX_WIDTH, COLIBRI.FLOOR_WIDTH, { isStatic: true });
+  const bird = Matter.Bodies.rectangle(COLIBRI.MAX_WIDTH / 2, COLIBRI.MAX_HEIGHT / 2, COLIBRI.FLOOR_WIDTH, COLIBRI.FLOOR_WIDTH);
+  Matter.World.add(world, [floor, bird])
     return (<Animated.View style={{opacity: fadeAnim, transform: [{scale}]}}>
         <SafeAreaView className="bg-fl-bg dark:bg-neutral-900">
           <StatusBar hidden barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
