@@ -10,7 +10,7 @@ import {
   Appearance,
   ActivityIndicator,
 } from 'react-native';
-import {Presenter, Salon, SalonAPI, ScreenProp} from '../utils/DataTypes';
+import {Presenter, Salon, SalonAPI, ScreenProp} from '../utils/Types';
 import Row from '../components/Row';
 import {callAPI, getData} from '../utils/Functions';
 import Config from 'react-native-config';
@@ -19,6 +19,7 @@ import ForoPECEvents from '../../backend/models/events';
 import User from '../../backend/models/user';
 import SelectDropdown from 'react-native-select-dropdown';
 import Feather from 'react-native-vector-icons/Feather';
+import ReAnimated, { FadeIn } from 'react-native-reanimated';
 import {Dimensions} from 'react-native';
 
 export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
@@ -108,8 +109,9 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
               Schedule
             </Text>
             {/* button to change salon only for admin */}
-            {isAdmin ? (
-              <SelectDropdown
+            
+            {isAdmin && salonesList.length !== 0 ? (
+              <ReAnimated.View entering={FadeIn.duration(500)}><SelectDropdown
                 data={salonesList}
                 key={currentSalon}
                 buttonTextStyle={{
@@ -172,21 +174,21 @@ export default function Schedule({fadeAnim, scale, isDarkMode}: ScreenProp) {
                 }}
                 onSelect={(salon: SalonAPI) => changeSalon(salon)}
                 defaultButtonText={currentSalon}
-              />
-            ) : (
-              <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
+              /></ReAnimated.View>
+            ) : currentSalon !== "" ? (
+              <ReAnimated.View entering={FadeIn.duration(500)}><Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
                 {currentSalon}
-              </Text>
-            )}
+              </Text></ReAnimated.View>
+            ) : <></>}
 
             <View
               style={{width: (Dimensions.get('window').width / 12) * 10}}
               className="flex flex-row m-auto h-[68vh] mt-3 align-middle rounded-xl bg-fl-bg  dark:bg-neutral-900">
-              {times.length != 0 ? <ScrollView className="min-h-[68vh]  rounded-xl">
+              {times.length != 0 ? <ReAnimated.ScrollView entering={FadeIn.duration(500)} className="min-h-[68vh]  rounded-xl">
                 {times.map((v, i) => (
                   <Row key={i} {...v} />
                 ))}
-              </ScrollView> : <ActivityIndicator size='large' className='w-full h-full' />}
+              </ReAnimated.ScrollView> : <ActivityIndicator size='large' className='w-full h-full' />}
             </View>
           </View>
         </View>

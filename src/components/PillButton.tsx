@@ -1,13 +1,8 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import ColorContrastChecker from 'color-contrast-checker';
+import { PillButtonProps } from '../utils/Types';
 
-interface PillButtonProps {
-  color: string;
-  text: string;
-  onPress: any;
-  current: string;
-}
 
 export default function PillButton({
   color,

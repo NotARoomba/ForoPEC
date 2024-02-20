@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import {Appearance} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {FunctionScreenProp, Salon, SalonAPI} from '../utils/DataTypes';
+import {FunctionScreenProp, Salon, SalonAPI} from '../utils/Types';
 import SelectDropdown from 'react-native-select-dropdown';
 import {callAPI, getData} from '../utils/Functions';
 import User from '../../backend/models/user';
@@ -31,6 +31,7 @@ import QRCamera from '../components/QRCamera';
 import ForoPECEvents from '../../backend/models/events';
 import {io} from 'socket.io-client';
 import Config from 'react-native-config';
+import ReAnimated, { FadeIn } from 'react-native-reanimated'
 
 export default function Profile({
   fadeAnim,
@@ -218,12 +219,12 @@ export default function Profile({
               className="flex h-32 w-32 align-middle justify-center m-auto rounded"
               resizeMode={'contain'}
             />
-            <Text className="justify-center font-bold m-auto mt-4  text-center px-3 text-3xl text-neutral-900 dark:text-neutral-50">
+            <ReAnimated.Text entering={FadeIn.duration(500)} key={u.name} className="justify-center font-bold m-auto mt-4  text-center px-3 text-3xl text-neutral-900 dark:text-neutral-50">
               {u.name}
-            </Text>
-            <Text className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
+            </ReAnimated.Text>
+            <ReAnimated.Text entering={FadeIn.duration(500)} key={u.salon + u.admin} className="justify-center text-neutral-500 font-bold m-auto mt-0 text-xl">
               {u.salon} {u.admin ? '/ Admin' : ''}
-            </Text>
+            </ReAnimated.Text>
             <QRCamera
               user={u}
               cameraPerms={cameraPerms}

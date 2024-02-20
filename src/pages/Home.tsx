@@ -6,20 +6,22 @@ import {
   StatusBar,
   Text,
   ScrollView,
-  Animated,
   Appearance,
+  Animated,
   RefreshControl,
+  ActivityIndicator,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {callAPI, getData} from '../utils/Functions';
 import PillButton from '../components/PillButton';
 import PresenterCard from '../components/PresenterCard';
-import {ScreenProp, Salon, SalonAPI} from '../utils/DataTypes';
+import {ScreenProp, Salon, SalonAPI} from '../utils/Types';
 import {io} from 'socket.io-client';
 import Config from 'react-native-config';
 import ForoPECEvents from '../../backend/models/events';
 import User from '../../backend/models/user';
 import {Dimensions} from 'react-native';
+import ReAnimated, { FadeIn } from 'react-native-reanimated';
 
 export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
   const [sals, setSalones] = useState<Salon[]>([]);
@@ -122,7 +124,7 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
             <Text className="justify-center font-bold m-auto mt-0 text-2xl text-neutral-900 dark:text-neutral-50">
               Salones
             </Text>
-            <ScrollView
+            {sals.length !== 0 ? <ReAnimated.View entering={FadeIn.duration(500)}><ScrollView
               horizontal
               contentContainerStyle={{justifyContent: 'space-between'}}
               style={{width: (Dimensions.get('window').width / 12) * 10}}
@@ -177,9 +179,9 @@ export default function Home({fadeAnim, scale, isDarkMode}: ScreenProp) {
                       ))}
                   </ScrollView>
                 </View>
-              ))}
+              ))}</ReAnimated.View> : <ActivityIndicator size='large' className='w-full h-full' /> }
           </View>
-        </ScrollView>
+        </ScrollView> 
       </SafeAreaView>
     </Animated.View>
   );

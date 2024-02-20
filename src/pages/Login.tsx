@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {FunctionScreenProp} from '../utils/DataTypes';
+import {FunctionScreenProp} from '../utils/Types';
 import {parseLogin} from '../utils/Functions';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';

@@ -138,9 +138,9 @@ export default function App() {
             position: 'absolute',
             bottom: 10,
             borderRadius: 10,
-            width: 300,
+            width: 350,
             left: '50%',
-            marginLeft: -150,
+            marginLeft: -175,
             height: 60,
             paddingBottom: 0,
             alignItems: 'center',
@@ -209,6 +209,7 @@ export default function App() {
               listeners={listeners}
               options={{
                 tabBarStyle: {
+                  opacity: fadeAnim,
                   display: 'none'
                 },
                 tabBarLabelStyle: {
