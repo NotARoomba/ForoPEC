@@ -58,6 +58,7 @@ export default function Colibri({fadeAnim, scale, isDarkMode}: ScreenProp) {
     COLIBRI.FLOOR_WIDTH,
     COLIBRI.FLOOR_WIDTH,
   );
+  bird.restitution = 0;
   let pipeHeights = generatePipes().concat(generatePipes());
   let pipes = {
     pipe0: Matter.Bodies.rectangle( COLIBRI.MAX_WIDTH + (COLIBRI.PIPE_WIDTH / 2), pipeHeights[0] / 2, COLIBRI.PIPE_WIDTH, pipeHeights[0], { isStatic: true }),
@@ -76,23 +77,24 @@ export default function Colibri({fadeAnim, scale, isDarkMode}: ScreenProp) {
 
     for(let i=0; i<4; i++) {
       if (entities["pipe" + i].body.position.x <= -1 * (COLIBRI.PIPE_WIDTH / 2)) {
-        const generatedHeights = generatePipes()
-          pipeHeights[i] = generatedHeights[0]
-          pipeHeights[(i % 2==0 ? i+1 : i-1)] = generatedHeights[1]
-          console.log(pipeHeights, i)
-          Matter.Body.setPosition( entities["pipe" + i].body, {x: COLIBRI.MAX_WIDTH * 1.5 - (COLIBRI.PIPE_WIDTH / 2), y: pipeHeights[i] / 2});
-          entities["pipe" + i].size = {x: COLIBRI.PIPE_WIDTH, y: pipeHeights[i]}
-          Matter.Body.setPosition( entities["pipe" + (i % 2==0 ? i+1 : i-1)].body, {x: COLIBRI.MAX_WIDTH * 1.5 - (COLIBRI.PIPE_WIDTH / 2), y: COLIBRI.MAX_HEIGHT - (pipeHeights[(i % 2==0 ? i+1 : i-1)] / 2)});
-          entities["pipe" + (i % 2==0 ? i+1 : i-1)].size = {x: COLIBRI.PIPE_WIDTH, y: pipeHeights[(i % 2==0 ? i+1 : i-1)]}
-          Matter.World.clear(world, false)  
-          console.log(Object.values(entities))
-          Matter.World.add(world, [floor, ceiling, bird, ...Object.values(entities).filter((v, i) => Object.keys(entities)[i].includes("pipe")).map((e: any) => e.body)]);
-          // if (gameEngineRef.current) gameEngineRef.current.swap(entities)
-          // Matter.Body.setPosition( entities["pipe" + i].body, {x: COLIBRI.MAX_WIDTH * 1.5 - (COLIBRI.PIPE_WIDTH / 2), y: entities["pipe" + i].body.position.y});
+        // const generatedHeights = generatePipes()
+        //   pipeHeights[i] = generatedHeights[0]
+        //   pipeHeights[(i % 2==0 ? i+1 : i-1)] = generatedHeights[1]
+        //   console.log(pipeHeights, i)
+        //   Matter.Body.setPosition( entities["pipe" + i].body, {x: COLIBRI.MAX_WIDTH * 1.5 - (COLIBRI.PIPE_WIDTH / 2), y: pipeHeights[i] / 2});
+        //   entities["pipe" + i].size = {x: COLIBRI.PIPE_WIDTH, y: pipeHeights[i]}
+        //   Matter.Body.setPosition( entities["pipe" + (i % 2==0 ? i+1 : i-1)].body, {x: COLIBRI.MAX_WIDTH * 1.5 - (COLIBRI.PIPE_WIDTH / 2), y: COLIBRI.MAX_HEIGHT - (pipeHeights[(i % 2==0 ? i+1 : i-1)] / 2)});
+        //   entities["pipe" + (i % 2==0 ? i+1 : i-1)].size = {x: COLIBRI.PIPE_WIDTH, y: pipeHeights[(i % 2==0 ? i+1 : i-1)]}
+        //   Matter.World.clear(world, false)  
+        //   console.log(Object.values(entities))
+        //   Matter.World.add(world, [floor, ceiling, bird, ...Object.values(entities).filter((v, i) => Object.keys(entities)[i].includes("pipe")).map((e: any) => e.body)]);
+        //   gameEngineRef.current?.swap([floor, ceiling, bird, ...Object.values(entities).filter((v, i) => Object.keys(entities)[i].includes("pipe")).map((e: any) => e.body)])
+          Matter.Body.setPosition( entities["pipe" + i].body, {x: COLIBRI.MAX_WIDTH * 1.5 - (COLIBRI.PIPE_WIDTH / 2), y: entities["pipe" + i].body.position.y});
       } else {
           Matter.Body.translate( entities["pipe" + i].body, {x: -1, y: 0});
       }
   }
+  Matter.Body.setVelocity(entities['bird'].body, {x: 0, y: entities["bird"].body.velocity.y})
   Matter.Engine.update(engine, time.delta);
 
   return entities;

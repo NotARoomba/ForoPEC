@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../NivelesDeNiveles"
+		},
+		{
+			"path": "../Makinator"
+		},
+		{
+			"path": "../NotARoomba-Backend"
+		}
+	],
+	"settings": {}
+}
