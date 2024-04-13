@@ -1,5 +1,6 @@
+'use client'
 import Image from "next/image";
-import HomeModal from "./_components/misc/HomeModal";
+import HomeModal from "../app/_components/misc/HomeModal";
 
 export default function Home() {
   return (
