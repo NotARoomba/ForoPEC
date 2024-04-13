@@ -1,3 +1,7 @@
 export default function Salones() {
-    return <div><p>SALONES</p></div>
+  return (
+    <div>
+      <p>SALONES</p>
+    </div>
+  );
 }
