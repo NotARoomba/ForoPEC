@@ -3,7 +3,7 @@ import HomeModal from "./_components/misc/HomeModal";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center bg-neutral-900">
+    <main className="flex h-full flex-col items-center bg-neutral-900">
       <Image alt="" width={1280}
   height={720}
  className="w-full h-full absolute opacity-50"  src={"/home-hero.png"}/>
