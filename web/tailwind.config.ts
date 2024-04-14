@@ -7,6 +7,9 @@ export default {
     './src/**/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      'sans': 'nunito'
+    },
     extend: {
       colors: {
         'flag-yellow': '#ffcd03',
@@ -23,6 +26,9 @@ export default {
           'inset 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 3px 6px 0 rgba(0, 0, 0, 0.08)',
         'inner-xl':
           'inset 0 4px 8px 0 rgba(0, 0, 0, 0.1), inset 0 6px 10px 0 rgba(0, 0, 0, 0.08)',
+        'figma': '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
+        'inner-figma': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.25)',
+        'inner-figma-lg': 'inset 0 6px 4px 0 rgba(0, 0, 0, 0.25)'
       },
       minHeight: {
         '128': '32rem',
@@ -30,6 +36,9 @@ export default {
       },
       minWidth: {
         '128': '32rem',
+      },
+      borderRadius: {
+        '4xl': '3rem'
       },
     },
   },

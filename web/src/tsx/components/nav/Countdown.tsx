@@ -16,7 +16,7 @@ export default function Countdown() {
   return (
     <div
       suppressHydrationWarning
-      className="bg-yellow-400 text-white font-roboto flex justify-around h-8 px-6 z-10 align-middle font-bold  text-center text-xl my-auto rounded-xl drop-shadow-xl shadow-black">
+      className="bg-yellow-400 text-white font-roboto flex justify-around h-8 px-6 z-10 align-middle font-bold  text-center text-xl my-auto rounded-xl shadow-figma">
       <CountdownTime
         remaining={Math.floor(timeRemaining / (1000 * 60 * 60 * 24))}
         unit={'D'}

@@ -7,7 +7,7 @@ export default function HomeModal() {
       initial={{opacity: 0}}
       animate={{opacity: 1}}
       transition={{ease: easeInOut, delay: 0.3, duration: 0.5}}
-      className="bg-white flex flex-col min-w-128 z-10 min-h-136 my-auto translate-y-16 ml-auto mr-28 rounded-3xl">
+      className="bg-white flex flex-col min-w-128 z-10 min-h-136 my-auto translate-y-16 ml-auto mr-28 rounded-3xl shadow-figma">
       <div className="m-auto">
         <img
           alt="XVIII Foro Pensando en Colombia"

@@ -1,9 +1,10 @@
+import SecretaryCard from '../components/misc/SecretaryCard';
 import Transitions from '../components/misc/Transitions';
 
 export default function Acerca() {
   return (
     <Transitions>
-      <div className="w-full h-full flex bg-pastel-light-blue ">
+      <div className="w-full h-full flex flex-col bg-pastel-light-blue ">
         <div className="m-auto h-full flex px-12 gap-6 pt-32 pb-6 ">
           <div className="bg-white hover:shadow-inner-xl transition-all duration-300 rounded-3xl flex flex-col text-center p-12 w-1/2 justify-around">
             <p className="text-5xl font-bold">Quienes somos?</p>
@@ -52,6 +53,18 @@ export default function Acerca() {
           </div>
         </div>
       </div>
+        <div className='h-full bg-pastel-light-blue py-12 pt-32 w-full flex'>
+          <div className='m-auto w-full flex flex-col gap-8'>
+            <div className='flex gap-8 mx-auto justify-center'>
+                <SecretaryCard name='Nicolle Sánchez' img='/about.png' color='bg-flag-yellow' />
+                <SecretaryCard name='Faisal Gutiérrez' img='/about.png' color='bg-flag-blue' />
+                <SecretaryCard name='Karime Muvdi' img='/about.png' color='bg-flag-red' />
+            </div>
+            <div className='shadow-inner-figma-lg rounded-4xl mx-auto px-12 py-8 bg-pastel-blue'>
+                <p className='text-5xl font-bold'>Secretarios Generales Foro PEC XVIII</p>
+            </div>
+        </div>
+          </div>
     </Transitions>
   );
 }
