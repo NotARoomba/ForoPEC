@@ -12,3 +12,6 @@ export interface SecretaryCardProps {
   img: string;
   color: string;
 }
+export interface CountdownProps {
+  nav?: boolean;
+}

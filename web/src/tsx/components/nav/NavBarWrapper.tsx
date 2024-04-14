@@ -1,6 +1,6 @@
 import {useLocation, useOutlet} from 'react-router-dom';
 import NavBar from './NavBar';
-import Credits from '../misc/Credits';
+// import Credits from '../misc/Credits';
 import {AnimatePresence} from 'framer-motion';
 import {useState} from 'react';
 

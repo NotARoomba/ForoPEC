@@ -4,9 +4,8 @@ import {Link} from 'react-router-dom';
 
 export default function NavBar() {
   return (
-    <div className="z-50 w-full flex px-12 py-8 fixed top-0 overflow-hidden">
-      <div
-        className="mx-auto w-full flex text-center bg-white h-20 rounded-3xl shadow-figma">
+    <div className="z-50 w-full flex px-6 xl:px-12 py-8 fixed top-0 overflow-hidden">
+      <div className="mx-auto w-full flex text-center bg-white h-20 rounded-3xl shadow-figma">
         <Link to={'/'}>
           <img
             className="object-contain my-auto mx-8 h-full"
@@ -16,7 +15,7 @@ export default function NavBar() {
             height={75}
           />
         </Link>
-        <Countdown />
+        <Countdown nav />
         <NavLinks />
       </div>
     </div>
