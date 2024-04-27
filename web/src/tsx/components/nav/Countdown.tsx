@@ -17,30 +17,34 @@ export default function Countdown({nav}: CountdownProps) {
   return (
     <div
       className={
-        '    font-roboto  justify-around h-8 max-w-96 w-fit my-6  2xl:px-6 z-10 align-middle font-bold  text-center text-xl rounded-xl shadow' +
+        'font-roboto justify-around h-8 my-auto max-w-96 w-fit 2xl:px-6 z-10 align-middle font-bold  text-center text-xl rounded-xl shadow-figma' +
         (nav
           ? ' lg:flex hidden bg-flag-yellow text-white'
-          : ' flex lg:hidden mx-auto bg-white text-black')
+          // : ' flex lg:hidden mx-auto bg-gradient-to-br from-flag-yellow from-40% via-flag-blue via-50% to-flag-red to-60%  bg-clip-text text-transparent')
+         : ' flex lg:hidden mx-auto text-black font-sans')
       }>
-      <CountdownTime
+        <span className="text-2xl xl:text-2xl  my-auto mx-2">
+        {('0' + Math.floor(timeRemaining / (1000 * 60 * 60 * 24))).slice(Math.floor(timeRemaining / (1000 * 60 * 60 * 24)).toString().length > 2 ? -3 : -2)} : {('0' + Math.floor(timeRemaining / (1000 * 60 * 60))).slice(-2)} : {('0' + Math.floor(timeRemaining / (1000 * 60))).slice(-2)} : {('0' + Math.floor(timeRemaining / (1000))).slice(-2)}
+      </span>
+      {/* <CountdownTime
         remaining={Math.floor(timeRemaining / (1000 * 60 * 60 * 24))}
-        unit={'D'}
+        unit={'Dias'}
       />
       <b className="my-auto">:</b>
       <CountdownTime
         remaining={Math.floor((timeRemaining / (1000 * 60 * 60)) % 24)}
-        unit={'H'}
+        unit={'Horas'}
       />
       <b className="my-auto">:</b>
       <CountdownTime
         remaining={Math.floor((timeRemaining / (1000 * 60)) % 60)}
-        unit={'M'}
+        unit={'Minutos'}
       />
       <b className="my-auto">:</b>
       <CountdownTime
         remaining={Math.floor((timeRemaining / 1000) % 60)}
-        unit={'S'}
-      />
+        unit={'Segundos'}
+      /> */}
     </div>
   );
 }

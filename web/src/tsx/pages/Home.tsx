@@ -9,7 +9,7 @@ export default function Home() {
           className="w-full h-full absolute object-cover 2xl:flex hidden"
           src={'/home-hero.png'}
         />
-        <div className=" bg-pastel-blue 2xl:opacity-20 opacity-100 h-full w-full absolute" />
+        <div className=" bg-pastel-light-blue 2xl:opacity-20 opacity-100 h-full w-full absolute" />
         <HomeModal />
       </div>
     </Transitions>

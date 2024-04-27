@@ -4,9 +4,9 @@ import Transitions from '../components/misc/Transitions';
 export default function Acerca() {
   return (
     <Transitions>
-      <div className="w-full flex flex-col bg-pastel-light-blue ">
+      <div className="w-full flex flex-col bg-orange-50 ">
         <div className="flex flex-col-reverse 2xl:flex-row px-6 xl:px-12 gap-6 pt-32 pb-6 ">
-          <div className="bg-white hover:shadow-inner-xl transition-all duration-300 rounded-3xl flex flex-col text-center p-6 xl:p-8 2xl:w-1/2 w-full justify-around">
+          <div className="bg-orange-100 hover:shadow-inner-xl transition-all duration-300 rounded-3xl flex flex-col text-center p-6 xl:p-8 2xl:w-5/12 w-full justify-around">
             <div>
               <p className="text-5xl font-bold">Quienes somos?</p>
               <p className="text-xl">
@@ -33,8 +33,8 @@ export default function Acerca() {
               </p>
             </div>
           </div>
-          <div className="flex 2xl:w-1/2 flex-col lg:flex-row 2xl:flex-col gap-6">
-            <div className="h-80 2xl:h-92">
+          <div className="flex 2xl:w-7/12 flex-col lg:flex-row 2xl:flex-col gap-6">
+            <div className="h-80 xl:h-[475px]">
               <img
                 alt="Presenters of the XVII Foro Pensando en Colombia"
                 className="rounded-3xl object-cover h-full w-full mx-auto hover:shadow-3xl transition-all duration-300 "
@@ -42,7 +42,9 @@ export default function Acerca() {
               />
             </div>
 
-            <div className="bg-white hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2">
+            <div className="bg-orange-100 hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2">
+              <div className='my-auto'>
+                
               <p className="text-5xl font-bold">Misión</p>
               <p className="text-xl">
                 El XVIII Foro Pensando en Colombia es un espacio creado por
@@ -53,11 +55,12 @@ export default function Acerca() {
                 inclusivo de cada uno de los asistentes, teniendo en cuenta la
                 opinión y percepción de los demás.
               </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className=" bg-pastel-light-blue py-12 xl:pt-32 w-full flex px-8">
+      <div className=" h-fit lg:h-full bg-orange-50 pt-32 w-full flex px-8">
         <div className="m-auto w-full flex flex-col">
           <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center">
             <SecretaryCard
@@ -76,8 +79,8 @@ export default function Acerca() {
               color="bg-flag-red"
             />
           </div>
-          <div className="shadow-inner-figma-lg rounded-4xl mx-auto px-12 py-8 bg-pastel-blue my-8">
-            <p className="text-3xl md:text-5xl font-bold text-center">
+          <div className="shadow-inner-figma-lg rounded-4xl mx-auto px-12 py-8 bg-pastel-light-blue my-8">
+            <p className="text-3xl md:text-4xl font-bold text-center">
               Secretarios Generales Foro PEC XVIII
             </p>
           </div>

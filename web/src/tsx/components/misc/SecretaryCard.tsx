@@ -11,7 +11,7 @@ export default function SecretaryCard({name, img, color}: SecretaryCardProps) {
         src={img}
         className="shadow-inner-figma-xl object-cover aspect-square mx-auto rounded-3xl w-5/6"
       />
-      <p className="text-white font-bold text-4xl text-center mx-auto mt-6">
+      <p className="text-white font-bold text-3xl xl:text-4xl text-center mx-auto mt-6">
         {name}
       </p>
     </div>
