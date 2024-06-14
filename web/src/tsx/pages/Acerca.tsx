@@ -4,9 +4,9 @@ import Transitions from '../components/misc/Transitions';
 export default function Acerca() {
   return (
     <Transitions>
-      <div className="w-full flex flex-col bg-orange-50 ">
+      <div className="w-full flex flex-col bg-zircon ">
         <div className="flex flex-col-reverse 2xl:flex-row px-6 xl:px-12 gap-6 pt-32 pb-6 ">
-          <div className="bg-orange-100 hover:shadow-inner-xl transition-all duration-300 rounded-3xl flex flex-col text-center p-6 xl:p-8 2xl:w-5/12 w-full justify-around">
+          <div className="bg-[#f7d4b6]/45 hover:shadow-inner-xl transition-all duration-300 rounded-3xl flex flex-col text-center p-6 xl:p-8 2xl:w-5/12 w-full justify-around">
             <div>
               <p className="text-5xl font-bold">Quienes somos?</p>
               <p className="text-xl">
@@ -42,7 +42,7 @@ export default function Acerca() {
               />
             </div>
 
-            <div className="bg-orange-100 hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2">
+            <div className="bg-[#f7d4b6]/65 hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2">
               <div className='my-auto'>
                 
               <p className="text-5xl font-bold">Misión</p>
@@ -60,7 +60,7 @@ export default function Acerca() {
           </div>
         </div>
       </div>
-      <div className=" h-fit lg:h-full bg-orange-50 pt-32 w-full flex px-8">
+      <div className=" h-fit lg:h-full bg-zircon pt-32 w-full flex px-8">
         <div className="m-auto w-full flex flex-col">
           <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center">
             <SecretaryCard

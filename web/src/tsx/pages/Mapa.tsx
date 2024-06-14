@@ -1,7 +1,7 @@
 export default function Mapa() {
   return (
     <div>
-      <p>MAPA</p>
+      <iframe src="/map.pdf" width="100%" height="500px" />
     </div>
   );
 }

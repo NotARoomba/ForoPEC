@@ -1,6 +1,6 @@
-import {SecretaryCardProps} from '../../utils/Types';
+import {CardProps} from '../../utils/Types';
 
-export default function SecretaryCard({name, img, color}: SecretaryCardProps) {
+export default function SecretaryCard({name, img, color}: CardProps) {
   return (
     <div
       className={

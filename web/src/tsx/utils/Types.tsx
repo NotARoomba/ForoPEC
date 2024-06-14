@@ -7,7 +7,7 @@ export interface LinkButtonProps {
   color: string;
   href: string;
 }
-export interface SecretaryCardProps {
+export interface CardProps {
   name: string;
   img: string;
   color: string;

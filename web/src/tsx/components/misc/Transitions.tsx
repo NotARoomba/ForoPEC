@@ -1,8 +1,8 @@
-import {motion} from 'framer-motion';
+import { easeInOut, motion } from "framer-motion";
 const animationConfiguration = {
-  initial: {opacity: 0},
-  animate: {opacity: 1},
-  exit: {opacity: 0},
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 export default function Transitions(props: React.PropsWithChildren) {
   return (
@@ -12,7 +12,8 @@ export default function Transitions(props: React.PropsWithChildren) {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{duration: 0.3}}>
+      transition={{ ease: easeInOut,  duration: 0.3}}
+    >
       {props.children}
     </motion.div>
   );
