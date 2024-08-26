@@ -1,6 +1,5 @@
 'use client';
 import {useEffect, useState} from 'react';
-import CountdownTime from './CountdownTime';
 import {CountdownProps} from '../../utils/Types';
 
 export default function Countdown({nav}: CountdownProps) {

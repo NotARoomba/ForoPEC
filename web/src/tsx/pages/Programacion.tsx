@@ -7,12 +7,10 @@ export default function Programacion() {
         <div className="flex flex-col px-6 xl:px-12 gap-6 pt-32 pb-6 ">
             
           <p className="text-5xl text-center mx-auto font-semibold bg-pastel-light-blue px-12 py-3 rounded-full shadow-figma">Horario</p>
-          <div className="flex text-4xl font-bold ">
-            <p className="mx-auto px-5 py-3 shadow-figma rounded-3xl">Dia 1</p>
-            <p className="mx-auto px-5 py-3 shadow-figma rounded-3xl">Dia 2</p>
-          </div>
-          <div className="flex">
-              <div className="relative bg-pastel-pink/50 p-8 rounded-3xl mx-auto flex flex-col border border-pastel-light-blue border-separate">
+          <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col gap-4 mx-auto">
+            <p className="mx-auto px-5 py-3 shadow-figma rounded-3xl text-4xl font-bold ">Dia 1</p>
+              <div className="relative bg-pastel-pink/50 p-8 md:px-8 px-2  rounded-3xl mx-auto flex flex-col border border-pastel-light-blue border-separate">
                   <div className="flex text-4xl font-bold justify-between text-center">
                     <p className="w-1/2">Hora</p>
                     <p className="w-1/2">Evento</p>
@@ -34,7 +32,12 @@ export default function Programacion() {
                     </div>
                   </div>
               </div>
-              <div className="relative bg-pastel-pink/50 p-8 rounded-3xl mx-auto flex flex-col border border-pastel-light-blue border-separate">
+
+              
+            </div>
+            <div className="flex flex-col gap-4 mx-auto">
+            <p className="mx-auto px-5 py-3 shadow-figma rounded-3xl text-4xl font-bold ">Dia 2</p>
+              <div className="relative bg-pastel-pink/50 p-8 md:px-8 px-2 rounded-3xl mx-auto flex flex-col border border-pastel-light-blue border-separate">
                   <div className="flex text-4xl font-bold justify-between text-center">
                     <p className="w-1/2">Hora</p>
                     <p className="w-1/2">Evento</p>
@@ -55,6 +58,7 @@ export default function Programacion() {
                       <p className="mx-12">Inicio</p>
                     </div>
                   </div>
+              </div>
               </div>
           </div>
         </div>

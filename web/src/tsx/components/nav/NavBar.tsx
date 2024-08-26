@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 export default function NavBar() {
   return (
-    <div className="z-50 w-full flex px-6 xl:px-12 py-8 fixed top-0 overflow-hidden">
+    <div className="z-40 w-full flex px-2 md:px-6 xl:px-12 py-8 fixed top-0 ">
       <div className="mx-auto w-full flex text-center bg-white h-20 rounded-3xl shadow-figma">
         <Link to={'/'}>
           <img
