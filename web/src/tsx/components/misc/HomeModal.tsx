@@ -1,6 +1,5 @@
 import {easeInOut, motion} from 'framer-motion';
 import LinkButton from './LinkButton';
-import Countdown from '../nav/Countdown';
 
 export default function HomeModal() {
   return (
@@ -16,20 +15,19 @@ export default function HomeModal() {
           src={'/foro-logo.png'}
         />
         <br className="my-6 lg:flex hidden" />
-        <Countdown />
         <LinkButton
-          text="Inscribete"
-          href="https://google.com"
+          text="Inscríbete"
+          href="https://form.jotform.com/240504794808664"
           color="bg-flag-yellow"
         />
         <LinkButton
-          text="Inscripcion de ponencias"
-          href="https://google.com"
+          text="Inscripción de Ponencias"
+          href="https://form.jotform.com/241005426313644"
           color="bg-flag-blue"
         />
         <LinkButton
-          text="Inscripcion de sponsors"
-          href="https://google.com"
+          text="Inscripción de Sponsors"
+          href="https://www.jotform.com/build/241007126492348"
           color="bg-flag-red"
         />
       </div>

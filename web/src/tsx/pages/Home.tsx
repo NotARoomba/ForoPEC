@@ -4,7 +4,7 @@ import Transitions from '../components/misc/Transitions';
 export default function Home() {
   return (
     <Transitions>
-      <div className="flex h-full flex-col items-center ">
+      <div className="flex h-full flex-col items-center justify-center m-auto ">
         <img
           className="w-full h-full absolute object-cover 2xl:flex hidden"
           src={'/home-hero.png'}
