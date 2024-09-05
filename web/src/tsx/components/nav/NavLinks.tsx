@@ -16,13 +16,19 @@ export default function NavLinks() {
   const [color, setColor] = useState(colors[0]);
   const [menu, setMenu] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const linksRef = createRef<HTMLDivElement>();
-  const smallLinksRef = createRef<HTMLDivElement>();
+
+  const linksRef = createRef<HTMLDivElement>();  // Desktop links
+  const smallLinksRef = createRef<HTMLDivElement>();  // Mobile links
   const location = useLocation();
 
-  const updatePos = (e: MouseEvent<HTMLAnchorElement>, index: number) => {
-    setPos((window.innerWidth < 768 ? e.currentTarget.offsetTop : e.currentTarget.offsetLeft) - (32 * window.innerWidth) / 1920);
-    setWidth(e.currentTarget.clientWidth + (64 * window.innerWidth) / 1920);
+  const updatePos = (e: MouseEvent<HTMLAnchorElement>, index: number, isMobile: boolean) => {
+    if (isMobile) {
+      setPos(e.currentTarget.offsetTop - (32 * window.innerWidth) / 1920);
+      setWidth(e.currentTarget.clientWidth + (64 * window.innerWidth) / 1920);
+    } else {
+      setPos(e.currentTarget.offsetLeft - (32 * window.innerWidth) / 1920);
+      setWidth(e.currentTarget.clientWidth + (64 * window.innerWidth) / 1920);
+    }
     setColor(colors[index]);
   };
 
@@ -30,55 +36,59 @@ export default function NavLinks() {
     const currentPath = location.pathname === '/' ? 'inicio' : location.pathname.slice(1);
     return menuItems.findIndex(item => item.toLowerCase() === currentPath);
   };
-  
 
   useEffect(() => {
     const activeIndex = findActiveIndex();
-    if (activeIndex !== -1 && linksRef.current) {
-      // Delay to ensure the DOM has fully rendered
+    if (activeIndex !== -1) {
+      // Handle for both desktop and mobile links
       setTimeout(() => {
-        if (linksRef.current) {
-        const activeElement = linksRef.current.children[activeIndex] as HTMLAnchorElement;
-        if (activeElement) {
-          setPos(
-            activeElement.offsetLeft - (32 * window.innerWidth) / 1920,
-          );
-          setWidth(
-            activeElement.clientWidth + (64 * window.innerWidth) / 1920,
-          );
-          setColor(colors[activeIndex]);
-          setMColor(colors[activeIndex]);
-          if (!hasLoaded) {
-            setMPos(-1);
-            setMWidth(0);
-            setHasLoaded(true)
-
+        if (window.innerWidth < 768 && smallLinksRef.current) {
+          const activeElement = smallLinksRef.current.children[activeIndex] as HTMLAnchorElement;
+          if (activeElement) {
+            setPos(activeElement.offsetTop - (32 * window.innerWidth) / 1920);
+            setWidth(activeElement.clientWidth + (64 * window.innerWidth) / 1920);
+            setColor(colors[activeIndex]);
           }
-        }}
-      }, 0); // Delay of 0ms just to ensure the DOM is ready
+        } else if (linksRef.current) {
+          const activeElement = linksRef.current.children[activeIndex] as HTMLAnchorElement;
+          if (activeElement) {
+            setPos(activeElement.offsetLeft - (32 * window.innerWidth) / 1920);
+            setWidth(activeElement.clientWidth + (64 * window.innerWidth) / 1920);
+            setColor(colors[activeIndex]);
+          }
+        }
+
+        if (!hasLoaded) {
+          setMPos(-1);
+          setMWidth(0);
+          setMColor(colors[activeIndex]);
+          setHasLoaded(true);
+        }
+      }, 0); // Delay to ensure the DOM is ready
     }
-  }, [location, linksRef]);
+  }, [location, linksRef, smallLinksRef]);
 
   return (
     <div className='flex ml-auto'>
+      {/* Desktop Menu */}
       <motion.div
         onMouseLeave={() => {
           setMPos(-1);
           setMWidth(0);
           setMColor(color);
         }}
-        className="h-11 relative bg-pastel-light-blue w-fit  mr-5 my-auto rounded-2xl justify-around hidden md:flex shadow-inner-figma"
+        className="h-11 relative bg-pastel-light-blue w-fit mr-5 my-auto rounded-2xl justify-around hidden md:flex shadow-inner-figma"
         animate={{ backgroundColor: `rgb(${hexToRgb(mColor, 1.1)})` }}>
         <motion.div
-          className=" z-[5] left-0 absolute bg-pastel-dark-blue h-11 rounded-2xl shadow-figma"
+          className="z-[5] left-0 absolute bg-pastel-dark-blue h-11 rounded-2xl shadow-figma"
           transition={{
             type: 'spring',
             damping: 10,
             stiffness: 50,
           }}
           animate={{
-            left: mPos == -1 ? pos : mPos,
-            width: mWidth == 0 ? width : mWidth,
+            left: mPos === -1 ? pos : mPos,
+            width: mWidth === 0 ? width : mWidth,
             backgroundColor: mColor,
           }}
         />
@@ -86,48 +96,36 @@ export default function NavLinks() {
           {menuItems.map((v, i) => (
             <Link
               onMouseEnter={e => {
-                setMPos(
-                  e.currentTarget.offsetLeft - (32 * window.innerWidth) / 1920,
-                );
-                setMWidth(
-                  e.currentTarget.clientWidth + (64 * window.innerWidth) / 1920,
-                );
+                setMPos(e.currentTarget.offsetLeft - (32 * window.innerWidth) / 1920);
+                setMWidth(e.currentTarget.clientWidth + (64 * window.innerWidth) / 1920);
                 setMColor(colors[i]);
               }}
               key={i}
-              to={v.toLowerCase() == 'inicio' ? '/' : v.toLowerCase()}
-              onClick={e => updatePos(e, i)}
-              className=" my-auto z-20 text-2xl mx-4 xl:mx-8 font-bold">
+              to={v.toLowerCase() === 'inicio' ? '/' : v.toLowerCase()}
+              onClick={e => updatePos(e, i, false)}
+              className="my-auto z-20 text-2xl mx-4 xl:mx-8 font-bold">
               {v}
             </Link>
           ))}
         </div>
       </motion.div>
-      <div className='flex md:hidden  mr-4'>
+
+      {/* Mobile Menu Toggle Button */}
+      <div className='flex md:hidden mr-4'>
         <div
-          className="flex group items-center flex-col w-16 aspect-square py-3 hover:bg-neutral-200 my-auto rounded-lg ml-auto p-1 align-middle  cursor-pointer transition-all "
+          className="flex group items-center flex-col w-16 aspect-square py-3 hover:bg-neutral-200 my-auto rounded-lg ml-auto p-1 align-middle cursor-pointer transition-all"
           onClick={() => setMenu(!menu)}>
-          <span
-            className={
-              "bg-black w-10 block h-1 rounded my-auto duration-300" +
-              (menu ? " -rotate-45 translate-y-[13px]" : " rotate-0")
-            }></span>
-          <span
-            className={
-              " w-10 block h-1 rounded my-auto duration-300" +
-              (menu ? " bg-transparent " : " bg-black")
-            }></span>
-          <span
-            className={
-              "bg-black w-10 block h-1 rounded my-auto duration-300" +
-              (menu ? " rotate-45 -translate-y-[13px]" : " rotate-0")
-            }></span>
+          <span className={"bg-black w-10 block h-1 rounded my-auto duration-300" + (menu ? " -rotate-45 translate-y-[13px]" : " rotate-0")}></span>
+          <span className={"w-10 block h-1 rounded my-auto duration-300" + (menu ? " bg-transparent " : " bg-black")}></span>
+          <span className={"bg-black w-10 block h-1 rounded my-auto duration-300" + (menu ? " rotate-45 -translate-y-[13px]" : " rotate-0")}></span>
         </div>
       </div>
+
+      {/* Mobile Menu */}
       <motion.div
         onClick={() => setMenu(false)}
         animate={{ opacity: menu ? 100 : 0 }}
-        className=" bg-white/60 w-11/12 absolute mx-auto h-fit pb-4 pt-4 top-28 z-20 left-1/2 -translate-x-1/2 rounded-3xl justify-center flex-wrap">
+        className="bg-white/60 w-11/12 absolute mx-auto h-fit pb-4 pt-4 top-28 z-20 left-1/2 -translate-x-1/2 rounded-3xl justify-center flex-wrap">
         <motion.div
           onMouseLeave={() => {
             setMPos(-1);
@@ -137,15 +135,15 @@ export default function NavLinks() {
           className="h-fit relative bg-pastel-light-blue w-11/12 mx-auto my-auto rounded-2xl justify-around md:hidden z-50 flex shadow-inner-figma"
           animate={{ backgroundColor: `rgb(${hexToRgb(mColor, 1.1)})` }}>
           <motion.div
-            className=" z-[5] translate-x- absolute bg-pastel-dark-blue h-11 rounded-2xl shadow-figma"
+            className="z-[5] translate-x- absolute bg-pastel-dark-blue h-11 rounded-2xl shadow-figma"
             transition={{
               type: 'spring',
               damping: 10,
               stiffness: 50,
             }}
             animate={{
-              top: mPos == -1 ? pos : mPos,
-              width: mWidth == 0 ? width : mWidth,
+              top: mPos === -1 ? pos : mPos,
+              width: mWidth === 0 ? width : mWidth,
               backgroundColor: mColor,
             }}
           />
@@ -153,18 +151,14 @@ export default function NavLinks() {
             {menuItems.map((v, i) => (
               <Link
                 onMouseEnter={e => {
-                  setMPos(
-                    e.currentTarget.offsetTop - (32 * window.innerWidth) / 1920,
-                  );
-                  setMWidth(
-                    e.currentTarget.clientWidth + (64 * window.innerHeight) / 1920,
-                  );
+                  setMPos(e.currentTarget.offsetTop - (32 * window.innerWidth) / 1920);
+                  setMWidth(e.currentTarget.clientWidth + (64 * window.innerHeight) / 1920);
                   setMColor(colors[i]);
                 }}
                 key={i}
-                to={v.toLowerCase() == 'inicio' ? '/' : v.toLowerCase()}
-                onClick={e => updatePos(e, i)}
-                className=" my-auto z-20 text-2xl mx-4 xl:mx-8 font-bold ">
+                to={v.toLowerCase() === 'inicio' ? '/' : v.toLowerCase()}
+                onClick={e => updatePos(e, i, true)}
+                className="my-auto z-20 text-2xl mx-4 xl:mx-8 font-bold">
                 {v}
               </Link>
             ))}

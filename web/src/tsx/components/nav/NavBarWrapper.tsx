@@ -1,6 +1,6 @@
 import {useLocation, useOutlet} from 'react-router-dom';
 import NavBar from './NavBar';
-// import Credits from '../misc/Credits';
+import Credits from '../misc/Credits';
 import {AnimatePresence} from 'framer-motion';
 import {useState} from 'react';
 
@@ -13,12 +13,12 @@ export default function NavbarWrapper() {
     return <>{outlet}</>;
   };
   return (
-    <>
+    <div className='h-full relative'>
       <NavBar />
       <AnimatePresence mode="wait">
         <AnimatedOutlet key={location.pathname} />
       </AnimatePresence>
-      {/* <Credits /> */}
-    </>
+      <Credits />
+    </div>
   );
 }

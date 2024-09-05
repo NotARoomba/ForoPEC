@@ -9,7 +9,7 @@ export default function SalonCard({name, img, color}: CardProps) {
       }>
       <img
         src={img}
-        className="shadow-inner-figma-xl object-cover aspect-square mx-auto rounded-3xl w-4/6"
+        className="shadow-inner-figma-xl object-top object-cover aspect-square mx-auto rounded-3xl w-4/6"
       />
       <p className="text-black font-bold text-2xl xl:text-3xl text-center mx-auto mt-6">
         {name}

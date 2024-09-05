@@ -35,7 +35,7 @@ export default function Acerca() {
           <img
             alt="Presenters of the XVII Foro Pensando en Colombia"
             className="rounded-3xl object-cover h-full w-full mx-auto hover:shadow-3xl transition-all duration-300 "
-            src={'/aurora.jpg'}
+            src={'/about2.jpg'}
           />
           <div className="bg-[#f7d4b6]/65  2xl:w-8/12 hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2">
             <div className="my-auto">
@@ -108,7 +108,9 @@ export default function Acerca() {
             Handbooks 2024
           </p>
         </div>
+       
       </div>
+      
     </Transitions>
   );
 }
