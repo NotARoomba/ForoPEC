@@ -73,17 +73,17 @@ export default function Acerca() {
           <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center">
             <SecretaryCard
               name="Nicolle Sánchez"
-              img="/default.jpg"
+              img="nicolle.jpg"
               color="bg-flag-yellow"
             />
             <SecretaryCard
               name="Faisal Gutiérrez"
-              img="/default.jpg"
+              img="/faisal.jpg"
               color="bg-flag-blue"
             />
             <SecretaryCard
               name="Karime Muvdi"
-              img="/default.jpg"
+              img="/karime.jpg"
               color="bg-flag-red"
             />
           </div>
