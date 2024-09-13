@@ -8,15 +8,13 @@ export default function Acerca() {
         <div className="flex flex-col-reverse 2xl:flex-row px-6 xl:px-12 gap-6 pt-32 pb-6 ">
           <div className="bg-[#f7d4b6]/65 xl:h-[475px]  hover:shadow-inner-xl transition-all duration-300 rounded-3xl flex flex-col text-center p-6  xl:p-8 xl:px-20 2xl:w-5/12 w-full justify-around">
             <div className="m-auto">
-              <p className="text-5xl font-bold  my-2">Quienes somos?</p>
-              <p className="text-xl">
-                El XVIII Foro Pensando en Colombia es un espacio creado por
-                jóvenes para jóvenes, donde se dan a conocer las problemáticas
-                que afectan al país y que a través de debates, ponencias y
-                charlas, llegan a posibles soluciones. La intención de estos
-                espacios, es desarrollar el pensamiento crítico, respetuoso e
-                inclusivo de cada uno de los asistentes, teniendo en cuenta la
-                opinión y percepción de los demás.
+              <p className="text-5xl font-bold my-2">Misión</p>
+              <p className="lg:text-2xl text-xl">
+                Nuestra misión es incentivar a los jóvenes a desarrollar un
+                pensamiento crítico acerca de las problemáticas de Colombia,
+                brindándoles las herramientas necesarias con el fin de lograr la
+                comunicación de ideas, opiniones y soluciones en un espacio
+                público, de forma respetuosa.
               </p>
             </div>
           </div>
@@ -39,8 +37,8 @@ export default function Acerca() {
           />
           <div className="bg-[#f7d4b6]/65  2xl:w-8/12 hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2">
             <div className="my-auto">
-              <p className="text-5xl font-bold my-2">Misión</p>
-              <p className="text-xl">
+              <p className="text-5xl font-bold  my-2">¿Quiénes somos?</p>
+              <p className="lg:text-2xl text-xl">
                 El XVIII Foro Pensando en Colombia es un espacio creado por
                 jóvenes para jóvenes, donde se dan a conocer las problemáticas
                 que afectan al país y que a través de debates, ponencias y
@@ -56,7 +54,7 @@ export default function Acerca() {
           <div className="bg-[#f7d4b6]/65 hover:shadow-inner-xl transition-all duration-300 w-full rounded-3xl flex flex-col text-center p-12 gap-2 px-10">
             <div className="my-auto">
               <p className="text-5xl font-bold my-2">Visión</p>
-              <p className="text-xl">
+              <p className="lg:text-2xl text-xl">
                 Para el año 2031, el Foro Pensado en Colombia será uno de los
                 foros nacionales más reconocidos, en el cual se reunirán jóvenes
                 nacionales e internacionales interesados en estos espacios.
@@ -108,9 +106,7 @@ export default function Acerca() {
             Handbooks 2024
           </p>
         </div>
-       
       </div>
-      
     </Transitions>
   );
 }

@@ -9,6 +9,7 @@ import Salones from './tsx/pages/Salones';
 import Programacion from './tsx/pages/Programacion';
 import Mapa from './tsx/pages/Mapa';
 import NavbarWrapper from './tsx/components/nav/NavBarWrapper';
+import Historia from './tsx/pages/Historia';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
       {
         path: '/acerca',
         element: <Acerca />,
+        errorElement: <Error />,
+      },
+      {
+        path: '/historia',
+        element: <Historia />,
         errorElement: <Error />,
       },
       {

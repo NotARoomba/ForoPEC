@@ -13,7 +13,7 @@ export default function NavbarWrapper() {
     return <>{outlet}</>;
   };
   return (
-    <div className='h-full relative'>
+    <div className="h-full relative">
       <NavBar />
       <AnimatePresence mode="wait">
         <AnimatedOutlet key={location.pathname} />
