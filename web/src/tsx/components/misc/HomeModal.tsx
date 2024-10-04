@@ -17,7 +17,7 @@ export default function HomeModal() {
         <br className="my-6 lg:flex hidden" />
         <LinkButton
           text="Inscríbete"
-          href="https://form.jotform.com/240504794808664"
+          href="https://forms.gle/NNSZKpc22Z9ZnEAf7"
           color="bg-flag-yellow"
         />
         <LinkButton
@@ -27,7 +27,7 @@ export default function HomeModal() {
         />
         <LinkButton
           text="Inscripción de Sponsors"
-          href="https://www.jotform.com/build/241007126492348"
+          href="https://form.jotform.com/242767511513657"
           color="bg-flag-red"
         />
       </div>

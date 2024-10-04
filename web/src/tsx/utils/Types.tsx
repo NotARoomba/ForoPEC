@@ -11,6 +11,7 @@ export interface CardProps {
   name: string;
   img: string;
   color: string;
+  link?: string
 }
 export interface CountdownProps {
   nav?: boolean;

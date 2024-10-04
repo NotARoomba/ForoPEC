@@ -29,6 +29,7 @@ export default function Salones() {
                 key={i}
                 name={v}
                 img={images[i]}
+                link={i> 3?['/colombia.pdf', '/un.pdf', '/ambiental.pdf'][i-4]:undefined}
                 color={i % 2 == 0 ? ' bg-orange-dark' : ' bg-orange-dark/70'}
               />
             );
