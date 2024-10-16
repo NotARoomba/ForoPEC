@@ -1,14 +1,14 @@
 import Transitions from '../components/misc/Transitions';
 
-export default function Programacion() {
+export default function Horario() {
   return (
     <Transitions>
       <div className="w-full h-full flex flex-col bg-zircon ">
-        <div className="flex flex-col px-6 xl:px-12 gap-6 pt-32 pb-6 ">
-          <p className="text-5xl text-center mx-auto font-semibold bg-pastel-light-blue px-12 py-3 rounded-full shadow-figma">
+        <div className="flex flex-col h-full px-6 xl:px-12 gap-6 pt-32 pb-6 ">
+          {/* <p className="text-5xl text-center mx-auto font-semibold bg-pastel-light-blue px-12 py-3 rounded-full shadow-figma">
             Horario
-          </p>
-          <div className="flex flex-wrap gap-4">
+          </p> */}
+          {/* <div className="flex flex-wrap gap-4">
             <div className="flex flex-col gap-4 mx-auto">
               <p className="mx-auto px-5 py-3 shadow-figma rounded-3xl text-4xl font-bold ">
                 Dia 1
@@ -63,7 +63,11 @@ export default function Programacion() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <iframe
+            className="h-full"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQmTJgqkojEyvWleN2D8svRPuxQAtOKJaFr53bbHZhLF6nNCkQgwqmfjvlQJDJTZqa9ZLoonv2L-aaN/pubhtml?widget=true&amp;headers=false"
+          />
         </div>
       </div>
     </Transitions>

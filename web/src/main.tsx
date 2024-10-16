@@ -6,10 +6,10 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Error from './tsx/pages/Error';
 import Acerca from './tsx/pages/Acerca';
 import Salones from './tsx/pages/Salones';
-import Programacion from './tsx/pages/Programacion';
 import Mapa from './tsx/pages/Mapa';
 import NavbarWrapper from './tsx/components/nav/NavBarWrapper';
 import Historia from './tsx/pages/Historia';
+import Horario from './tsx/pages/Horario';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
-        path: '/programacion',
-        element: <Programacion />,
+        path: '/horario',
+        element: <Horario />,
         errorElement: <Error />,
       },
       {

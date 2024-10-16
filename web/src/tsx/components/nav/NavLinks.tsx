@@ -4,8 +4,22 @@ import {motion} from 'framer-motion';
 import {MouseEvent} from 'react';
 import {hexToRgb} from '../../utils/Functions';
 
-const menuItems = ['Inicio', 'Acerca', 'Historia', 'Salones', 'Mapa'];
-const colors = ['#A0D4FF', '#f7d4b6', '#52E0D0', '#f7b6d2', '#d2b6f7'];
+const menuItems = [
+  'Inicio',
+  'Acerca',
+  'Historia',
+  'Salones',
+  'Horario',
+  'Mapa',
+];
+const colors = [
+  '#A0D4FF',
+  '#f7d4b6',
+  '#52E0D0',
+  '#f7b6d2',
+  '#fff0db',
+  '#d2b6f7',
+];
 
 export default function NavLinks() {
   const [pos, setPos] = useState(0);
