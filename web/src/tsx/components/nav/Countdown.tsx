@@ -4,11 +4,11 @@ import {CountdownProps} from '../../utils/Types';
 
 export default function Countdown({nav}: CountdownProps) {
   const [timeRemaining, setTimeRemaining] = useState(
-    new Date('2024/10/20').getTime() - Date.now(),
+    new Date('2025/10/24').getTime() - Date.now(),
   );
   useEffect(() => {
     const dateInterval = setInterval(() => {
-      setTimeRemaining(new Date('2024/10/18').getTime() - Date.now());
+      setTimeRemaining(new Date('2025/10/24').getTime() - Date.now());
     }, 1000);
     return () => clearInterval(dateInterval);
   }, []);
