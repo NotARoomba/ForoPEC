@@ -22,7 +22,7 @@ export default function Acerca() {
           <div className="flex 2xl:w-7/12 flex-col lg:flex-row 2xl:flex-col gap-6">
             <div className="h-80 xl:h-[475px]">
               <img
-                alt="Presenters of the XVII Foro Pensando en Colombia"
+                alt="Presenters of the XIX Foro Pensando en Colombia"
                 className="rounded-3xl object-cover h-full w-full mx-auto hover:shadow-3xl transition-all duration-300 "
                 src={'/about.png'}
               />
@@ -31,7 +31,7 @@ export default function Acerca() {
         </div>
         <div className="flex flex-col 2xl:flex-row px-6 xl:px-12 gap-6 pb-6">
           <img
-            alt="Presenters of the XVII Foro Pensando en Colombia"
+            alt="Presenters of the XIX Foro Pensando en Colombia"
             className="rounded-3xl object-cover h-full w-full mx-auto hover:shadow-3xl transition-all duration-300 "
             src={'/about2.jpg'}
           />
@@ -39,7 +39,7 @@ export default function Acerca() {
             <div className="my-auto">
               <p className="text-5xl font-bold  my-2">¿Quiénes somos?</p>
               <p className="lg:text-2xl text-xl">
-                El XVIII Foro Pensando en Colombia es un espacio creado por
+                El XIX Foro Pensando en Colombia es un espacio creado por
                 jóvenes para jóvenes, donde se dan a conocer las problemáticas
                 que afectan al país y que a través de debates, ponencias y
                 charlas, llegan a posibles soluciones. La intención de estos
@@ -72,24 +72,24 @@ export default function Acerca() {
         <div className="m-auto w-full flex flex-col">
           <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center">
             <SecretaryCard
-              name="Nicolle Sánchez"
-              img="nicolle.jpg"
+              name="María Alejandra Torres"
+              img="public/Male.png"
               color="bg-flag-yellow"
             />
             <SecretaryCard
-              name="Faisal Gutiérrez"
-              img="/faisal.jpg"
+              name="Santiago Colpas"
+              img="/Colpas.png"
               color="bg-flag-blue"
             />
             <SecretaryCard
-              name="Karime Muvdi"
-              img="/karime.jpg"
+              name="Luciana Lacouture"
+              img="/Luciana.png"
               color="bg-flag-red"
             />
           </div>
           <div className="shadow-inner-figma rounded-3xl mx-auto px-12 py-8 bg-pastel-light-blue my-8">
             <p className="text-3xl md:text-4xl font-bold text-center">
-              Secretarios Generales Foro PEC XVIII
+              Secretarios Generales Foro PEC XIX
             </p>
           </div>
         </div>
@@ -97,13 +97,13 @@ export default function Acerca() {
 
       <div className="pt-32 w-full flex px-8 flex-col bg-zircon">
         <div className="flex flex-col lg:flex-row mx-auto gap-8 w-full ">
-          <iframe src="/colombia.pdf" width="100%" className="aspect-[3/4]" />
-          <iframe src="/ambiental.pdf" width="100%" className="aspect-[3/4]" />
-          <iframe src="/un.pdf" width="100%" className="aspect-[3/4]" />
+          <iframe src="/XIX FORO PEC _ COMISIÓN COLOMBIA_ GUÍA Y HANDBOOK.pdf" width="100%" className="aspect-[3/4]" />
+          <iframe src="/COMISIÓN AMBIENTAL GUÍA Y HANDBOOK 2025 (1) (1).pdf" width="100%" className="aspect-[3/4]" />
+          <iframe src="/UN Headquarters 2025.pdf" width="100%" className="aspect-[3/4]" />
         </div>
         <div className="shadow-inner-figma rounded-3xl mx-auto px-12 py-8 bg-pastel-light-blue my-8">
           <p className="text-3xl md:text-4xl font-bold text-center mb-">
-            Handbooks 2024
+            Handbooks 2025
           </p>
         </div>
       </div>

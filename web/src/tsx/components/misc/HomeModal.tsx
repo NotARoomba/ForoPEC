@@ -10,9 +10,9 @@ export default function HomeModal() {
       className="bg-white flex flex-col mx-auto 2xl:min-w-128 w-5/6 md:w-auto z-10 h-fit py-8 my-auto translate-y-16 2xl:ml-auto 2xl:mr-28 rounded-3xl shadow-figma">
       <div className="m-auto w-full">
         <img
-          alt="XVIII Foro Pensando en Colombia"
+          alt="XIX Foro Pensando en Colombia"
           className="w-3/4 mx-auto"
-          src={'/foro-logo.png'}
+          src={'/LOGO YIPAO TRANSPARENTE.png'}
         />
         <br className="my-6 lg:flex hidden" />
         <LinkButton

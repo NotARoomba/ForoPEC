@@ -9,8 +9,8 @@ export default function NavBar() {
         <Link to={'/'}>
           <img
             className="object-contain my-auto mx-8 h-full"
-            alt="Foro XVII"
-            src={'/logo-small.png'}
+            alt="Foro XIX"
+            src={'/LOGO YIPAO TRANSPARENTE.png'}
             width={100}
             height={75}
           />
