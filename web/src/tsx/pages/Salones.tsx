@@ -4,9 +4,9 @@ import Transitions from '../components/misc/Transitions';
 export default function Salones() {
   const images = [
     '/aurora.png',
-    '/pupo.jpg',
-    '/mateo.jpg',
-    '/ashlee.jpg',
+    '/karime.jpg',
+    '/faisal.jpg',
+    '/nicolle.jpg',
     '/comision.png',
     '/un.png',
     '/ambiental.png',
@@ -17,9 +17,9 @@ export default function Salones() {
         <div className="flex flex-wrap px-6 xl:px-12  gap-10 pt-32 pb-6 justify-center bg-zircon ">
           {[
             'Aurora Montes',
-            'María José Pupo',
-            'Mateo Herrera',
-            'Ashlee Yin',
+            'Karime Muvdi',
+            'Faisal Gutiérrez',
+            'Nicolle Sánchez',
             'Comisión Colombia',
             'UN Headquarters',
             'Comisión Ambiental',
@@ -31,7 +31,7 @@ export default function Salones() {
                 img={images[i]}
                 link={
                   i > 3
-                    ? ['/colombia.pdf', '/un.pdf', '/ambiental.pdf'][i - 4]
+                    ? ['/XIX FORO PEC _ COMISIÓN COLOMBIA_ GUÍA Y HANDBOOK.pdf', 'public/UN Headquarters 2025.pdf', 'public/COMISIÓN AMBIENTAL GUÍA Y HANDBOOK 2025 (1) (1).pdf'][i - 4]
                     : undefined
                 }
                 color={i % 2 == 0 ? ' bg-orange-dark' : ' bg-orange-dark/70'}
