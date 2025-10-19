@@ -10,7 +10,7 @@ export default function Historia() {
               Nuestra Historia
             </p>
           </div>
-          {Array(2024 - 2007)
+          {Array(2025 - 2007)
             .fill(0)
             .map((_v, i) => (
               <img
