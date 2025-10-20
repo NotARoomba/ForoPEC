@@ -73,7 +73,7 @@ export default function Acerca() {
           <div className="flex flex-col md:flex-row gap-8 mx-auto justify-center">
             <SecretaryCard
               name="María Alejandra Torres"
-              img="public/Male.png"
+              img="/Male.png"
               color="bg-flag-yellow"
             />
             <SecretaryCard

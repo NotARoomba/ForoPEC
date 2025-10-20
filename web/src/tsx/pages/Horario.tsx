@@ -66,7 +66,7 @@ export default function Horario() {
           </div> */}
           <iframe
             className="h-full"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQmTJgqkojEyvWleN2D8svRPuxQAtOKJaFr53bbHZhLF6nNCkQgwqmfjvlQJDJTZqa9ZLoonv2L-aaN/pubhtml?widget=true&amp;headers=false"
+            src="https://docs.google.com/spreadsheets/d/1uCST5h-mMPuDKrRfdHgjfVhCDAClGNXzlM6pgM0WDik/edit?gid=443815929#gid=443815929"
           />
         </div>
       </div>
