@@ -22,7 +22,7 @@ export default function HomeModal() {
       />
       <LinkButton
       text="Inscripción Ponencias"
-      href="https://form.jotform.com/242767197619674"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSeidr_q7bD5t9BxbLo7j9bjqyJ2cSVhICMoPYEi6sj7RA1kNA/viewform?usp=sharing&ouid=106459797129567247743"
       color="bg-flag-blue"
       />
       <LinkButton
