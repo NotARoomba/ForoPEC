@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex h-full flex-col items-center justify-center m-auto ">
         <img
           className="w-full h-full absolute object-cover 2xl:flex hidden"
-          src={'/tresSECRETARIOS.JPG'}
+          src={'/tresSECRETARIOS1.jpg'}
         />
         <div className=" bg-pastel-light-blue 2xl:opacity-20 opacity-100 h-full w-full absolute" />
         <HomeModal />
