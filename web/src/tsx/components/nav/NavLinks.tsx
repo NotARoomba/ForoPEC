@@ -11,6 +11,7 @@ const menuItems = [
   'Salones',
   'Horario',
   'Mapa',
+  'Medios',
 ];
 const colors = [
   '#A0D4FF',
@@ -19,6 +20,7 @@ const colors = [
   '#f7b6d2',
   '#fff0db',
   '#d2b6f7',
+  '#b6f7c1',
 ];
 
 export default function NavLinks() {

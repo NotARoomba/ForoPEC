@@ -10,6 +10,7 @@ import Mapa from './tsx/pages/Mapa';
 import NavbarWrapper from './tsx/components/nav/NavBarWrapper';
 import Historia from './tsx/pages/Historia';
 import Horario from './tsx/pages/Horario';
+import Medios from './tsx/pages/Medios';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
       {
         path: '/mapa',
         element: <Mapa />,
+        errorElement: <Error />,
+      },
+      {
+        path: '/medios',
+        element: <Medios />,
         errorElement: <Error />,
       },
     ],
